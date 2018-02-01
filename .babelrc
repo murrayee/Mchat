@@ -1,0 +1,12 @@
+{
+  "presets": ["react-native"],
+  "sourceMaps": true,
+  "plugins": [
+    "transform-decorators-legacy"
+  ],
+  "env": {
+    "production": {
+      "plugins": ["transform-remove-console"]
+    }
+  }
+}
