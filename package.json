@@ -5,12 +5,14 @@
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "android": "react-native run-android",
-    "ios": "react-native run-ios --simulator 'iPhone X'",
+    "ios": "react-native run-ios --simulator 'iPhone 8'",
     "test": "jest"
   },
   "dependencies": {
     "antd-mobile": "^2.1.5",
     "axios": "^0.17.1",
+    "dva": "^2.1.0",
+    "dva-loading": "^1.0.4",
     "qs": "^6.5.1",
     "react": "16.0.0",
     "react-dom": "^16.2.0",
@@ -19,8 +21,10 @@
     "react-native-image-header-scroll-view": "^0.6.2",
     "react-native-scrollable-tab-view": "^0.8.0",
     "react-native-splash-screen": "^3.0.1",
+    "react-native-storage": "^0.2.2",
+    "react-native-swipeout": "^2.3.3",
     "react-native-vector-icons": "^4.4.3",
-    "react-navigation": "^1.0.0-beta.22",
+    "react-navigation": "^1.0.0-beta.27",
     "react-redux": "^5.0.6",
     "redux": "^4.0.0-beta.1",
     "redux-actions": "^2.2.1",
@@ -28,7 +32,8 @@
     "redux-saga": "^0.16.0",
     "redux-thunk": "^2.2.0",
     "reselect": "^3.0.1",
-    "rn-placeholder": "^1.2.0"
+    "rn-placeholder": "^1.2.0",
+    "socket.io-client": "^2.0.4"
   },
   "devDependencies": {
     "babel": "^6.23.0",
