@@ -12,32 +12,24 @@ import {
     ScrollView,
     Platform,
     DeviceEventEmitter
-
-
 } from 'react-native'
 import {NavigationActions} from 'react-navigation'
 import {connect} from 'react-redux'
-
 // import {loginOut} from '../../action/login'
-
 import {WhiteSpace, Button, List, ActionSheet, Toast} from 'antd-mobile';
 import {storage} from '../../../utils/asyncStorage'
-
 const Item = List.Item;
 const Brief = Item.Brief;
-
 class Setting extends Component {
     constructor() {
         super();
         this.timer = null
     }
-
     componentDidMount() {
         DeviceEventEmitter.addListener('navigatorBack', () => {
             Toast.hide();
         });
     }
-
     componentWillUnmount() {
         DeviceEventEmitter.removeAllListeners('navigatorBack');
         if (this.timer) {
@@ -46,9 +38,7 @@ class Setting extends Component {
         }
     }
     loginOut = (index) => {
-
         if (index == 0) {
-
             // const {dispatch}=this.props
             Toast.loading('正在退出...', 1, () => {
                 console.log('Load complete !!!');
@@ -64,9 +54,7 @@ class Setting extends Component {
                     ]
                 })
                 this.props.navigation.dispatch(resetAction)
-
             }, 2000)
-
         }
 
     }
