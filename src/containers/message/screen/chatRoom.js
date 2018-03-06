@@ -25,7 +25,7 @@ import {
 const {width, height} = Dimensions.get('window')
 import * as Animatable from 'react-native-animatable';
 import {Grid,Tabs} from 'antd-mobile'
-import MessageCell from '../../../components/messageCell/messageCell'
+import MessageCell from '../../../components/MessageCell/messageCell'
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import AddIcon from 'react-native-vector-icons/Ionicons'
 import {InputItem} from 'antd-mobile'

@@ -3,22 +3,25 @@
  */
 import React, {Component} from 'react';
 import {Provider} from 'react-redux';
+import { createStore, compose, applyMiddleware } from 'redux';
+import reducers from './reducers/index';
+import thunk from 'redux-thunk';
+import {createLogger} from 'redux-logger';
 import Navigation from './navigation/index'
-import  store from './utils/store'
-import io from 'socket.io-client'
+import {
+    createReactNavigationReduxMiddleware,
+} from 'react-navigation-redux-helpers';
+// Note: createReactNavigationReduxMiddleware must be run before createReduxBoundAddListener
+const middleware = createReactNavigationReduxMiddleware(
+    "root",
+    state => state.nav,
+);
+//创建一个 Redux store 来以存放应用中所有的 state，应用中应有且仅有一个 store。
+let enhancer = compose(
+    applyMiddleware(middleware,thunk, createLogger()),
+);
+const store = createStore(reducers, enhancer);
 
-const socket = io('http://127.0.0.1:9090', {
-    transports: ['websocket'],
-});
-socket.on('connect', () => {
-    console.log('connect!');
-    socket.emit('chat', 'hello world!');
-    socket.emit('disconnect','dasdasdasdasdas')
-});
-
-socket.on('res', msg => {
-    console.log('res from server: %s!', msg);
-});
 
 class App extends Component {
     render() {

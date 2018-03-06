@@ -1,12 +1,22 @@
 {
-  "presets": ["react-native"],
+  "presets": [
+    "react-native"
+  ],
   "sourceMaps": true,
   "plugins": [
-    "transform-decorators-legacy"
+    "transform-decorators-legacy",
+    [
+      "import",
+      {
+        "libraryName": "antd-mobile"
+      }
+    ]
   ],
   "env": {
     "production": {
-      "plugins": ["transform-remove-console"]
+      "plugins": [
+        "transform-remove-console"
+      ]
     }
   }
 }

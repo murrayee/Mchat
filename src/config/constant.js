@@ -11,3 +11,9 @@ export const authTypes = {
     USER_REG: 'USER_REG',
     USER_CHANGE_PASSWORD: 'USER_CHANGE_PASSWORD',
 }
+
+export  const contactTypes={
+    REQUEST_CST_LIST:'REQUEST_CST_LIST',
+    RECEIVE_CST_LIST:'RECEIVE_CST_LIST'
+
+}

@@ -62,8 +62,7 @@ export  default  class Main extends Component {
                             sections={this.state.data}
                             getItemLayout={this._getItemLayout}/>
 
-                        <CitySectionList
-                            sections={ this.state.sections}
+                        <CitySectionList sections={ this.state.sections}
                             onSectionSelect={this._onSectionselect}/>
                     </View>
                 </View>

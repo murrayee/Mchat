@@ -10,6 +10,21 @@
     esutils "^2.0.2"
     js-tokens "^3.0.0"
 
+"@babel/helper-module-imports@^7.0.0-beta.34":
+  version "7.0.0-beta.40"
+  resolved "http://registry.npm.taobao.org/@babel/helper-module-imports/download/@babel/helper-module-imports-7.0.0-beta.40.tgz#251cbb6404599282e8f7356a5b32c9381bef5d2d"
+  dependencies:
+    "@babel/types" "7.0.0-beta.40"
+    lodash "^4.2.0"
+
+"@babel/types@7.0.0-beta.40":
+  version "7.0.0-beta.40"
+  resolved "http://registry.npm.taobao.org/@babel/types/download/@babel/types-7.0.0-beta.40.tgz#25c3d7aae14126abe05fcb098c65a66b6d6b8c14"
+  dependencies:
+    esutils "^2.0.2"
+    lodash "^4.2.0"
+    to-fast-properties "^2.0.0"
+
 abab@^1.0.4:
   version "1.0.4"
   resolved "http://registry.npm.taobao.org/abab/download/abab-1.0.4.tgz#5faad9c2c07f60dd76770f71cf025b62a63cfd4e"
@@ -539,6 +554,12 @@ babel-plugin-external-helpers@^6.18.0:
   resolved "http://registry.npm.taobao.org/babel-plugin-external-helpers/download/babel-plugin-external-helpers-6.22.0.tgz#2285f48b02bd5dede85175caf8c62e86adccefa1"
   dependencies:
     babel-runtime "^6.22.0"
+
+babel-plugin-import@^1.6.5:
+  version "1.6.5"
+  resolved "http://registry.npm.taobao.org/babel-plugin-import/download/babel-plugin-import-1.6.5.tgz#fb25fafdaeef1e309d3a17338eefb4bad54f7fc0"
+  dependencies:
+    "@babel/helper-module-imports" "^7.0.0-beta.34"
 
 babel-plugin-istanbul@^4.1.5:
   version "4.1.5"
@@ -5508,6 +5529,10 @@ to-array@0.1.4:
 to-fast-properties@^1.0.3:
   version "1.0.3"
   resolved "http://registry.npm.taobao.org/to-fast-properties/download/to-fast-properties-1.0.3.tgz#b83571fa4d8c25b82e231b06e3a3055de4ca1a47"
+
+to-fast-properties@^2.0.0:
+  version "2.0.0"
+  resolved "http://registry.npm.taobao.org/to-fast-properties/download/to-fast-properties-2.0.0.tgz#dc5e698cbd079265bc73e0377681a4e4e83f616e"
 
 tough-cookie@>=2.3.3, tough-cookie@^2.3.3, tough-cookie@~2.3.0, tough-cookie@~2.3.3:
   version "2.3.3"

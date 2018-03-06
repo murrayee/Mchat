@@ -4,15 +4,20 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
+import {contactIndexFilter, sectionListArr} from '../../../utils/filter'
 import {
     View,
+    Text,
+    Animated,
+    SectionList,
 } from 'react-native';
+const AnimatedSectionList = Animated.createAnimatedComponent(SectionList);
+import SectionHeader from '../../../components/SectionHeader'
+import ContactItem from '../../../components/ContactItem'
+import ContactIndexList from '../../../components/ContactIndexList'
 import Icon from 'react-native-vector-icons/Ionicons';
 import * as  contacts from "../../../actions/contact"
-// import List from '../../../components/common/Main'
-import List from '../../../components/common/sectionList'
-// import List from '../../../components/common/flatList'
-// import List from '../../../components/common/list'
+import {styles} from '../styleSheet/index'
 @connect(
     state => {
         return {...state.contacts}
@@ -20,8 +25,15 @@ import List from '../../../components/common/sectionList'
     dispatch => bindActionCreators({...contacts}, dispatch)
 )
 export  default  class Contact extends Component {
-    constructor(props) {
-        super(props)
+    constructor(props, context) {
+        super(props, context)
+        this._scrollPos = new Animated.Value(0);
+        this._scrollSinkY = Animated.event([{
+                nativeEvent: {
+                    contentOffset: {y: this._scrollPos}
+                }
+            }],
+            {useNativeDriver: true});
     }
 
     componentDidMount() {
@@ -45,10 +57,24 @@ export  default  class Contact extends Component {
     }
 
     render() {
-        const {data, navigation} = this.props;
+        const {data} = this.props;
         return (
-            <View >
-                <List/>
+            <View style={styles.contentContainer}>
+                <AnimatedSectionList
+                    onRefresh={() => console.log('onRefresh: nothing to refresh :P')}
+                    onScroll={this._scrollSinkY}
+                    refreshing={false}
+                    renderItem={({item}) => <ContactItem item={item} key={item.key}/>}
+                    renderSectionHeader={({section}) => <SectionHeader section={section}/>}
+                    stickySectionHeadersEnabled
+                    sections={data || []}
+                    viewabilityConfig={{
+                        minimumViewTime: 3000,
+                        viewAreaCoveragePercentThreshold: 100,
+                        waitForInteraction: true,
+                    }}
+                />
+                <ContactIndexList letters={sectionListArr(data)}/>
             </View>
         );
     }
