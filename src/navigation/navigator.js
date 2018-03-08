@@ -11,6 +11,7 @@ import dynamic from '../containers/dynamic/screen/index'
 import application from '../containers/application/screen/index'
 // contact pages
 import contact from '../containers/contact/screen/index'
+import contactInfo from '../containers/contact/screen/contactInfo'
 //user pages
 import user from '../containers/user/screen/index'
 import userInfo from '../containers/user/screen/userInfo'
@@ -43,7 +44,19 @@ const Tabs = TabNavigator(
                 })
             },
         },
-        contact: {screen: contact},
+        contact: {
+            screen: contact,
+            path: "contact",
+            navigationOptions: props => {
+                return RouteConfigs({
+                    props,
+                    icon: "ios-people",
+                    activeIcon: 'ios-people-outline',
+                    label: TabBarText.Contact,
+                    headerTitle: '联系人'
+                })
+            },
+        },
         dynamic: {
             screen: dynamic,
             path: "dynamic",
@@ -127,6 +140,15 @@ const Navigation = StackNavigator(
                     ...props,
                     back: true,
                     title: `${props.navigation.state.params.name}`
+                })
+            }
+        },
+        contactInfo: {
+            screen: contactInfo,
+            navigationOptions: props => {
+                return headerOptions({
+                    ...props,
+                    back: true
                 })
             }
         },

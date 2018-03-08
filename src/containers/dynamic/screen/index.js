@@ -4,9 +4,7 @@
 
 import React,{Component} from 'react'
 import {View, Text} from 'react-native'
-
 import WebExample from '../../../components/common/webView'
-
 class Dynamic extends Component{
 
     constructor(props) {

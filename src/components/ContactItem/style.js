@@ -7,7 +7,7 @@ const styles = StyleSheet.create({
         backgroundColor: "white",
     },
     info: {
-        height: 50,
+        height: 45,
         borderBottomWidth: .5,
         borderBottomColor: "rgb(240,241,241)",
         flex: 1,

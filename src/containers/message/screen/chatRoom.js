@@ -188,7 +188,8 @@ class Chat extends Component {
                                 height: Math.max(40, this.state.textInputHeight < 180 ? this.state.textInputHeight : 180)
                             }]}
                             returnKeyType="send"
-                            multiline={false}
+                            multiline={true}
+                            numberOfLines={5}
                             controlled={true}
                             blurOnSubmit={false}
                             underlineColorAndroid="transparent"
@@ -217,48 +218,48 @@ class Chat extends Component {
                     </View>
                 </View>
 
-                <Animatable.View animation={this.state.emojiBoxState?'slideInUp':'slideInDown'}  direction="normal" duration={1000} style={{height:0}}>
-                    <View style={{height:0}}>
+                {/*<Animatable.View animation={this.state.emojiBoxState?'slideInUp':'slideInDown'}  direction="normal" duration={1000} style={{height:0}}>*/}
+                    {/*<View style={{height:0}}>*/}
 
-                        <Tabs tabs={tabs2}
-                              initialPage={1}
-                              tabBarPosition="bottom"
-                              renderTab={tab => <Text>{tab.title}</Text>}
-                        >
-                            <Grid data={data1}
-                                  isCarousel
-                                  style={styles.emojiBox}
-                                  onClick={_el => console.log(_el)}
-                                  hasLine={false}
-                                  itemStyle={styles.grid}
-                                  carouselMaxRow={3}
-                                // columnNum={8}
-                                  renderItem={(item) => (<Text style={styles.em}>{item.text}</Text>)}
-                            />
-                            <Grid data={data1}
-                                  isCarousel
-                                  style={styles.emojiBox}
-                                  onClick={_el => console.log(_el)}
-                                  hasLine={false}
-                                  itemStyle={styles.grid}
-                                  carouselMaxRow={3}
-                                // columnNum={8}
-                                  renderItem={(item) => (<Text style={styles.em}>{item.text}</Text>)}
-                            />
-                            <Grid data={data1}
-                                  isCarousel
-                                  style={styles.emojiBox}
-                                  onClick={_el => console.log(_el)}
-                                  hasLine={false}
-                                  itemStyle={styles.grid}
-                                  carouselMaxRow={3}
-                                // columnNum={8}
-                                  renderItem={(item) => (<Text style={styles.em}>{item.text}</Text>)}
-                            />
-                        </Tabs>
+                        {/*<Tabs tabs={tabs2}*/}
+                              {/*initialPage={1}*/}
+                              {/*tabBarPosition="bottom"*/}
+                              {/*renderTab={tab => <Text>{tab.title}</Text>}*/}
+                        {/*>*/}
+                            {/*<Grid data={data1}*/}
+                                  {/*isCarousel*/}
+                                  {/*style={styles.emojiBox}*/}
+                                  {/*onClick={_el => console.log(_el)}*/}
+                                  {/*hasLine={false}*/}
+                                  {/*itemStyle={styles.grid}*/}
+                                  {/*carouselMaxRow={3}*/}
+                                {/*// columnNum={8}*/}
+                                  {/*renderItem={(item) => (<Text style={styles.em}>{item.text}</Text>)}*/}
+                            {/*/>*/}
+                            {/*<Grid data={data1}*/}
+                                  {/*isCarousel*/}
+                                  {/*style={styles.emojiBox}*/}
+                                  {/*onClick={_el => console.log(_el)}*/}
+                                  {/*hasLine={false}*/}
+                                  {/*itemStyle={styles.grid}*/}
+                                  {/*carouselMaxRow={3}*/}
+                                {/*// columnNum={8}*/}
+                                  {/*renderItem={(item) => (<Text style={styles.em}>{item.text}</Text>)}*/}
+                            {/*/>*/}
+                            {/*<Grid data={data1}*/}
+                                  {/*isCarousel*/}
+                                  {/*style={styles.emojiBox}*/}
+                                  {/*onClick={_el => console.log(_el)}*/}
+                                  {/*hasLine={false}*/}
+                                  {/*itemStyle={styles.grid}*/}
+                                  {/*carouselMaxRow={3}*/}
+                                {/*// columnNum={8}*/}
+                                  {/*renderItem={(item) => (<Text style={styles.em}>{item.text}</Text>)}*/}
+                            {/*/>*/}
+                        {/*</Tabs>*/}
 
-                    </View>
-                </Animatable.View>
+                    {/*</View>*/}
+                {/*</Animatable.View>*/}
 
 
             </View>
@@ -360,7 +361,7 @@ const styles = StyleSheet.create({
 
     cell: {
         flex: 1,
-        height: 40,
+        // height: 40,
 
     },
     welcome: {

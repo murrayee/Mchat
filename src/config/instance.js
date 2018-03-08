@@ -1,7 +1,8 @@
 import axios from 'axios';
 import {Alert} from 'react-native'
+import {serverUrl} from './api'
 const alert = Alert.alert
-let url = 'http://127.0.0.1:9090'
+let url = serverUrl.dev
 axios.defaults.baseURL = url;
 axios.defaults.headers.common['Content-Type'] = 'application/x-www-form-urlencoded';
 // http request 拦截器

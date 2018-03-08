@@ -75,6 +75,7 @@ class SectionListExample extends React.PureComponent {
     };
 
     _scrollToLocation(sectionIndex, itemIndex) {
+        console.log(this._scrollPos)
         this._sectionListRef.getNode().scrollToLocation({sectionIndex, itemIndex});
     }
 

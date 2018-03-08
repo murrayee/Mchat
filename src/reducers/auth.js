@@ -8,8 +8,11 @@ const init = {
 }
 const auth = (state = init, action) => {
     switch (action.type) {
-
         case authTypes.USER_LOGIN:
+            return {...state, authProfile: action.data}
+        case authTypes.USER_MODIFY:
+            return {...state}
+        case authTypes.USER_PROFILE:
             return {...state, authProfile: action.data}
         case authTypes.USER_REG:
             return {...state, singUpData: action.data}

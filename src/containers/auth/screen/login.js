@@ -17,7 +17,7 @@ import {Button, InputItem, ActionSheet, WhiteSpace} from 'antd-mobile'
 import {authStyles} from '../styleSheet/index'
 @connect(
     state => {
-        return {...state.auth}
+        return {...state.auth,...state.io}
     },
     dispatch => bindActionCreators({...auth}, dispatch)
 )
@@ -30,14 +30,14 @@ export  default class Authorize extends Component {
         }
     }
     _onClickLogin = () => {
-        const {userLogin, navigation} = this.props
+        const {userLogin, navigation,socket} = this.props
         let username = this.state.username
         let password = this.state.password
         if (username === '' || password === '') {
             Alert.alert("用户名或者密码不能为空");
             return false
         }
-        userLogin({username, password}, navigation)
+        userLogin({username, password}, navigation,socket)
     }
     showActionSheet = () => {
         const BUTTONS = ['手势登录', '遇到问题？', '注册', '取消'];

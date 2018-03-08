@@ -94,7 +94,7 @@ export const StackNavigatorConfig = options => {
         initialRouteName: InitialRouteName,
         mode: "card", // 页面跳转方式 card - 原生系统默认的的跳转;modal - 只针对iOS平台，模态跳转
         headerMode: "screen", // float - 渐变，类似iOS的原生效果;screen - 标题与屏幕一起淡入淡出;none - 没有动画
-        cardStyle: {backgroundColor: "#fff"}, // 为各个页面设置统一的样式，比如背景色，字体大小等
+        cardStyle: {backgroundColor: "#f0f1f1"}, // 为各个页面设置统一的样式，比如背景色，字体大小等
         // transitionConfig: () => ({
         //     // 配置页面跳转的动画，覆盖默认的动画效果
         //     screenInterpolator: CardStackStyleInterpolator.forHorizontal,

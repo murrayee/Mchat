@@ -8,7 +8,6 @@ export  default class CitySectionList extends PureComponent {
 
     constructor(props, context) {
         super(props, context);
-
         this.lastSelectedIndex = null;
         this.state = {text: '', isShow: false}
     }
@@ -48,7 +47,8 @@ export  default class CitySectionList extends PureComponent {
                     style={styles.sectionView}
                     pointerEvents="none"
                     key={i}
-                    ref={'sectionItem' + i}>
+                    ref={'sectionItem' + i}
+                >
                     <Text
                         style={styles.sectionItem}>{this.props.sections[i]}</Text>
                 </View>)

@@ -53,7 +53,7 @@ class User extends Component{
     render() {
         const {navigation}=this.props
         return (
-            <ScrollView style={{backgroundColor: "#f0f1f1"}}
+            <ScrollView
                         automaticallyAdjustContentInsets={false}
                         showsHorizontalScrollIndicator={false}
                         showsVerticalScrollIndicator={false}

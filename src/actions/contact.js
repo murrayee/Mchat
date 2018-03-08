@@ -12,6 +12,10 @@ const receiveCsList = (data) => ({
     type: contactTypes.RECEIVE_CST_LIST,
     data
 })
+export const recordSection = (section) => ({
+    type: contactTypes.RECORD_SECTION,
+    section
+})
 export const getCsList = () => {
     "use strict";
     return dispatch => {

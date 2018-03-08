@@ -11,14 +11,15 @@ import {
 import styles  from './style'
 export  default  class ContactItem extends PureComponent {
     render() {
-        const {item} = this.props
+        const {item,navigation} = this.props
         return (
             <TouchableHighlight
-                onPress={() => console.log('123213')}
+                onPress={() => navigation.navigate('contactInfo',{profile:item})}
                 style={styles.content}
-                 underlayColor="#D8D8D8"
+                underlayColor="#D8D8D8"
+                key={item.key}
             >
-                <View style={styles.info} key={item.key}>
+                <View style={styles.info}>
                     <View>
                         <Image style={styles.thumb}
                                source={{url: 'https://gw.alipayobjects.com/zos/rmsportal/WXoqXTHrSnRcUwEaQgXJ.png'}}/>

@@ -2,19 +2,21 @@ import React, {Component} from "react"
 import {Text, View, Image} from "react-native"
 import {Header} from "react-navigation"
 import HeaderImageScrollView from "react-native-image-header-scroll-view"
-import {WhiteSpace, List} from 'antd-mobile';
-import {userInfoStyles} from '../styleSheet/index'
+import {WhiteSpace, List,Button} from 'antd-mobile';
+import {contactInfoStyles} from '../styleSheet/index'
 const MIN_HEIGHT = Header.HEIGHT
 const MAX_HEIGHT = 200
 const Item = List.Item;
-export default class userInfo extends Component {
+export default class contactInfo extends Component {
     static navigationOptions = {
         headerTintColor: "white",
         headerStyle: {position: "absolute", top: 0}
     }
     render() {
+        const {navigation} = this.props
+        const profile = navigation.state.params.profile
         return (
-            <View style={userInfoStyles.container}>
+            <View style={contactInfoStyles.container}>
                 <HeaderImageScrollView
                     maxHeight={MAX_HEIGHT}
                     minHeight={MIN_HEIGHT}
@@ -22,18 +24,19 @@ export default class userInfo extends Component {
                     minOverlayOpacity={0.3}
                     fadeOutForeground
                     renderHeader={() => (
-                        <Image source={require('./79f6013381fda5221972db3dfb500931.jpg')} style={userInfoStyles.image}/>
+                        <Image source={require('./79f6013381fda5221972db3dfb500931.jpg')}
+                               style={contactInfoStyles.image}/>
                     )}
                     renderForeground={() => (
-                        <View style={userInfoStyles.titleContainer}>
+                        <View style={contactInfoStyles.titleContainer}>
                             <Image source={require('./79f6013381fda5221972db3dfb500931.jpg')}
-                                   style={userInfoStyles.avatar}/>
-                            <Text style={userInfoStyles.username}> Murray </Text>
+                                   style={contactInfoStyles.avatar}/>
+                            <Text style={contactInfoStyles.username}> {profile.username} </Text>
                         </View>
                     )}
                     scrollViewBackgroundColor="red"
                 >
-                    <View style={userInfoStyles.content }>
+                    <View style={contactInfoStyles.content }>
                         <WhiteSpace/>
                         <List >
                             <Item extra={`${'未填写'}`} arrow="horizontal">个性签名</Item>
@@ -48,6 +51,11 @@ export default class userInfo extends Component {
                             <Item extra={`${'18500000000'}`} arrow="horizontal">手机号码</Item>
                             <Item extra={`${'murrayeeee@163.com'}`} arrow="horizontal">邮箱地址</Item>
                         </List>
+                        <View style={contactInfoStyles.buttons}>
+                            <Button type="primary" onClick={()=>navigation.navigate('chatRoom',{name:profile.username})}>发送消息</Button>
+                            <WhiteSpace/>
+                            <Button>视频聊天</Button>
+                        </View>
                     </View>
                 </HeaderImageScrollView>
             </View>
