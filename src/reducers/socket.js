@@ -3,12 +3,12 @@
  */
 import {socketTypes} from '../config/constant';
 const init = {
-    socket: null
+    socketServer: null
 }
 const io = (state = init, action) => {
     switch (action.type) {
         case socketTypes.SOCKET_CONNECTION:
-            return {...state, socket: action.socket}
+            return {...state, socketServer: action.socketServer}
         case socketTypes.SOCKET_CONNECTION_FAIL:
             return {...state}
         default:

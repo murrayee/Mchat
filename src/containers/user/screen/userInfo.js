@@ -7,12 +7,20 @@ import {userInfoStyles} from '../styleSheet/index'
 const MIN_HEIGHT = Header.HEIGHT
 const MAX_HEIGHT = 200
 const Item = List.Item;
+import {connect} from 'react-redux'
+import {bindActionCreators} from 'redux'
+@connect(
+    state => {
+        return {...state.auth}
+    }
+)
 export default class userInfo extends Component {
     static navigationOptions = {
         headerTintColor: "white",
         headerStyle: {position: "absolute", top: 0}
     }
     render() {
+        const{authProfile}=this.props
         return (
             <View style={userInfoStyles.container}>
                 <HeaderImageScrollView

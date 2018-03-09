@@ -23,6 +23,8 @@ import {
 } from 'react-native';
 // import io from 'socket.io-client'
 const {width, height} = Dimensions.get('window')
+import {connect} from 'react-redux'
+import {bindActionCreators} from 'redux'
 import * as Animatable from 'react-native-animatable';
 import {Grid,Tabs} from 'antd-mobile'
 import MessageCell from '../../../components/MessageCell/messageCell'
@@ -55,7 +57,10 @@ let index = data.length - 1;
 
 const NUM_ROWS = 20;
 let pageIndex = 0;
-
+@connect(
+    state => {
+        return {...state.io}
+    })
 class Chat extends Component {
 
     constructor(props) {
@@ -127,12 +132,14 @@ class Chat extends Component {
 
     _onSubmitEditing = (event) => {
 
-        const {navigation} = this.props
+        const {navigation,socketServer} = this.props
         const {state} = navigation
         const username = state.params.name
 
         this._userHasBeenInputed = true
         // console.log(this.state.inputValue)
+
+        socketServer.socket.emit('message',[this.state.inputValue])
         data.push({
             remark: "me",
             img: 'https://zos.alipayobjects.com/rmsportal/hfVtzEhPzTUewPm.png',

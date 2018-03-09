@@ -15,7 +15,7 @@ const modify = () => ({
     type: authTypes.USER_MODIFY
 })
 const profile = (data) => ({
-    type: authTypes.USER_PROFILE,data
+    type: authTypes.USER_PROFILE, data
 })
 
 export const userLogin = (params, navigation, socket) => {
@@ -28,7 +28,7 @@ export const userLogin = (params, navigation, socket) => {
                 });
                 navigation.dispatch(resetAction);
                 dispatch(userResLogin(res))
-                if (socket && socket.socketId && socket.socketId!==res.data.data.socketId) {
+                if (socket && socket.socketId && socket.socketId !== res.data.data.socketId) {
                     dispatch(userModify({userId: res.data.data._id, field: 'socketId', value: socket.socketId}))
                 }
             }
@@ -54,11 +54,11 @@ export const userSingUp = (params, navigation) => {
 }
 
 export const userModify = (params) => {
-    console.log(params)
     return dispatch => {
         fetches.fetchUserModify(params).then((res) => {
             if (res.data.success) {
                 dispatch(modify())
+                dispatch(userProfile(params))
             }
         })
             .catch(error => {
@@ -68,11 +68,10 @@ export const userModify = (params) => {
 }
 
 export const userProfile = (params) => {
-    console.log(params)
     return dispatch => {
         fetches.fetchUserProfile(params).then((res) => {
             if (res.data.success) {
-                dispatch(profile())
+                dispatch(profile(res))
             }
         })
             .catch(error => {

@@ -11,10 +11,14 @@ import {
     Platform,Alert
 } from 'react-native'
 import {  Button, ActionSheet, List,WhiteSpace} from 'antd-mobile';
-import Icon from 'react-native-vector-icons/Ionicons';
+import {connect} from 'react-redux'
+import {bindActionCreators} from 'redux'
 import {indexStyles} from '../styleSheet/index'
 const Item = List.Item;
 const Brief = Item.Brief;
+@connect(
+    state => {return {...state.auth}}
+)
 class User extends Component{
     constructor(props) {
         super(props)
@@ -51,7 +55,8 @@ class User extends Component{
             });
     }
     render() {
-        const {navigation}=this.props
+        const {navigation,authProfile}=this.props
+        const userInfo=authProfile.data.data
         return (
             <ScrollView
                         automaticallyAdjustContentInsets={false}
@@ -67,7 +72,7 @@ class User extends Component{
                             multipleLine
                             thumb={<Image source={{uri: 'https://os.alipayobjects.com/rmsportal/mOoPurdIfmcuqtr.png'}} style={{width: 50, height: 50,marginRight:10}}/>}
                         >
-                            <Brief />强桓狗<Brief style={{fontSize:12,marginTop:10}}>辅助文字内容</Brief><Brief />
+                            <Brief />{userInfo.username}<Brief style={{fontSize:12,marginTop:10}}>辅助文字内容</Brief><Brief />
                         </Item>
                     </List>
                     <WhiteSpace/>

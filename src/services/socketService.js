@@ -26,9 +26,10 @@ export default class socketService {
         });
         // 远程消息入口，可能会有队列堆积
         this.socket.on('message', (payloads) => {
+            console.log('我已收到你的消息'+payloads)
             // 取数组最新一条消息，并格式化为
-            let sessionItem = this._formatPayloadToSessionItem(payloads[payloads.length - 1], payloads.length);
-            this.sessionListMap.set(String(sessionItem.key), sessionItem);
+            // let sessionItem = this._formatPayloadToSessionItem(payloads[payloads.length - 1], payloads.length);
+            // this.sessionListMap.set(String(sessionItem.key), sessionItem);
         });
     }
     /**

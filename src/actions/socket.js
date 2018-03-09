@@ -3,9 +3,9 @@
  */
 import  {socketTypes} from '../config/constant';
 import socketService from '../services/socketService'
-const socketConnection = (socket) => ({
+const socketConnection = (socketServer) => ({
 
-    type: socketTypes.SOCKET_CONNECTION, socket
+    type: socketTypes.SOCKET_CONNECTION, socketServer
 })
 const socketConnectionFail = () => ({
     type: socketTypes.SOCKET_CONNECTION_FAIL,
