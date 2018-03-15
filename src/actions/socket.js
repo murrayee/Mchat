@@ -3,9 +3,9 @@
  */
 import  {socketTypes} from '../config/constant';
 import socketService from '../services/socketService'
-const socketConnection = (socketServer) => ({
+const socketConnection = (socketService) => ({
 
-    type: socketTypes.SOCKET_CONNECTION, socketServer
+    type: socketTypes.SOCKET_CONNECTION, socketService
 })
 const socketConnectionFail = () => ({
     type: socketTypes.SOCKET_CONNECTION_FAIL,
@@ -13,9 +13,9 @@ const socketConnectionFail = () => ({
 
 export const registerSocket = () => {
     return dispatch => {
-        let socketServer = new socketService()
-        if (socketServer.socket) {
-            dispatch(socketConnection(socketServer))
+        let io = new socketService()
+        if (io.socket) {
+            dispatch(socketConnection(io))
         } else {
             dispatch(socketConnectionFail())
         }

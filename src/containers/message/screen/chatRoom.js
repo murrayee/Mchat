@@ -26,12 +26,13 @@ const {width, height} = Dimensions.get('window')
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import * as Animatable from 'react-native-animatable';
-import {Grid,Tabs} from 'antd-mobile'
+import {Grid, Tabs} from 'antd-mobile'
 import MessageCell from '../../../components/MessageCell/messageCell'
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import AddIcon from 'react-native-vector-icons/Ionicons'
+import uuid from 'uuid'
 import {InputItem} from 'antd-mobile'
-const emojiList = ['😅', '😂', '🙂', '🙃','🙃', '😘', '😗', '😜', '😜', '😎', '😏', '😔', '🙁', '😶', '😢', '🤔', '👏', '🤝', '👍', '👎', '✌', '❤', '🐶', '🐱', '🐰', '🐭', '🐷', '🐸', '🙈',];
+const emojiList = ['😅', '😂', '🙂', '🙃', '🙃', '😘', '😗', '😜', '😜', '😎', '😏', '😔', '🙁', '😶', '😢', '🤔', '👏', '🤝', '👍', '👎', '✌', '❤', '🐶', '🐱', '🐰', '🐭', '🐷', '🐸', '🙈',];
 const data2 = emojiList.map((_val, i) => ({
     // icon:_val ,
     text: `${_val}`,
@@ -42,16 +43,16 @@ const data1 = emojiList.map((_val, i) => ({
     text: `${_val}`,
 }));
 const data = Array.from(new Array(20)).map((_val, i) => ({
-    remark: i%2===0?'me':'',
+    remark: i % 2 === 0 ? 'me' : '',
     img: 'https://zos.alipayobjects.com/rmsportal/dKbkpPXKfvZzWCM.png',
     title: '李佳鑫',
     des: `我是消息${i}`,
 
 }));
 const tabs2 = [
-    { title: '表情一', sub: '1' },
-    { title: '表情二', sub: '2' },
-    { title: '表情三', sub: '3' },
+    {title: '表情一', sub: '1'},
+    {title: '表情二', sub: '2'},
+    {title: '表情三', sub: '3'},
 ];
 let index = data.length - 1;
 
@@ -59,7 +60,7 @@ const NUM_ROWS = 20;
 let pageIndex = 0;
 @connect(
     state => {
-        return {...state.io}
+        return {...state.io, ...state.auth}
     })
 class Chat extends Component {
 
@@ -78,7 +79,7 @@ class Chat extends Component {
             textInputHeight: 40,
             inputValue: '',
             refreshing: false,
-            emojiBoxState:false
+            emojiBoxState: false
         };
 
 
@@ -132,14 +133,26 @@ class Chat extends Component {
 
     _onSubmitEditing = (event) => {
 
-        const {navigation,socketServer} = this.props
+        const {navigation, socketService, authProfile} = this.props
         const {state} = navigation
-        const username = state.params.name
-
+        const toUserInfo = state.params.profile
+        let userInfo = authProfile.data.data;
+        let messageParams = {
+            from: userInfo._id,
+            to: toUserInfo._id,
+            uuid: uuid.v4(),
+            msg: {
+                type: 'txt',
+                content: this.state.inputValue
+            },
+            ext: {
+                // avatar: userInfo.avatar,
+                name: userInfo.username
+            }
+        };
         this._userHasBeenInputed = true
-        // console.log(this.state.inputValue)
-
-        socketServer.socket.emit('message',[this.state.inputValue])
+        socketService.socket.emit('message', [messageParams])
+        console.log(socketService.socket.id)
         data.push({
             remark: "me",
             img: 'https://zos.alipayobjects.com/rmsportal/hfVtzEhPzTUewPm.png',
@@ -218,54 +231,54 @@ class Chat extends Component {
                         />
                     </View>
                     <View style={styles.rightIcon}>
-                        <Icon name="tag-faces" size={25} style={{color: '#b2b2b2', margin: 7,}} onPress={()=>{
-                            this.setState({emojiBoxState:!this.state.emojiBoxState})
+                        <Icon name="tag-faces" size={25} style={{color: '#b2b2b2', margin: 7,}} onPress={() => {
+                            this.setState({emojiBoxState: !this.state.emojiBoxState})
                         }}/>
                         <AddIcon name="ios-add-circle-outline" size={25} style={{color: '#b2b2b2', margin: 7}}/>
                     </View>
                 </View>
 
                 {/*<Animatable.View animation={this.state.emojiBoxState?'slideInUp':'slideInDown'}  direction="normal" duration={1000} style={{height:0}}>*/}
-                    {/*<View style={{height:0}}>*/}
+                {/*<View style={{height:0}}>*/}
 
-                        {/*<Tabs tabs={tabs2}*/}
-                              {/*initialPage={1}*/}
-                              {/*tabBarPosition="bottom"*/}
-                              {/*renderTab={tab => <Text>{tab.title}</Text>}*/}
-                        {/*>*/}
-                            {/*<Grid data={data1}*/}
-                                  {/*isCarousel*/}
-                                  {/*style={styles.emojiBox}*/}
-                                  {/*onClick={_el => console.log(_el)}*/}
-                                  {/*hasLine={false}*/}
-                                  {/*itemStyle={styles.grid}*/}
-                                  {/*carouselMaxRow={3}*/}
-                                {/*// columnNum={8}*/}
-                                  {/*renderItem={(item) => (<Text style={styles.em}>{item.text}</Text>)}*/}
-                            {/*/>*/}
-                            {/*<Grid data={data1}*/}
-                                  {/*isCarousel*/}
-                                  {/*style={styles.emojiBox}*/}
-                                  {/*onClick={_el => console.log(_el)}*/}
-                                  {/*hasLine={false}*/}
-                                  {/*itemStyle={styles.grid}*/}
-                                  {/*carouselMaxRow={3}*/}
-                                {/*// columnNum={8}*/}
-                                  {/*renderItem={(item) => (<Text style={styles.em}>{item.text}</Text>)}*/}
-                            {/*/>*/}
-                            {/*<Grid data={data1}*/}
-                                  {/*isCarousel*/}
-                                  {/*style={styles.emojiBox}*/}
-                                  {/*onClick={_el => console.log(_el)}*/}
-                                  {/*hasLine={false}*/}
-                                  {/*itemStyle={styles.grid}*/}
-                                  {/*carouselMaxRow={3}*/}
-                                {/*// columnNum={8}*/}
-                                  {/*renderItem={(item) => (<Text style={styles.em}>{item.text}</Text>)}*/}
-                            {/*/>*/}
-                        {/*</Tabs>*/}
+                {/*<Tabs tabs={tabs2}*/}
+                {/*initialPage={1}*/}
+                {/*tabBarPosition="bottom"*/}
+                {/*renderTab={tab => <Text>{tab.title}</Text>}*/}
+                {/*>*/}
+                {/*<Grid data={data1}*/}
+                {/*isCarousel*/}
+                {/*style={styles.emojiBox}*/}
+                {/*onClick={_el => console.log(_el)}*/}
+                {/*hasLine={false}*/}
+                {/*itemStyle={styles.grid}*/}
+                {/*carouselMaxRow={3}*/}
+                {/*// columnNum={8}*/}
+                {/*renderItem={(item) => (<Text style={styles.em}>{item.text}</Text>)}*/}
+                {/*/>*/}
+                {/*<Grid data={data1}*/}
+                {/*isCarousel*/}
+                {/*style={styles.emojiBox}*/}
+                {/*onClick={_el => console.log(_el)}*/}
+                {/*hasLine={false}*/}
+                {/*itemStyle={styles.grid}*/}
+                {/*carouselMaxRow={3}*/}
+                {/*// columnNum={8}*/}
+                {/*renderItem={(item) => (<Text style={styles.em}>{item.text}</Text>)}*/}
+                {/*/>*/}
+                {/*<Grid data={data1}*/}
+                {/*isCarousel*/}
+                {/*style={styles.emojiBox}*/}
+                {/*onClick={_el => console.log(_el)}*/}
+                {/*hasLine={false}*/}
+                {/*itemStyle={styles.grid}*/}
+                {/*carouselMaxRow={3}*/}
+                {/*// columnNum={8}*/}
+                {/*renderItem={(item) => (<Text style={styles.em}>{item.text}</Text>)}*/}
+                {/*/>*/}
+                {/*</Tabs>*/}
 
-                    {/*</View>*/}
+                {/*</View>*/}
                 {/*</Animatable.View>*/}
 
 
@@ -393,13 +406,13 @@ const styles = StyleSheet.create({
     em: {
         // width: 30,
         // height: 30,
-        alignItems:'center',
+        alignItems: 'center',
 
     },
-    grid:{
-        height:25,
-        alignItems:'center',
-        justifyContent:'center'
+    grid: {
+        height: 25,
+        alignItems: 'center',
+        justifyContent: 'center'
 
     }
 

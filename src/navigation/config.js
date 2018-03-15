@@ -29,10 +29,10 @@ export const headerOptions = props => {
     }
 }
 export const RouteConfigs = options => {
-    const {icon = null, activeIcon = null, label = null, props, headerTitle} = options
+    const {icon = null, activeIcon = null, label = null, props, headerTitle,visible=true} = options
 
     return {
-        ...headerOptions(props),
+        ...headerOptions({...props,visible}),
         headerTitle,
         tabBarLabel: label,
         tabBarIcon: ({focused}) => {

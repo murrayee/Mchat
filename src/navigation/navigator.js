@@ -9,6 +9,9 @@ import chatRoom from '../containers/message/screen/chatRoom'
 import dynamic from '../containers/dynamic/screen/index'
 // app pages
 import application from '../containers/application/screen/index'
+import mercku from '../containers/application/screen/mercku'
+import meilungo from '../containers/application/screen/meilungo'
+
 // contact pages
 import contact from '../containers/contact/screen/index'
 import contactInfo from '../containers/contact/screen/contactInfo'
@@ -66,12 +69,26 @@ const Tabs = TabNavigator(
                     icon: "ios-add-circle",
                     activeIcon: 'ios-add-circle',
                     label: TabBarText.Dynamic,
-                    headerTitle: '动态'
+                    headerTitle: '动态',
+                    visible: false,
                 })
             },
 
         },
-        application: {screen: application},
+        application: {
+            screen: application,
+            path: "application",
+            navigationOptions: props => {
+                return RouteConfigs({
+                    props,
+                    icon: "ios-apps",
+                    activeIcon: 'ios-apps-outline',
+                    label: TabBarText.Application,
+                    headerTitle: '应用',
+                })
+            },
+
+        },
         user: {
             screen: user,
             path: "user",
@@ -82,6 +99,7 @@ const Tabs = TabNavigator(
                     activeIcon: 'ios-contact-outline',
                     label: TabBarText.User,
                     headerTitle: '我的'
+
 
                 })
             },
@@ -135,11 +153,10 @@ const Navigation = StackNavigator(
         chatRoom: {
             screen: chatRoom,
             navigationOptions: props => {
-                console.log(props.navigation.state.params.name)
                 return headerOptions({
                     ...props,
                     back: true,
-                    title: `${props.navigation.state.params.name}`
+                    title: `${props.navigation.state.params.profile.username}`
                 })
             }
         },
@@ -149,6 +166,24 @@ const Navigation = StackNavigator(
                 return headerOptions({
                     ...props,
                     back: true
+                })
+            }
+        },
+        mercku: {
+            screen: mercku,
+            navigationOptions: props => {
+                return headerOptions({
+                    ...props,
+                    back: false
+                })
+            }
+        },
+        meilungo: {
+            screen: meilungo,
+            navigationOptions: props => {
+                return headerOptions({
+                    ...props,
+                    back: false
                 })
             }
         },

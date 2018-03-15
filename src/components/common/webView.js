@@ -12,17 +12,19 @@ import {
     TouchableWithoutFeedback,
     TouchableOpacity,
     View,
-    WebView
+    WebView,
+
 } from 'react-native';
 
-
+import {SafeAreaView} from 'react-navigation'
 const HEADER = '#3b5998';
 const BGWASH = 'rgba(255,255,255,0.8)';
 const DISABLED_WASH = 'rgba(255,255,255,0.25)';
 
 const TEXT_INPUT_REF = 'urlInput';
 const WEBVIEW_REF = 'webview';
-const DEFAULT_URL = 'https://www.baidu.com';
+const DEFAULT_URL = 'https://cnodejs.org/';
+// const DEFAULT_URL = 'http://10.70.103.212:8080';
 
 class WebViewExample extends React.Component {
     state = {
@@ -37,12 +39,12 @@ class WebViewExample extends React.Component {
         this.inputText = this.state.url;
 
         return (
-            <View style={[styles.container]}>
+            <SafeAreaView style={[styles.container]}>
                 <WebView
                     ref={WEBVIEW_REF}
                     automaticallyAdjustContentInsets={false}
                     style={styles.webView}
-                    source={{uri: this.state.url}}
+                    source={{uri: this.props.url}}
                     javaScriptEnabled={true}
                     domStorageEnabled={true}
                     decelerationRate="normal"
@@ -51,7 +53,7 @@ class WebViewExample extends React.Component {
                     startInLoadingState={true}
                     scalesPageToFit={this.state.scalesPageToFit}
                 />
-            </View>
+            </SafeAreaView>
         );
     }
 
@@ -104,7 +106,7 @@ class WebViewExample extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: HEADER,
+        backgroundColor: 'transparent',
     },
     addressBarRow: {
         flexDirection: 'row',

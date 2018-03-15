@@ -38,7 +38,7 @@ class Message extends Component {
 
     _itemOnPress = (row) => {
         const {navigation} = this.props
-        navigation.navigate('chatRoom',{name:row.item.title})
+        // navigation.navigate('chatRoom',{name:row.item.title})
     }
     _renderItemComponent = (row) => {
         return <MessageItem row={row} onPress={this._itemOnPress}

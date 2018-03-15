@@ -18,7 +18,7 @@ const profile = (data) => ({
     type: authTypes.USER_PROFILE, data
 })
 
-export const userLogin = (params, navigation, socket) => {
+export const userLogin = (params, navigation, socketService) => {
     return dispatch => {
         fetches.fetchUserLogin(params).then((res) => {
             if (res.data.success) {
@@ -28,8 +28,9 @@ export const userLogin = (params, navigation, socket) => {
                 });
                 navigation.dispatch(resetAction);
                 dispatch(userResLogin(res))
-                if (socket && socket.socketId && socket.socketId !== res.data.data.socketId) {
-                    dispatch(userModify({userId: res.data.data._id, field: 'socketId', value: socket.socketId}))
+                if (socketService && socketService.socketId && socketService.socketId !== res.data.data.socketId) {
+
+                    dispatch(userModify({userId: res.data.data._id, field: 'socketId', value: socketService.socketId}))
                 }
             }
         })

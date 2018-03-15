@@ -1,22 +1,19 @@
-/**
- * Created by bear on 2017/12/12.
- */
 
 import React,{Component} from 'react'
 import {View, Text} from 'react-native'
 // import WebExample from '../../../components/common/webViewHtml'
 import WebExample from '../../../components/common/webView'
-class Dynamic extends Component{
+class Mercku extends Component{
 
     constructor(props) {
         super(props)
     }
     render () {
 
-        return  (<WebExample url={'https://cnodejs.org/'}/>)
+        return  (<WebExample url={'http://10.70.103.212:8080'}/>)
     }
 
 }
 
 
-export  default  Dynamic
+export  default  Mercku
