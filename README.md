@@ -7,8 +7,13 @@
 - yarn install （尽量用yarn 安装 ，npm有可能会出问题 ）
 - yarn run ios (android)
 
+## screen
+
+![Image text](./src/assets/screen.gif)
+
 ## 功能
 - react-redux + react-navigation
+
 - 即时聊天
 
 ## 更新提示
