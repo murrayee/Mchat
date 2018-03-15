@@ -191,7 +191,7 @@ const Navigation = StackNavigator(
 
     },
     StackNavigatorConfig({
-        initialRouteName: "login"
+        initialRouteName: "tabs"
     }),
 )
 export default Navigation;
