@@ -6,7 +6,15 @@
 ## start
 - yarn install （尽量用yarn 安装 ，npm有可能会出问题 ）
 - yarn run ios (android)
+
+## 功能
+- react-redux + react-navigation
 ## 更新提示
+
 - 会持续更新
+
+## more
+
+- 内有上线 （react 技术栈 和 vue 技术栈）开发的web产品，因为是线上产品，所以。。。
 
 
