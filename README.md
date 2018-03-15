@@ -9,6 +9,8 @@
 
 ## 功能
 - react-redux + react-navigation
+- 即时聊天
+
 ## 更新提示
 
 - 会持续更新
