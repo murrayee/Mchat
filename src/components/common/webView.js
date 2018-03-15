@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
         padding: 8,
     },
     webView: {
-        backgroundColor: BGWASH,
+        backgroundColor:  'transparent',
         height: 350,
     },
     addressBarTextInput: {

@@ -4,6 +4,7 @@ import contacts from './contacts'
 import nav from './nav'
 import message from './message'
 import io from './socket'
+import application from './application'
 
 
 const reducers = combineReducers({
@@ -11,7 +12,8 @@ const reducers = combineReducers({
     contacts,
     nav,
     message,
-    io
+    io,
+    application
 });
 
 

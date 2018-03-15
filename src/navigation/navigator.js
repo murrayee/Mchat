@@ -9,8 +9,8 @@ import chatRoom from '../containers/message/screen/chatRoom'
 import dynamic from '../containers/dynamic/screen/index'
 // app pages
 import application from '../containers/application/screen/index'
-import mercku from '../containers/application/screen/mercku'
-import meilungo from '../containers/application/screen/meilungo'
+import componentExample from '../containers/application/screen/componentExample'
+import webApp from '../containers/application/screen/webApp'
 
 // contact pages
 import contact from '../containers/contact/screen/index'
@@ -169,8 +169,8 @@ const Navigation = StackNavigator(
                 })
             }
         },
-        mercku: {
-            screen: mercku,
+        componentExample: {
+            screen: componentExample,
             navigationOptions: props => {
                 return headerOptions({
                     ...props,
@@ -178,8 +178,8 @@ const Navigation = StackNavigator(
                 })
             }
         },
-        meilungo: {
-            screen: meilungo,
+        webApp: {
+            screen: webApp,
             navigationOptions: props => {
                 return headerOptions({
                     ...props,
