@@ -57,7 +57,7 @@ class Message extends Component {
         return (
             <FlatList
                 data={msgList}
-                keyExtractor={ (item, index) => item.title}
+                keyExtractor={(item) => item.title}
                 showsVerticalScrollIndicator={true}//隐藏竖直滚动条
                 // onScroll={this._onScroll}
                 scrollEnabled={this.state.scrollEnabled}

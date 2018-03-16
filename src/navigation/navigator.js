@@ -4,7 +4,7 @@
 import {StackNavigator, TabNavigator, TabBarBottom} from 'react-navigation';
 // msg pages
 import message from '../containers/message/screen/index'
-import chatRoom from '../containers/message/screen/chatRoom'
+import chat from '../containers/message/screen/chat'
 // dyn pages
 import dynamic from '../containers/dynamic/screen/index'
 // app pages
@@ -150,8 +150,8 @@ const Navigation = StackNavigator(
                 })
             }
         },
-        chatRoom: {
-            screen: chatRoom,
+        chat: {
+            screen: chat,
             navigationOptions: props => {
                 return headerOptions({
                     ...props,

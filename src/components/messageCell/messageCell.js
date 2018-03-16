@@ -11,8 +11,8 @@ import {
 const {width,height}=Dimensions.get('window')
 class MessageCell extends Component {
     render() {
-        let {data} = this.props;
-
+        const  {row} = this.props;
+        const data=row.item
         let differentStyle = {};
         if (data.remark === 'me') {
             differentStyle = {
@@ -33,7 +33,6 @@ class MessageCell extends Component {
                     source={{uri: 'https://os.alipayobjects.com/rmsportal/mOoPurdIfmcuqtr.png'}}
                     style={styles.avatar}
                 />
-
                 <View style={data.remark === 'me'?styles.icme:styles.ic}><View style={data.remark === 'me'?styles.icmecnt:styles.icnt}/></View>
                 <View style={[styles.contentView, {backgroundColor: differentStyle.backgroundColor}]}>
                     <Text style={styles.messageCellText}>{data.des}</Text>
