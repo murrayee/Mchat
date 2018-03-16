@@ -161,7 +161,7 @@ class Chat extends Component {
         let dataBlob = data
         this.setState({
                 dataSource: this.state.dataSource.cloneWithRows(dataBlob),
-                inputValue: ''
+                inputValue: ' '
             }
         );
 
