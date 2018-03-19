@@ -17,7 +17,6 @@ const modify = () => ({
 const profile = (data) => ({
     type: authTypes.USER_PROFILE, data
 })
-
 export const userLogin = (params, navigation, socketId) => {
     return dispatch => {
         fetches.fetchUserLogin(params).then((res) => {
@@ -38,7 +37,6 @@ export const userLogin = (params, navigation, socketId) => {
             })
     }
 }
-
 export const userSingUp = (params, navigation) => {
     return dispatch => {
         fetches.fetchUserSingUp(params).then((res) => {

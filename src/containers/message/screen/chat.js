@@ -20,19 +20,11 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import * as socket from '../../../actions/socket'
 import uuid from 'uuid'
 import {roomStyles} from '../styleSheet/index'
-import MessageCell from '../../../components/MessageCell/messageCell'
+import MessageCell from '../../../components/MessageCell/index'
 import KeyboardAware from '../../../components/KeyboardAware/index'
 import {Toast} from 'antd-mobile'
 
 const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
-const data = Array.from(new Array(20)).map((_val, i) => ({
-    remark: i % 2 === 0 ? 'me' : '',
-    img: 'https://zos.alipayobjects.com/rmsportal/dKbkpPXKfvZzWCM.png',
-    title: '李佳鑫',
-    des: `我是消息${i}`,
-    key: `1231233${i}`,
-
-}));
 
 @connect(
     state => {
@@ -48,18 +40,16 @@ class Chat extends Component {
         this._userHasBeenInputed = false
         this.state = {
             inputValue: '',
-            source: data
         }
     }
 
     _renderItemComponent = (row) => {
-        return <MessageCell row={row}/>
+        return <MessageCell row={row} authProfile={ this.props.authProfile}/>
     }
 
     _scrollToBottom() {
         this._listView.getNode().scrollToEnd()
     }
-
     _onSubmitEditing = () => {
         const {navigation, socket, authProfile, emitMessage} = this.props
         const {state} = navigation
@@ -74,21 +64,12 @@ class Chat extends Component {
                 content: this.state.inputValue
             },
             ext: {
-                // avatar: userInfo.avatar,
+                avatar:'',
                 name: userInfo.username
             }
         };
         this._userHasBeenInputed = true
         emitMessage(socket,messageParams)
-        this._input.clear()
-        data.push({
-            remark: "me",
-            img: 'https://zos.alipayobjects.com/rmsportal/hfVtzEhPzTUewPm.png',
-            des: this.state.inputValue,
-            key: `1231233${this.state.inputValue}`,
-        })
-        this.setState({source: data, inputValue: ' '})
-
     }
 
     render() {
@@ -97,8 +78,8 @@ class Chat extends Component {
                 <SafeAreaView style={roomStyles.container}>
                     <AnimatedFlatList
                         ref={(el) => this._listView = el}
-                        data={this.state.source}
-                        keyExtractor={(item) => item.key}
+                        data={this.props.currentChatRoomHistory}
+                        keyExtractor={(item) => item.uuid}
                         showsVerticalScrollIndicator={false}//隐藏竖直滚动条
                         onRefresh={() => console.log('onRefresh: nothing to refresh :P')}
                         refreshing={false}

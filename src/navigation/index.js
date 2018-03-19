@@ -16,10 +16,10 @@ import Routers from './navigator';
 )
 export default class AppWithNavigationState extends Component {
     componentDidMount() {
-        const {dispatch} = this.props
+        const {dispatch,sessionListMap} = this.props
         BackHandler.addEventListener("hardwareBackPress", this.onBackPress);
         //注册socket.io
-        dispatch(socket.registerSocket())
+        dispatch(socket.registerSocket(sessionListMap))
     }
     componentWillUnmount() {
         BackHandler.removeEventListener("hardwareBackPress", this.onBackPress);
