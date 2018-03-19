@@ -17,6 +17,7 @@ import {
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import * as socket from '../../../actions/socket'
 import uuid from 'uuid'
 import {roomStyles} from '../styleSheet/index'
 import MessageCell from '../../../components/MessageCell/messageCell'
@@ -36,7 +37,11 @@ const data = Array.from(new Array(20)).map((_val, i) => ({
 @connect(
     state => {
         return {...state.io, ...state.auth}
-    })
+    },
+    dispatch => {
+        return bindActionCreators({...socket}, dispatch)
+    }
+)
 class Chat extends Component {
     constructor(props) {
         super(props);
@@ -56,13 +61,33 @@ class Chat extends Component {
     }
 
     _onSubmitEditing = () => {
+        const {navigation, socket, authProfile, emitMessage} = this.props
+        const {state} = navigation
+        const toUserInfo = state.params.profile
+        let userInfo = authProfile.data.data;
+        let messageParams = {
+            from: userInfo._id,
+            to: toUserInfo._id,
+            uuid: uuid.v4(),
+            msg: {
+                type: 'txt',
+                content: this.state.inputValue
+            },
+            ext: {
+                // avatar: userInfo.avatar,
+                name: userInfo.username
+            }
+        };
+        this._userHasBeenInputed = true
+        emitMessage(socket,messageParams)
         this._input.clear()
         data.push({
             remark: "me",
             img: 'https://zos.alipayobjects.com/rmsportal/hfVtzEhPzTUewPm.png',
-            des: this.state.inputValue
+            des: this.state.inputValue,
+            key: `1231233${this.state.inputValue}`,
         })
-        this.setState({source: data,inputValue:' '})
+        this.setState({source: data, inputValue: ' '})
 
     }
 
@@ -93,6 +118,8 @@ class Chat extends Component {
                                 style={[roomStyles.input]}
                                 returnKeyType="send"
                                 multiline={true}
+                                clearTextOnFocus={false}
+                                // clearButtonMode='always'
                                 numberOfLines={5}
                                 controlled={true}
                                 blurOnSubmit={false}
