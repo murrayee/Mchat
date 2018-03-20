@@ -51,6 +51,18 @@ class Chat extends Component {
         this._listView.getNode().scrollToEnd()
     }
 
+    _loadMoreHistoryMessage = () => {
+        const {fetchCurrentHistory, currentChatPage} = this.props
+        let key = this._getCurrentChatKey()
+        let next = currentChatPage[key].number
+        let noMore = currentChatPage[key].noMore
+        if (!noMore) {
+            fetchCurrentHistory(key, ++next, currentChatPage.defaultSize)
+        } else {
+            return false
+        }
+
+    }
     _onSubmitEditing = () => {
         const {navigation, socket, authProfile, emitMessage} = this.props
         const {state} = navigation
@@ -81,10 +93,15 @@ class Chat extends Component {
     };
 
     componentDidMount() {
-        const {fetchCurrentHistory, number, size} = this.props
+        const {fetchCurrentHistory, currentChatPage} = this.props
         let key = this._getCurrentChatKey()
-        fetchCurrentHistory(key, number, size)
+        if (currentChatPage[key]) {
+            fetchCurrentHistory(key, currentChatPage[key].number, currentChatPage[key].size)
+        } else {
+            fetchCurrentHistory(key, currentChatPage.defaultNumber, currentChatPage.defaultSize)
+        }
     }
+
     render() {
         console.log(this.props.currentChatRoomHistory[this._getCurrentChatKey()])
         return (
@@ -95,7 +112,7 @@ class Chat extends Component {
                         data={this.props.currentChatRoomHistory[this._getCurrentChatKey()] || []}
                         keyExtractor={(item) => item.uuid}
                         showsVerticalScrollIndicator={false}//隐藏竖直滚动条
-                        onRefresh={() => console.log('onRefresh: nothing to refresh :P')}
+                        onRefresh={() => this._loadMoreHistoryMessage()}
                         refreshing={false}
                         // scrollEnabled={} ////操作时会用到~~（滑动禁止）
                         renderItem={this._renderItemComponent}

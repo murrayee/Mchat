@@ -4,8 +4,10 @@
 import {socketTypes} from '../config/constant';
 
 const init = {
-    size: 13,
-    number: 0,
+    currentChatPage: {
+        defaultNumber: 0,
+        defaultSize: 8
+    },
     socket: null,
     socketId: null,
     currentChatKey: null,
@@ -31,11 +33,17 @@ const io = (state = init, action) => {
             };
         case socketTypes.SOCKET_CURRENT_HISTORY:
             let history = state.currentChatRoomHistory[action.currentChatKey] || []
-            let currentHistory = action.number > 0 && action.number!==state.number ? action.history.concat(...history) : action.history
+
+            let currentHistory = action.number > 0 && (state.currentChatRoomHistory[action.currentChatKey] &&
+                action.number !== state.currentChatPage[action.currentChatKey].number)
+            && action.number !== state.currentChatPage.defaultNumber
+                ? action.history.concat(...history) : action.history
             return {
                 ...state,
-                number: action.number,
-                size: action.size,
+                currentChatPage: {
+                    ...state.currentChatPage,
+                    [action.currentChatKey]: {number: action.number, noMore: action.noMore}
+                },
                 currentChatRoomHistory: {
                     ...state.currentChatRoomHistory,
                     [action.currentChatKey]: currentHistory

@@ -17,8 +17,8 @@ const currentMessage = (messageProfile, currentChatKey) => ({
 const receivedMessage = (messageProfile, currentChatKey) => ({
     type: socketTypes.SOCKET_ON_MESSAGE, messageProfile, currentChatKey
 })
-const currentChatHistory = (history, currentChatKey,number,size) => ({
-    type: socketTypes.SOCKET_CURRENT_HISTORY, history, currentChatKey,number,size
+const currentChatHistory = (history, currentChatKey, number, size, noMore) => ({
+    type: socketTypes.SOCKET_CURRENT_HISTORY, history, currentChatKey, number, size, noMore
 })
 export const saveCurrentKey = (currentChatKey) => ({
     type: socketTypes.SOCKET_SAVE_CURRENT_CHAT_KEY
@@ -54,11 +54,11 @@ export const emitMessage = (socket, messageProfile) => {
     }
 }
 
-
 export const fetchCurrentHistory = (key, number, size) => {
     return dispatch => {
         socketService.restoreMessageFromLocal(key, number, size).then(res => {
-            dispatch(currentChatHistory(res, key,number,size))
+            let noMore = size > res.length
+            dispatch(currentChatHistory(res, key, number, size, noMore))
         })
     }
 }
