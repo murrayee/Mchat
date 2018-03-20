@@ -12,7 +12,7 @@ import {
 } from 'react-navigation-redux-helpers';
 import Routers from './navigator';
 @connect(
-    state => ({...state, nav: state.nav})
+    state => ({...state, nav: state.nav,sessionListMap:state.io.sessionListMap})
 )
 export default class AppWithNavigationState extends Component {
     componentDidMount() {

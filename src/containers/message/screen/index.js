@@ -13,7 +13,7 @@ import SearchBox from '../../../components/SearchBox'
 
 @connect(
     state => {
-        return {...state.message}
+        return {...state.message,...state.io}
     },
     dispatch => bindActionCreators({...message}, dispatch)
 )
@@ -49,11 +49,11 @@ class Message extends Component {
     }
 
     render() {
-        const {msgList} = this.props
+        const {sessionListMap} = this.props
         return (
             <FlatList
-                data={msgList}
-                keyExtractor={(item) => item.title}
+                data={[...sessionListMap.values()]}
+                keyExtractor={(item) => item.key}
                 showsVerticalScrollIndicator={true}//隐藏竖直滚动条
                 // onScroll={this._onScroll}
                 scrollEnabled={this.state.scrollEnabled}

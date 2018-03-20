@@ -64,7 +64,7 @@ class Chat extends Component {
 
     }
     _onSubmitEditing = () => {
-        const {navigation, socket, authProfile, emitMessage} = this.props
+        const {navigation, socket, authProfile, emitMessage,sessionListMap} = this.props
         const {state} = navigation
         const toUserInfo = state.params.profile
         let userInfo = authProfile.data.data;
@@ -77,12 +77,12 @@ class Chat extends Component {
                 content: this.state.inputValue
             },
             ext: {
-                avatar: '',
+                avatar: 'https://gw.alipayobjects.com/zos/rmsportal/WXoqXTHrSnRcUwEaQgXJ.png',
                 name: userInfo.username
             }
         };
         this._userHasBeenInputed = true
-        emitMessage(socket, messageParams)
+        emitMessage(sessionListMap,socket, messageParams)
     };
     _getCurrentChatKey = () => {
         const {navigation, authProfile} = this.props

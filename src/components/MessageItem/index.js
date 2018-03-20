@@ -43,9 +43,9 @@ export  default  class MessageItem extends PureComponent {
     }
     render() {
         const {row, swipeOutDisable} = this.props
+        console.log(row)
         return (
                     <SwipeAction
-                        key={String(row.item.key)}
                         style={styles.info}
                         autoClose
                         disabled={swipeOutDisable}
@@ -54,10 +54,10 @@ export  default  class MessageItem extends PureComponent {
                     >
                         <Item onClick={this._onPress} style={styles.itemInfo}>
                             <View  style={styles.item}>
-                                <Image style={styles.thumb} source={{url:'https://gw.alipayobjects.com/zos/rmsportal/WXoqXTHrSnRcUwEaQgXJ.png'}}/>
+                                <Image style={styles.thumb} source={{url:row.item.ext.avatar}}/>
                                 <View style={styles.msgInfo}>
-                                    <Text numberOfLines={1} style={styles.title}>{row.item.title}</Text>
-                                    <Text numberOfLines={1} style={styles.brief}>{row.item.text} </Text>
+                                    <Text numberOfLines={1} style={styles.title}>{row.item.ext.name}</Text>
+                                    <Text numberOfLines={1} style={styles.brief}>{row.item.msg.content} </Text>
                                 </View>
                                 <View style={styles.extra}>
                                     <Text numberOfLines={1} style={styles.extraText}>昨天</Text>
