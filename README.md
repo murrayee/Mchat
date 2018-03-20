@@ -15,7 +15,9 @@
 - react-redux + react-navigation
 
 ## TODO
-
+<input type ='checkbox' checked disabled>  私聊消息，缓存消息列表
+<input type ='checkbox'  disabled> 会话列表
+<input type ='checkbox'  disabled> 发送离线消息
 
 - 即时聊天
 

@@ -20,14 +20,6 @@ const receivedMessage = (messageProfile, currentChatKey) => ({
 const currentChatHistory = (history, currentChatKey, number, size, noMore) => ({
     type: socketTypes.SOCKET_CURRENT_HISTORY, history, currentChatKey, number, size, noMore
 })
-export const saveCurrentKey = (currentChatKey) => ({
-    type: socketTypes.SOCKET_SAVE_CURRENT_CHAT_KEY
-})
-
-export const DelCurrentKey = (currentChatKey) => ({
-    type: socketTypes.SOCKET_DEL_CURRENT_CHAT_KEY, currentChatKey
-})
-
 export const registerSocket = (sessionListMap) => {
     return dispatch => {
         socketService.connection().then(socket => {
