@@ -10,12 +10,7 @@ import {
 import * as  message from "../../../actions/message"
 import MessageItem from '../../../components/MessageItem'
 import SearchBox from '../../../components/SearchBox'
-const data1 = Array.from(new Array(9)).map((_val, i) => ({
-    icon: 'https://gw.alipayobjects.com/zos/rmsportal/nywPmnTAvTmLusPxHPSu.png',
-    text: `开会啦，明天下午一点钟在天府大道会展中心一栋三楼11-1-23`,
-    title: `欧洲印象居委会闲聊群${i}`,
-    key: `aopfsdfm13dqwepomsd13ni${i}`
-}));
+
 @connect(
     state => {
         return {...state.message}
@@ -42,7 +37,7 @@ class Message extends Component {
     }
     _renderItemComponent = (row) => {
         return <MessageItem row={row} onPress={this._itemOnPress}
-                            swipeScrollEvent={this._swipeScrollEvent }
+                            swipeScrollEvent={this._swipeScrollEvent}
                             swipeOutDisable={this.state.swipeOutDisable}
         />
     }
@@ -52,6 +47,7 @@ class Message extends Component {
     _onScroll = () => {
         // this.setState({swipeOutDisable:true })
     }
+
     render() {
         const {msgList} = this.props
         return (
@@ -71,4 +67,5 @@ class Message extends Component {
         )
     }
 }
-export  default  Message
+
+export default Message

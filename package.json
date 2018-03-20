@@ -49,6 +49,7 @@
     "babel-plugin-transform-es2015-duplicate-keys": "^6.24.1",
     "babel-plugin-transform-remove-console": "^6.8.5",
     "babel-preset-react-native": "4.0.0",
+    "babel-preset-stage-0": "^6.24.1",
     "eslint": "^4.6.1",
     "eslint-config-airbnb": "^15.1.0",
     "eslint-plugin-import": "^2.7.0",

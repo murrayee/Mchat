@@ -44,12 +44,13 @@ class Chat extends Component {
     }
 
     _renderItemComponent = (row) => {
-        return <MessageCell row={row} authProfile={ this.props.authProfile}/>
-    }
+        return <MessageCell row={row} authProfile={this.props.authProfile}/>
+    };
 
     _scrollToBottom() {
         this._listView.getNode().scrollToEnd()
     }
+
     _onSubmitEditing = () => {
         const {navigation, socket, authProfile, emitMessage} = this.props
         const {state} = navigation
@@ -64,21 +65,34 @@ class Chat extends Component {
                 content: this.state.inputValue
             },
             ext: {
-                avatar:'',
+                avatar: '',
                 name: userInfo.username
             }
         };
         this._userHasBeenInputed = true
-        emitMessage(socket,messageParams)
-    }
+        emitMessage(socket, messageParams)
+    };
+    _getCurrentChatKey = () => {
+        const {navigation, authProfile} = this.props
+        const {state} = navigation
+        const toUserInfo = state.params.profile
+        let userInfo = authProfile.data.data;
+        return `${userInfo._id}-${toUserInfo._id}`
+    };
 
+    componentDidMount() {
+        const {fetchCurrentHistory, number, size} = this.props
+        let key = this._getCurrentChatKey()
+        fetchCurrentHistory(key, number, size)
+    }
     render() {
+        console.log(this.props.currentChatRoomHistory[this._getCurrentChatKey()])
         return (
             <KeyboardAware style={roomStyles.KeyboardAvoidingView}>
                 <SafeAreaView style={roomStyles.container}>
                     <AnimatedFlatList
                         ref={(el) => this._listView = el}
-                        data={this.props.currentChatRoomHistory}
+                        data={this.props.currentChatRoomHistory[this._getCurrentChatKey()] || []}
                         keyExtractor={(item) => item.uuid}
                         showsVerticalScrollIndicator={false}//隐藏竖直滚动条
                         onRefresh={() => console.log('onRefresh: nothing to refresh :P')}

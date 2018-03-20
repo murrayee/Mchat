@@ -11,7 +11,7 @@ import {
     TouchableHighlight,
     ScrollView,
     Platform,
-    DeviceEventEmitter
+    AsyncStorage
 } from 'react-native'
 import {NavigationActions} from 'react-navigation'
 import {connect} from 'react-redux'
@@ -149,6 +149,7 @@ class Setting extends Component {
                         </Item>
                         <Item
                             arrow="horizontal"
+                            onClick={()=>AsyncStorage.clear()}
                         >
                             清除缓存
                         </Item>

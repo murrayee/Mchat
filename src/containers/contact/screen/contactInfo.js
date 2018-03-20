@@ -52,7 +52,7 @@ export default class contactInfo extends Component {
                             <Item extra={`${'murrayeeee@163.com'}`} arrow="horizontal">邮箱地址</Item>
                         </List>
                         <View style={contactInfoStyles.buttons}>
-                            <Button type="primary" onClick={()=>navigation.navigate('chat',{profile:profile})}>发送消息</Button>
+                            <Button type="primary" onClick={()=>navigation.navigate('chat',{profile:profile,key:''})}>发送消息</Button>
                             <WhiteSpace/>
                             <Button>视频聊天</Button>
                         </View>

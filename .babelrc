@@ -1,6 +1,7 @@
 {
   "presets": [
-    "react-native"
+    "react-native",
+    "stage-0"
   ],
   "sourceMaps": true,
   "plugins": [

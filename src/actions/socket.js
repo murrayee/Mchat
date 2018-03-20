@@ -11,32 +11,22 @@ const socketConnection = (socket, socketId) => ({
 const socketDisConnection = () => ({
     type: socketTypes.SOCKET_DISCONNECTION,
 })
-const currentMessage = (messageProfile) => ({
-    type: socketTypes.SOCKET_EMIT_MESSAGE, messageProfile
+const currentMessage = (messageProfile, currentChatKey) => ({
+    type: socketTypes.SOCKET_EMIT_MESSAGE, messageProfile, currentChatKey
 })
-const receivedMessage = (messageProfile) => ({
-    type: socketTypes.SOCKET_ON_MESSAGE, messageProfile
+const receivedMessage = (messageProfile, currentChatKey) => ({
+    type: socketTypes.SOCKET_ON_MESSAGE, messageProfile, currentChatKey
 })
-const _getParamsKey = (params) => {
+const currentChatHistory = (history, currentChatKey,number,size) => ({
+    type: socketTypes.SOCKET_CURRENT_HISTORY, history, currentChatKey,number,size
+})
+export const saveCurrentKey = (currentChatKey) => ({
+    type: socketTypes.SOCKET_SAVE_CURRENT_CHAT_KEY
+})
 
-    return `form${params.form}-to${params.to}`
-}
-
-const _formatParamsToSession = (params, count = 1) => {
-
-    let sessionItem = {
-        // avatar: params.toInfo.avatar,
-        name: params.toInfo.name,
-        latestMessage: params.msg.content,
-        unReadMessageCount: 0,
-        timestamp: +(new Date()),
-        key: _getParamsKey(params),
-        // toInfo: params.toInfo
-    }
-
-    return sessionItem
-}
-const sessionList = () => ({})
+export const DelCurrentKey = (currentChatKey) => ({
+    type: socketTypes.SOCKET_DEL_CURRENT_CHAT_KEY, currentChatKey
+})
 
 export const registerSocket = (sessionListMap) => {
     return dispatch => {
@@ -45,24 +35,31 @@ export const registerSocket = (sessionListMap) => {
                 dispatch(socketConnection(socket, socket.id))
             });
             socket.on('message', (params) => {
-                console.log(params)
-                // let sessionItem = _formatParamsToSession(params[params.length - 1], params.length);
-                // sessionListMap.set(String(sessionItem.key), sessionItem);
-                // this._pushPayloadToMessageHistory(sessionItem.key, params);
-                dispatch(receivedMessage(params[0]))
+                let key = `${params[0].to}-${params[0].from}`;
+                socketService.saveMessageToLocal(key, params, null)
+                dispatch(receivedMessage(params[0], key))
             });
             socket.on('disconnect', () => {
                 dispatch(socketDisConnection())
             });
-
         })
-
     }
 }
 export const emitMessage = (socket, messageProfile) => {
     return dispatch => {
         socket.emit('message', [messageProfile])
-        dispatch(currentMessage(messageProfile))
+        let key = `${messageProfile.from}-${messageProfile.to}`
+        socketService.saveMessageToLocal(key, [messageProfile])
+        dispatch(currentMessage(messageProfile, key))
+    }
+}
+
+
+export const fetchCurrentHistory = (key, number, size) => {
+    return dispatch => {
+        socketService.restoreMessageFromLocal(key, number, size).then(res => {
+            dispatch(currentChatHistory(res, key,number,size))
+        })
     }
 }
 

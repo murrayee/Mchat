@@ -4,7 +4,7 @@
 import Storage from 'react-native-storage';
 import {AsyncStorage} from 'react-native';
 
-export  const storage = new Storage({
+const storage = new Storage({
     // 最大容量，默认值1000条数据循环存储
     size: 1000,
     // 存储引擎：对于RN使用AsyncStorage，对于web使用window.localStorage
@@ -21,5 +21,6 @@ export  const storage = new Storage({
     // 或是在任何时候，直接对storage.sync进行赋值修改
     // 或是写到另一个文件里，这里require引入
     // sync: require('你可以另外写一个文件专门处理sync')
+});
 
-})
+export  default storage

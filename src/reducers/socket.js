@@ -3,22 +3,15 @@
  */
 import {socketTypes} from '../config/constant';
 
-const data = Array.from(new Array(20)).map((_val, i) => ({
-    remark: i % 2 === 0 ? 'me' : '',
-    img: 'https://zos.alipayobjects.com/rmsportal/dKbkpPXKfvZzWCM.png',
-    title: '李佳鑫',
-    des: `我是消息${i}`,
-    key: `1231233${i}`,
-
-}));
-
 const init = {
+    size: 13,
+    number: 0,
     socket: null,
     socketId: null,
     currentChatKey: null,
     sessionListMap: new Map(),
     sessionList: [],
-    currentChatRoomHistory: [],
+    currentChatRoomHistory: {},
 }
 const io = (state = init, action) => {
     switch (action.type) {
@@ -28,9 +21,25 @@ const io = (state = init, action) => {
             return {...state}
         case socketTypes.SOCKET_EMIT_MESSAGE:
         case socketTypes.SOCKET_ON_MESSAGE:
+            let current = state.currentChatRoomHistory[action.currentChatKey] || []
             return {
                 ...state,
-                currentChatRoomHistory: [...state.currentChatRoomHistory].concat([action.messageProfile])
+                currentChatRoomHistory: {
+                    ...state.currentChatRoomHistory,
+                    [action.currentChatKey]: [...current].concat([action.messageProfile])
+                }
+            };
+        case socketTypes.SOCKET_CURRENT_HISTORY:
+            let history = state.currentChatRoomHistory[action.currentChatKey] || []
+            let currentHistory = action.number > 0 && action.number!==state.number ? action.history.concat(...history) : action.history
+            return {
+                ...state,
+                number: action.number,
+                size: action.size,
+                currentChatRoomHistory: {
+                    ...state.currentChatRoomHistory,
+                    [action.currentChatKey]: currentHistory
+                }
             }
         default:
             return state
