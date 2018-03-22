@@ -39,8 +39,8 @@ const Tabs = TabNavigator(
             navigationOptions: props => {
                 return RouteConfigs({
                     props,
-                    icon: "ios-chatboxes",
-                    activeIcon: 'ios-chatboxes-outline',
+                    icon: "ios-paw",
+                    activeIcon: 'ios-paw-outline',
                     label: TabBarText.Message,
                     headerTitle: '消息中心'
 
@@ -66,8 +66,8 @@ const Tabs = TabNavigator(
             navigationOptions: props => {
                 return RouteConfigs({
                     props,
-                    icon: "ios-add-circle",
-                    activeIcon: 'ios-add-circle',
+                    icon: "ios-flower",
+                    activeIcon: 'ios-flower-outline',
                     label: TabBarText.Dynamic,
                     headerTitle: '动态',
                     visible: false,
@@ -81,8 +81,8 @@ const Tabs = TabNavigator(
             navigationOptions: props => {
                 return RouteConfigs({
                     props,
-                    icon: "ios-apps",
-                    activeIcon: 'ios-apps-outline',
+                    icon: "ios-keypad",
+                    activeIcon: 'ios-keypad-outline',
                     label: TabBarText.Application,
                     headerTitle: '应用',
                 })

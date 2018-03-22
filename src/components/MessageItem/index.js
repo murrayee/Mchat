@@ -43,7 +43,6 @@ export  default  class MessageItem extends PureComponent {
     }
     render() {
         const {row, swipeOutDisable} = this.props
-        console.log(row)
         return (
                     <SwipeAction
                         style={styles.info}

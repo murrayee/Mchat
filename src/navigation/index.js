@@ -2,25 +2,29 @@
  * Created by bear on 2018/2/5.
  */
 import React, {Component} from 'react';
-import {BackHandler, ToastAndroid} from "react-native";
+import {BackHandler, ToastAndroid, AppState,Platform} from "react-native";
 import {connect} from 'react-redux';
 import {addNavigationHelpers, NavigationActions} from 'react-navigation';
 import {bindActionCreators} from 'redux'
-import * as socket from '../actions/socket'
+import * as socketActions from '../actions/socket'
 import {
     createReduxBoundAddListener,
 } from 'react-navigation-redux-helpers';
 import Routers from './navigator';
+
 @connect(
-    state => ({...state, nav: state.nav,sessionListMap:state.io.sessionListMap})
+    state => ({...state, nav: state.nav, ...state.io})
 )
 export default class AppWithNavigationState extends Component {
     componentDidMount() {
-        const {dispatch,sessionListMap} = this.props
+        const {dispatch, sessionListMap} = this.props
         BackHandler.addEventListener("hardwareBackPress", this.onBackPress);
         //注册socket.io
-        dispatch(socket.registerSocket(sessionListMap))
+        dispatch(socketActions.registerSocket(sessionListMap));
+        AppState.addEventListener('change', this._handleAppStateChange);
+
     }
+
     componentWillUnmount() {
         BackHandler.removeEventListener("hardwareBackPress", this.onBackPress);
         this.lastBackPressed = null
@@ -37,6 +41,20 @@ export default class AppWithNavigationState extends Component {
         }
         dispatch(NavigationActions.back());
         return true;
+    };
+    _handleAppStateChange = (appState) => {
+        const { socket,sessionListMap,dispatch} = this.props
+        if (Platform.OS === 'ios' && appState === 'inactive') {
+            socket.close();
+            dispatch(socketActions.saveSession(sessionListMap))
+        }
+        if (Platform.OS === 'android' && appState === 'background') {
+            socket.close();
+            dispatch(socketActions.saveSession(sessionListMap))
+        }
+        if (appState === 'active') {
+            socket.open();
+        }
     };
 
     render() {

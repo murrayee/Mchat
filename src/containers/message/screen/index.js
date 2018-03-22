@@ -33,7 +33,7 @@ class Message extends Component {
 
     _itemOnPress = (row) => {
         const {navigation} = this.props
-        // navigation.navigate('chatRoom',{name:row.item.title})
+        navigation.navigate('chat',{profile:{}})
     }
     _renderItemComponent = (row) => {
         return <MessageItem row={row} onPress={this._itemOnPress}
@@ -43,9 +43,6 @@ class Message extends Component {
     }
     _swipeScrollEvent = (scrollEnabled) => {
         this.setState({scrollEnabled: scrollEnabled})
-    }
-    _onScroll = () => {
-        // this.setState({swipeOutDisable:true })
     }
 
     render() {

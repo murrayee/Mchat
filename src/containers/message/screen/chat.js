@@ -12,7 +12,6 @@ import {
     FlatList,
     SafeAreaView,
     Animated,
-    KeyboardAvoidingView,
 } from 'react-native';
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
@@ -22,7 +21,6 @@ import uuid from 'uuid'
 import {roomStyles} from '../styleSheet/index'
 import MessageCell from '../../../components/MessageCell/index'
 import KeyboardAware from '../../../components/KeyboardAware/index'
-import {Toast} from 'antd-mobile'
 
 const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
 
@@ -103,7 +101,6 @@ class Chat extends Component {
     }
 
     render() {
-        console.log(this.props.currentChatRoomHistory[this._getCurrentChatKey()])
         return (
             <KeyboardAware style={roomStyles.KeyboardAvoidingView}>
                 <SafeAreaView style={roomStyles.container}>

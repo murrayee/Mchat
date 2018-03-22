@@ -9,15 +9,15 @@
 
 ## screen
 
-![Image text](./src/assets/screen.gif)
+![Image text](./src/assets/Untitled.gif)
 
 ## 功能
 - react-redux + react-navigation
 
 ## TODO
 <input type ='checkbox' checked disabled>  私聊消息，缓存消息列表
-<input type ='checkbox'  disabled> 会话列表
-<input type ='checkbox'  disabled> 发送离线消息
+<input type ='checkbox' checked disabled> 会话列表
+<input type ='checkbox' checked disabled> 发送离线消息
 
 - 即时聊天
 

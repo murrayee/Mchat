@@ -48,7 +48,9 @@ const io = (state = init, action) => {
                     ...state.currentChatRoomHistory,
                     [action.currentChatKey]: currentHistory
                 }
-            }
+            };
+        case socketTypes.SESSION_RESTORE:
+            return {...state, sessionListMap: action.sessionListMap}
         default:
             return state
     }
