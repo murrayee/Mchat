@@ -1,8 +1,8 @@
 
 import React,{Component} from 'react'
 import {View, Text} from 'react-native'
-// import WebExample from '../../../components/common/webViewHtml'
-import WebExample from '../../../components/common/webView'
+import WebExample from '../../../components/common/webViewHtml'
+// import WebExample from '../../../components/common/webView'
 class WebApp extends Component{
 
     constructor(props) {

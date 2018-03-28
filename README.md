@@ -19,14 +19,12 @@
 <input type ='checkbox' checked disabled> 会话列表
 <input type ='checkbox' checked disabled> 发送离线消息
 
-- 即时聊天
-
 ## 更新提示
 
 - 会持续更新
 
 ## more
 
-- 内有上线 （react 技术栈 和 vue 技术栈）开发的web产品，因为是线上产品，所以。。。
+- 内有上线 （react 技术栈 和 vue 技术栈）开发的web产品.
 
 

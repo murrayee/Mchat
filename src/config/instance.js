@@ -17,7 +17,7 @@ axios.interceptors.request.use(
 axios.interceptors.response.use(
     response => {
         if (response.status && !response.data.success) {
-            alert(response.data.message)
+            // alert(response.data.message)
         }
         return response;
     },

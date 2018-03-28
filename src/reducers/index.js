@@ -5,6 +5,7 @@ import nav from './nav'
 import message from './message'
 import io from './socket'
 import application from './application'
+import dynamic from './dynamic'
 
 
 const reducers = combineReducers({
@@ -13,7 +14,8 @@ const reducers = combineReducers({
     nav,
     message,
     io,
-    application
+    application,
+    dynamic
 });
 
 

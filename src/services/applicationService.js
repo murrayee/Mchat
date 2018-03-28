@@ -5,7 +5,7 @@ const data=[
     {
         icon: 'https://os.alipayobjects.com/rmsportal/IptWdCkrtkAUfjE.png',
         text:'美纶购',
-        url:'http://web.meilungo.com',
+        url:'http://web.meilungo.com/',
         path:'webApp'
     },
     {

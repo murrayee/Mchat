@@ -4,7 +4,7 @@
 export const messageTypes = {
     MSG_REQUEST_LIST: 'MSG_REQUEST_LIST',
     MSG_RECEIVE_LIST: 'MSG_RECEIVE_LIST'
-}
+};
 
 export const authTypes = {
     USER_LOGIN: 'USER_LOGIN',
@@ -12,19 +12,19 @@ export const authTypes = {
     USER_MODIFY: 'USER_MODIFY',
     USER_PROFILE: 'USER_PROFILE',
     USER_CHANGE_PASSWORD: 'USER_CHANGE_PASSWORD',
-}
+};
 
 export const contactTypes = {
     REQUEST_CST_LIST: 'REQUEST_CST_LIST',
     RECEIVE_CST_LIST: 'RECEIVE_CST_LIST',
     RECORD_SECTION: 'RECORD_SECTION'
 
-}
+};
 export const applicationTypes = {
     REQUEST_GRID_LIST: 'REQUEST_GRID_LIST',
     RECEIVE_GRID_LIST: 'RECEIVE_GRID_LIST',
 
-}
+};
 export const socketTypes = {
     SOCKET_CONNECTION: 'SOCKET_CONNECTION',
     SOCKET_CONNECTION_FAIL: 'SOCKET_CONNECTION_FAIL',
@@ -36,4 +36,8 @@ export const socketTypes = {
     SOCKET_CURRENT_HISTORY:'SOCKET_CURRENT_HISTORY',
     SESSION_SAVE_TO_LOCAL:'SESSION_SAVE_TO_LOCAL',
     SESSION_RESTORE:'SESSION_RESTORE',
-}
+};
+export const dynamicTypes={
+    REQUEST_TOPICS_LIST:'REQUEST_TOPICS_LIST',
+    RECEIVE_TOPICS_LIST:'RECEIVE_TOPICS_LIST'
+};

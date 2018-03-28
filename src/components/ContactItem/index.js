@@ -22,7 +22,7 @@ export  default  class ContactItem extends PureComponent {
                 <View style={styles.info}>
                     <View>
                         <Image style={styles.thumb}
-                               source={{url: 'https://gw.alipayobjects.com/zos/rmsportal/WXoqXTHrSnRcUwEaQgXJ.png'}}/>
+                               source={{url: item.avatar}}/>
                     </View>
                     <Text style={styles.name}>{item.username}</Text>
                 </View>
