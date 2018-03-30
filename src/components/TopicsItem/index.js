@@ -3,7 +3,7 @@
  */
 import React, {PureComponent} from 'react';
 import {View, Text, Image, TouchableOpacity} from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
+import {Icon} from '../../components/Icon/index'
 import moment from 'moment';
 import styles from './style';
 
@@ -27,12 +27,15 @@ export default class TopicsItem extends PureComponent {
                             .startOf('hour')
                             .fromNow()}
                     </Text>
-                    <Icon
-                        name="ios-more"
-                        size={20}
-                        style={styles.more}
-                        onPress={() => console.log('我是more点击')}
-                    />
+                    <Text style={styles.more}>
+                        <Icon
+                            name='ionicons|ios-more'
+                            size={20}
+                            color='#6a6a6a'
+                            onPress={() => console.log('我是more点击')}
+                        />
+                    </Text>
+
                 </View>
                 <View style={styles.content}>
                     <View style={styles.text}>
@@ -50,13 +53,13 @@ export default class TopicsItem extends PureComponent {
                     <View style={styles.reviewInfo}>
                         <View style={styles.box}>
                             <Text onPress={() => console.log('我是点赞量点击')}>
-                                <Icon name="ios-heart-outline" size={12} style={styles.icon}/>
+                                <Icon name="iconfont|shoucang1" size={12} color='#6a6a6a'/>
                                 <Text style={styles.count}> {item.praise_count} · </Text>
                             </Text>
                         </View>
                         <View style={styles.box}>
                             <Text onPress={() => console.log('我是评论点击')}>
-                                <Icon name="ios-text-outline" size={12} style={styles.icon}/>
+                                <Icon name="iconfont|203" size={12} style='#6a6a6a'/>
                                 <Text style={styles.count}> {item.review_count} </Text>
                             </Text>
                         </View>

@@ -67,11 +67,11 @@ const Tabs = TabNavigator(
             navigationOptions: props => {
                 return RouteConfigs({
                     props,
-                    icon: "ios-flower",
-                    activeIcon: 'ios-flower-outline',
+                    icon: "dongtaixuanzhong",
+                    activeIcon: 'dongtaiweixuanzhong',
                     label: TabBarText.Dynamic,
                     headerTitle: '动态',
-                    visible: false,
+                    // visible: false,
                 })
             },
 

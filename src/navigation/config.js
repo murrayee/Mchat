@@ -4,18 +4,14 @@
 import React from "react"
 import {View, StyleSheet} from "react-native"
 // import CardStackStyleInterpolator from "react-navigation/src/views/CardStack/CardStackStyleInterpolator"
-import Icon from "react-native-vector-icons/Ionicons"
+// import Icon from "react-native-vector-icons/Ionicons"
+import {Icon} from '../components/Icon/index'
 const activeTabColor = "#f2645d"
 const defaultTabColor = "#7a86a2"
 export const headerOptions = props => {
-    const {navigation, navigationOptions, visible = true, back = false, right = false, title = ''} = props
-    const {goBack} = navigation
-    const headerLeft = back && <View />
-    const headerRight = right && <View />
-    const header = visible === false ? null : undefined
+    const { navigationOptions, visible = true, title = ''} = props
+    const header = visible === false ? null : undefined;
     return {
-        // headerLeft,
-        // headerRight,
         header,
         title,
         headerBackTitle: null,
@@ -40,9 +36,10 @@ export const RouteConfigs = options => {
             const IcoColor = focused ? activeTabColor : defaultTabColor
             return label === '动态' ?
                 <View style={styles.tabMark}>
-                    <Icon name={IcoName} size={40} style={{color: IcoColor}}/>
+
+                    <Icon name={`iconfont|${IcoName}`} size={38} color={IcoColor}/>
                 </View>
-                : <Icon name={IcoName} size={26} style={{color: IcoColor}}/>
+                : <Icon name={`ionicons|${IcoName}`} size={26} color={IcoColor}/>
         },
     }
 }
@@ -107,12 +104,12 @@ const styles = StyleSheet.create({
         width:40,
         height:40,
         borderRadius:45,
-        // borderWidth:0.5,
+        // borderWidth:.5,
+        // borderColor:'#e5e5e5',
         margin:0,
         padding:0,
         overflow:'hidden',
         alignItems:'center',
-        // borderColor:'red',
         backgroundColor:"#fff",
         marginTop:-20,
 

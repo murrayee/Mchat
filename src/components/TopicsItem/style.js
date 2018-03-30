@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   count: {
-    fontSize: 12,
+    fontSize: 10,
     color: '#6a6a6a',
     paddingLeft: 10,
     paddingRight: 10
@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
   },
   read: {
     textAlign: 'right',
-    fontSize: 12,
+    fontSize: 10,
     color: '#6a6a6a',
     paddingLeft: 10
   }

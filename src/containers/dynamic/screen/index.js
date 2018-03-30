@@ -10,7 +10,9 @@ import TopicsItem from '../../../components/TopicsItem/index';
 import * as dynamic from '../../../actions/dynamic';
 import {indexStyles} from '../styleSheet/index';
 import MyCarousel from '../../../components/Carousel/index';
-import {Icon, iconFont} from '../../../components/Icon';
+import HeaderRigth from '../../../components/HeaderRight'
+
+
 
 @connect(
     state => {
@@ -26,6 +28,11 @@ export default class Dynamic extends Component {
             isLoadingMore: false
         };
     }
+    static navigationOptions = (props) => {
+        return {
+            headerRight:<HeaderRigth nabigation={props.navigation}/> ,
+        }
+    };
 
     componentDidMount() {
         this._onRefresh();
@@ -52,7 +59,6 @@ export default class Dynamic extends Component {
     render() {
         return (
             <SafeAreaView style={indexStyles.container}>
-                {/*<Icon name="iconfont|iconfontpinglun" size={50} />*/}
                 <FlatList
                     data={this.props.topics}
                     keyExtractor={item => item._id}
