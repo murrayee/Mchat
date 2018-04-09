@@ -3,8 +3,8 @@
  */
 
 export const serverUrl = {
-  dev: 'http://10.70.103.212:9090',
-  // dev: 'http://127.0.0.1:9090',
+  //dev: 'http://10.70.103.212:9090',
+  dev: 'http://127.0.0.1:9090',
   pro: ''
 };
 export const ctsApi = {
@@ -18,5 +18,6 @@ export const authApi = {
 };
 
 export const dynamicApi = {
-  topics: 'api/topics'
+  topics: 'api/topics',
+  article: 'api/topics/<id>'
 };

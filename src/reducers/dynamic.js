@@ -9,7 +9,8 @@ const init = {
   topics: [],
   isFetching: false,
   refreshing: false,
-  hasMore: true
+  hasMore: true,
+  acticles: {}
 };
 const dynamic = (state = init, action) => {
   switch (action.type) {
@@ -35,6 +36,14 @@ const dynamic = (state = init, action) => {
         topics: topics,
         refreshing: false,
         hasMore: action.num <= 8
+      };
+    case dynamicTypes.GET_ARTICLE_DETAIL:
+      return {
+        ...state,
+        acticles: {
+          ...state.acticles,
+          [action.id]: action.data
+        }
       };
     default:
       return state;

@@ -8,6 +8,8 @@ import chat from '../containers/message/screen/chat'
 // dyn pages
 import dynamic from '../containers/dynamic/screen/index'
 import article from '../containers/dynamic/screen/article'
+import release from '../containers/dynamic/screen/release'
+
 // app pages
 import application from '../containers/application/screen/index'
 import componentExample from '../containers/application/screen/componentExample'
@@ -190,6 +192,15 @@ const Navigation = StackNavigator(
         },
         article: {
             screen: article,
+            navigationOptions: props => {
+                return headerOptions({
+                    ...props,
+                    back: false
+                })
+            }
+        },
+        release: {
+            screen: release,
             navigationOptions: props => {
                 return headerOptions({
                     ...props,

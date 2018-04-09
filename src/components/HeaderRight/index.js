@@ -8,15 +8,16 @@ import {
 } from 'react-native'
 import {Icon} from '../Icon/index'
 export  default  class HeaderRight extends PureComponent {
+
     render() {
         const {navigation} = this.props
         return (
             <TouchableOpacity
-                onPress={() => console.log('send')}
+                onPress={()=>navigation.navigate('release')}
                 style={{flexDirection:'row', paddingRight:10}}
             >
                 <Icon name='iconfont|pinglun1' size={15} color='#f2645d'/>
-                <Text style={{color:'#f2645d', fontSize:14}}>发表</Text>
+                <Text style={{color:'#f2645d', fontSize:14}} >发表</Text>
             </TouchableOpacity>
         )
     }
