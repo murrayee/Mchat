@@ -19,6 +19,7 @@
     "react-native": "0.51.0",
     "react-native-animatable": "^1.2.4",
     "react-native-image-header-scroll-view": "0.7.0",
+    "react-native-zss-rich-text-editor": "^1.1.0",
     "react-native-scrollable-tab-view": "^0.8.0",
     "react-native-snap-carousel": "^3.6.0",
     "react-native-splash-screen": "^3.0.1",

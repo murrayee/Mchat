@@ -1,33 +1,65 @@
-/**
- * Created by bear on 2017/12/12.
- */
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { View, ScrollView, Text, Image } from 'react-native';
-import { SafeAreaView } from 'react-navigation';
+import { StyleSheet, Text, View, Platform } from 'react-native';
+import {
+  RichTextEditor,
+  RichTextToolbar
+} from 'react-native-zss-rich-text-editor';
 
-import * as dynamic from '../../../actions/dynamic';
-import { articleStyles } from '../styleSheet/index';
-import { Icon } from '../../../components/Icon';
-
-@connect(
-  state => {
-    return { ...state.dynamic };
-  },
-  dispatch => bindActionCreators({ ...dynamic }, dispatch)
-)
-export default class Release extends Component {
-  constructor(props, context) {
-    super(props, context);
+export default class RichTextExample extends Component {
+  constructor(props) {
+    super(props);
+    this.getHTML = this.getHTML.bind(this);
+    this.setFocusHandlers = this.setFocusHandlers.bind(this);
   }
+
   render() {
     return (
-      <SafeAreaView style={articleStyles.container}>
-        <ScrollView style={articleStyles.container}>
-          <Text>接口已经写好。UI火速开发中~</Text>
-        </ScrollView>
-      </SafeAreaView>
+      <View style={styles.container}>
+        <RichTextEditor
+          ref={r => (this.richtext = r)}
+          style={styles.richText}
+          initialTitleHTML={'Title!!'}
+          initialContentHTML={
+            'Hello <b>World</b> <p>this is a new paragraph</p> <p>this is another new paragraph</p>'
+          }
+          editorInitializedCallback={() => this.onEditorInitialized()}
+        />
+        <RichTextToolbar getEditor={() => this.richtext} />
+      </View>
     );
   }
+
+  onEditorInitialized() {
+    this.setFocusHandlers();
+    this.getHTML();
+  }
+
+  async getHTML() {
+    const titleHtml = await this.richtext.getTitleHtml();
+    const contentHtml = await this.richtext.getContentHtml();
+    //alert(titleHtml + ' ' + contentHtml)
+  }
+
+  setFocusHandlers() {
+    this.richtext.setTitleFocusHandler(() => {
+      //alert('title focus');
+    });
+    this.richtext.setContentFocusHandler(() => {
+      //alert('content focus');
+    });
+  }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    flexDirection: 'column',
+    backgroundColor: '#ffffff',
+    paddingTop: 40
+  },
+  richText: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'transparent'
+  }
+});
