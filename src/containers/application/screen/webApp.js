@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 //import WebExample from '../../../components/common/webViewHtml'
 import WebExample from '../../../components/common/webView';
+import IconDemo from '../../../components/Icon/example';
 class WebApp extends Component {
   constructor(props) {
     super(props);
@@ -11,7 +12,7 @@ class WebApp extends Component {
     headerStyle: { position: 'absolute', top: 0 }
   };
   render() {
-    return <WebExample url={this.props.navigation.state.params.url} />;
+    return <IconDemo url={this.props.navigation.state.params.url} />;
   }
 }
 

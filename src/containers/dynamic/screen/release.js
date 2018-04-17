@@ -8,8 +8,57 @@ import {
 export default class RichTextExample extends Component {
   constructor(props) {
     super(props);
-    this.getHTML = this.getHTML.bind(this);
+    // this.getHTML = this.getHTML.bind(this);
     this.setFocusHandlers = this.setFocusHandlers.bind(this);
+
+    this.actions={
+        setTitleHtml: 'SET_TITLE_HTML',
+        setContentHtml: 'SET_CONTENT_HTML',
+        getTitleHtml: 'GET_TITLE_HTML',
+        getTitleText: 'GET_TITLE_TEXT',
+        getContentHtml: 'GET_CONTENT_HTML',
+        getSelectedText: 'GET_SELECTED_TEXT',
+        blurTitleEditor: 'BLUR_TITLE_EDITOR',
+        blurContentEditor: 'BLUR_CONTENT_EDITOR',
+        focusTitle: 'FOCUS_TITLE',
+        focusContent: 'FOCUS_CONTENT',
+
+        setBold: 'bold',
+        setItalic: 'italic',
+        setUnderline: 'underline',
+        heading1: 'h1',
+        heading2: 'h2',
+        heading3: 'h3',
+        heading4: 'h4',
+        heading5: 'h5',
+        heading6: 'h6',
+        setParagraph: 'SET_PARAGRAPH',
+        removeFormat: 'REMOVE_FORMAT',
+        alignLeft: 'justifyLeft',
+        alignCenter: 'justifyCenter',
+        alignRight: 'justifyRight',
+        alignFull: 'justifyFull',
+        insertBulletsList: 'unorderedList',
+        insertOrderedList: 'orderedList',
+        insertLink: 'INST_LINK',
+        updateLink: 'UPDATE_LINK',
+        insertImage: 'INST_IMAGE',
+        setSubscript: 'subscript',
+        setSuperscript: 'superscript',
+        setStrikethrough: 'strikeThrough',
+        setHR: 'horizontalRule',
+        setIndent: 'indent',
+        setOutdent: 'outdent',
+        setTitlePlaceholder: 'SET_TITLE_PLACEHOLDER',
+        setContentPlaceholder: 'SET_CONTENT_PLACEHOLDER',
+        setTitleFocusHandler: 'SET_TITLE_FOCUS_HANDLER',
+        setContentFocusHandler: 'SET_CONTENT_FOCUS_HANDLER',
+        prepareInsert: 'PREPARE_INSERT',
+        restoreSelection: 'RESTORE_SELECTION',
+        setCustomCSS: 'SET_CUSTOM_CSS',
+        setTextColor: 'SET_TEXT_COLOR',
+        setBackgroundColor: 'SET_BACKGROUND_COLOR',
+    }
   }
 
   render() {
@@ -18,27 +67,23 @@ export default class RichTextExample extends Component {
         <RichTextEditor
           ref={r => (this.richtext = r)}
           style={styles.richText}
-          initialTitleHTML={'Title!!'}
-          initialContentHTML={
-            'Hello <b>World</b> <p>this is a new paragraph</p> <p>this is another new paragraph</p>'
-          }
           editorInitializedCallback={() => this.onEditorInitialized()}
         />
-        <RichTextToolbar getEditor={() => this.richtext} />
+        <RichTextToolbar getEditor={() => this.richtext}  actions={Object.keys(this.actions).map((v)=>this.actions[v])}/>
       </View>
     );
   }
 
   onEditorInitialized() {
     this.setFocusHandlers();
-    this.getHTML();
+    // this.getHTML();
   }
 
-  async getHTML() {
-    const titleHtml = await this.richtext.getTitleHtml();
-    const contentHtml = await this.richtext.getContentHtml();
-    //alert(titleHtml + ' ' + contentHtml)
-  }
+  // async getHTML() {
+  //   const titleHtml = await this.richtext.getTitleHtml();
+  //   const contentHtml = await this.richtext.getContentHtml();
+  //   //alert(titleHtml + ' ' + contentHtml)
+  // }
 
   setFocusHandlers() {
     this.richtext.setTitleFocusHandler(() => {

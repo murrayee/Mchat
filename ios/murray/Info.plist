@@ -32,9 +32,10 @@
 		<true/>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string/>
 	<key>UIAppFonts</key>
 	<array>
+		<string>richicon.ttf</string>
 		<string>iconfont.ttf</string>
 		<string>Entypo.ttf</string>
 		<string>EvilIcons.ttf</string>

@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -14,6 +13,7 @@
 		00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302E41ABCB9EE00DB3ED1 /* libRCTVibration.a */; };
 		00E356F31AD99517003FC87E /* murrayTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* murrayTests.m */; };
 		095EF9C3207B703A00287E45 /* libReact-Native-Webview-Bridge.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 095EF9B2207B701800287E45 /* libReact-Native-Webview-Bridge.a */; };
+		09A13041207DE68400804F9D /* richicon.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 09A1301A207DE68400804F9D /* richicon.ttf */; };
 		09F4C036206E35700010DC4A /* iconfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 09F4C035206E35700010DC4A /* iconfont.ttf */; };
 		0C461D24886D4EFCB72FD8F5 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CC2289E3E9C94A09997DC753 /* FontAwesome.ttf */; };
 		133E29F31AD74F7200F7D852 /* libRCTLinking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C398B91ACF4ADC00677621 /* libRCTLinking.a */; };
@@ -350,6 +350,7 @@
 		02B62C745B0A4534B24E8C6F /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
 		0369ECD2D04248D6AD5DF7AF /* SplashScreen.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = SplashScreen.xcodeproj; path = "../node_modules/react-native-splash-screen/ios/SplashScreen.xcodeproj"; sourceTree = "<group>"; };
 		095EF998207B701800287E45 /* React-Native-Webview-Bridge.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "React-Native-Webview-Bridge.xcodeproj"; path = "../node_modules/react-native-webview-bridge-updated/ios/React-Native-Webview-Bridge.xcodeproj"; sourceTree = "<group>"; };
+		09A1301A207DE68400804F9D /* richicon.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = richicon.ttf; sourceTree = "<group>"; };
 		09F4C035206E35700010DC4A /* iconfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = iconfont.ttf; sourceTree = "<group>"; };
 		115AEC9FC1F24B66A18C577C /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
 		139105B61AF99BAD00B5F7CC /* RCTSettings.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTSettings.xcodeproj; path = "../node_modules/react-native/Libraries/Settings/RCTSettings.xcodeproj"; sourceTree = "<group>"; };
@@ -683,6 +684,7 @@
 		F3C0994B197047AC9FA669CF /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				09A1301A207DE68400804F9D /* richicon.ttf */,
 				09F4C035206E35700010DC4A /* iconfont.ttf */,
 				B96AA4186270439C86E01004 /* Entypo.ttf */,
 				57B87840A5E34A088F3DEECE /* EvilIcons.ttf */,
@@ -1179,6 +1181,7 @@
 				C1153B61E1DF49BD82DD5344 /* Ionicons.ttf in Resources */,
 				171A62680BAB4D1F993DCCBD /* MaterialCommunityIcons.ttf in Resources */,
 				E4D8758E2CD244B2B6B90D1C /* MaterialIcons.ttf in Resources */,
+				09A13041207DE68400804F9D /* richicon.ttf in Resources */,
 				56286D3510B045A194E710FF /* Octicons.ttf in Resources */,
 				1B82901E754E4F258C07ADB3 /* SimpleLineIcons.ttf in Resources */,
 				E80B1F967E374D298B951BB4 /* Zocial.ttf in Resources */,
