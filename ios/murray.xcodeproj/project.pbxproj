@@ -14,7 +14,7 @@
 		00E356F31AD99517003FC87E /* murrayTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* murrayTests.m */; };
 		095EF9C3207B703A00287E45 /* libReact-Native-Webview-Bridge.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 095EF9B2207B701800287E45 /* libReact-Native-Webview-Bridge.a */; };
 		09A13041207DE68400804F9D /* richicon.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 09A1301A207DE68400804F9D /* richicon.ttf */; };
-		09F4C036206E35700010DC4A /* iconfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 09F4C035206E35700010DC4A /* iconfont.ttf */; };
+		09A73DD72099C0F70022F70E /* iconfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 09A73DD62099C0F70022F70E /* iconfont.ttf */; };
 		0C461D24886D4EFCB72FD8F5 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CC2289E3E9C94A09997DC753 /* FontAwesome.ttf */; };
 		133E29F31AD74F7200F7D852 /* libRCTLinking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C398B91ACF4ADC00677621 /* libRCTLinking.a */; };
 		139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139105C11AF99BAD00B5F7CC /* libRCTSettings.a */; };
@@ -351,7 +351,7 @@
 		0369ECD2D04248D6AD5DF7AF /* SplashScreen.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = SplashScreen.xcodeproj; path = "../node_modules/react-native-splash-screen/ios/SplashScreen.xcodeproj"; sourceTree = "<group>"; };
 		095EF998207B701800287E45 /* React-Native-Webview-Bridge.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "React-Native-Webview-Bridge.xcodeproj"; path = "../node_modules/react-native-webview-bridge-updated/ios/React-Native-Webview-Bridge.xcodeproj"; sourceTree = "<group>"; };
 		09A1301A207DE68400804F9D /* richicon.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = richicon.ttf; sourceTree = "<group>"; };
-		09F4C035206E35700010DC4A /* iconfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = iconfont.ttf; sourceTree = "<group>"; };
+		09A73DD62099C0F70022F70E /* iconfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = iconfont.ttf; sourceTree = "<group>"; };
 		115AEC9FC1F24B66A18C577C /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
 		139105B61AF99BAD00B5F7CC /* RCTSettings.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTSettings.xcodeproj; path = "../node_modules/react-native/Libraries/Settings/RCTSettings.xcodeproj"; sourceTree = "<group>"; };
 		139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTWebSocket.xcodeproj; path = "../node_modules/react-native/Libraries/WebSocket/RCTWebSocket.xcodeproj"; sourceTree = "<group>"; };
@@ -684,8 +684,8 @@
 		F3C0994B197047AC9FA669CF /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				09A73DD62099C0F70022F70E /* iconfont.ttf */,
 				09A1301A207DE68400804F9D /* richicon.ttf */,
-				09F4C035206E35700010DC4A /* iconfont.ttf */,
 				B96AA4186270439C86E01004 /* Entypo.ttf */,
 				57B87840A5E34A088F3DEECE /* EvilIcons.ttf */,
 				4265F690EB5640D7A0089006 /* Feather.ttf */,
@@ -1172,13 +1172,13 @@
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
-				09F4C036206E35700010DC4A /* iconfont.ttf in Resources */,
 				87E73255F4B541E5A6F26438 /* Entypo.ttf in Resources */,
 				61C88136995D42788E08D2FF /* EvilIcons.ttf in Resources */,
 				7E576C43F4B442D0B93881E5 /* Feather.ttf in Resources */,
 				0C461D24886D4EFCB72FD8F5 /* FontAwesome.ttf in Resources */,
 				9BD87F21ACA64E36A141DF60 /* Foundation.ttf in Resources */,
 				C1153B61E1DF49BD82DD5344 /* Ionicons.ttf in Resources */,
+				09A73DD72099C0F70022F70E /* iconfont.ttf in Resources */,
 				171A62680BAB4D1F993DCCBD /* MaterialCommunityIcons.ttf in Resources */,
 				E4D8758E2CD244B2B6B90D1C /* MaterialIcons.ttf in Resources */,
 				09A13041207DE68400804F9D /* richicon.ttf in Resources */,

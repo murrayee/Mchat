@@ -34,5 +34,5 @@
 ## Error
 
 * React Native 日常报错 'config.h' file not found
-  cd node_modules/react-native/third-party/glog-0.3.4
-  ../../scripts/ios-configure-glog.sh
+  * cd node_modules/react-native/third-party/glog-0.3.4
+  * ../../scripts/ios-configure-glog.sh
