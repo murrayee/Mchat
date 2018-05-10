@@ -7,18 +7,21 @@ class WebApp extends Component {
   constructor(props) {
     super(props);
   }
-  static navigationOptions = {
-    back: false,
-    // headerTintColor: '#f3977c',
-    headerStyle: { position: 'absolute', top: 0 }
-  };
+  // static navigationOptions = {
+  //   back: false,
+  //   // headerTintColor: '#f3977c',
+  //   headerStyle: { position: 'absolute', top: 0 }
+  // };
   render() {
     return (
+        <View style={{flex:1}}>
+
       <WebExample
         url={
-          'http://www.merckuwifi.org.s3-website.cn-north-1.amazonaws.com.cn/app/zh/'
+          'http://mywifi.mercku.tech/?fromapp=1#/wan-hand/'
         }
       />
+        </View>
     );
   }
 }

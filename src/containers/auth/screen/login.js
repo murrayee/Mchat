@@ -59,8 +59,8 @@ export default class Authorize extends Component {
             Alert.alert('用户名或者密码不能为空');
             return false;
         }
-        userLogin({username, password
-        }, navigation, socketId);
+        userLogin({username, password}, navigation, socketId);
+
     };
     showActionSheet = () => {
         const BUTTONS = ['手势登录', '遇到问题？', '注册', '取消'];

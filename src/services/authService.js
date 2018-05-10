@@ -2,22 +2,48 @@
  * Created by bear on 2018/3/2.
  */
 import axios from '../config/instance'
-import {authApi} from '../config/api'
+import {
+    Base64
+} from 'js-base64';
+import qs from 'qs'
+import appKey from '../utils/appKey';
+
+import {
+    authApi
+} from '../config/api'
 export const fetchUserLogin = async (params) => {
-    return await  axios.post(authApi.authorize, params)
+    const {
+        client_id,
+        client_secret
+    } = appKey
+    const sign = Base64.encode(`${client_id}:${client_secret}`)
+    return await axios({
+        'method': 'post',
+        'url': authApi.authorize,
+        'data': qs.stringify({ ...params,
+            grant_type: appKey.grant_type
+        }),
+        'headers': {
+            'Authorization': `Basic ${sign}`
+        }
+    })
 }
 export const fetchUserSingUp = async (params) => {
-    return await  axios.post(authApi.register, params)
+    return await axios.post(authApi.register, params)
 }
 export const fetchUserModify = async (params) => {
-    const {userId, field, value} = params
+    const {
+        userId,
+        field,
+        value
+    } = params
     let url = authApi.modify.replace('userId', userId).replace('field', field)
-    return await  axios.put(url, params)
+    return await axios.put(url, params)
 }
 export const fetchUserProfile = async (params) => {
-    const {userId} = params
+    const {
+        userId
+    } = params
     let url = authApi.profile.replace('userId', userId)
-    return await  axios.get(url, params)
+    return await axios.get(url, params)
 }
-
-

@@ -2,9 +2,13 @@
  * Created by bear on 2017/7/23.
  */
 
-import  {contactTypes}from '../config/constant';
+import {
+    contactTypes
+} from '../config/constant';
 import * as fetchs from '../services/contactService'
-import {contactIndexFilter} from '../utils/filter'
+import {
+    contactIndexFilter
+} from '../utils/filter'
 const requestCsList = () => ({
     type: contactTypes.REQUEST_CST_LIST
 });
@@ -21,17 +25,11 @@ export const getCsList = () => {
     return dispatch => {
         dispatch(requestCsList())
         fetchs.fetchContactList().then((res) => {
-            let data = res.data.data
-            dispatch(receiveCsList(contactIndexFilter(data)))
-        })
+                let data = res.data.data
+                dispatch(receiveCsList(contactIndexFilter(data)))
+            })
             .catch(error => {
-                console.error(error)
+                console.log(error)
             })
     }
 }
-
-
-
-
-
-

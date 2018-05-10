@@ -1,7 +1,9 @@
 /**
  * Created by bear on 2017/7/23.
  */
-import  {applicationTypes} from '../config/constant';
+import {
+    applicationTypes
+} from '../config/constant';
 import * as fetches from '../services/applicationService'
 
 const requestGridList = () => ({
@@ -9,17 +11,17 @@ const requestGridList = () => ({
 })
 
 const receiveGridList = (data) => ({
-    type: applicationTypes.RECEIVE_GRID_LIST, data
+    type: applicationTypes.RECEIVE_GRID_LIST,
+    data
 })
 export const getGridList = () => {
     return dispatch => {
         dispatch(requestGridList())
         fetches.fetchGridList().then((res) => {
-            dispatch(receiveGridList(res))
-        })
+                dispatch(receiveGridList(res))
+            })
             .catch(error => {
-                console.error(error)
+                console.log(error)
             })
     }
 }
-

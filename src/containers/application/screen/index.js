@@ -6,7 +6,7 @@ import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import {
     View,
-    ScrollView,
+    ScrollView, DeviceEventEmitter,
 } from 'react-native';
 import {indexStyles} from '../styleSheet/index'
 import MyCarousel from '../../../components/Carousel/index'
@@ -26,7 +26,11 @@ export default class Application extends Component {
     }
 
     componentDidMount() {
+        // DeviceEventEmitter.emit('left', '发送了个通知');
         this.props.getGridList()
+        // this.deEmitter = DeviceEventEmitter.addListener('left', (a) => {
+        //     alert('收到通知：' + a);
+        // });
     }
 
     _gridClick = (item) => {

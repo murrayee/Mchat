@@ -1,23 +1,43 @@
 /**
  * Created by bear on 2018/2/5.
  */
-import React, { Component } from 'react';
-import { BackHandler, ToastAndroid, AppState, Platform } from 'react-native';
-import { connect } from 'react-redux';
+import React, {
+  Component
+} from 'react';
+import {
+  BackHandler,
+  ToastAndroid,
+  AppState,
+  Platform
+} from 'react-native';
+import {
+  connect
+} from 'react-redux';
 import {
   addNavigationHelpers,
   NavigationActions,
   SafeAreaView
 } from 'react-navigation';
-import { bindActionCreators } from 'redux';
+import {
+  bindActionCreators
+} from 'redux';
 import * as socketActions from '../actions/socket';
-import { createReduxBoundAddListener } from 'react-navigation-redux-helpers';
+import {
+  createReduxBoundAddListener
+} from 'react-navigation-redux-helpers';
 import Routers from './navigator';
+import NavigatorService from '../services/navigatorService';
 
-@connect(state => ({ ...state, nav: state.nav, ...state.io }))
+@connect(state => ({ ...state,
+  nav: state.nav,
+  ...state.io
+}))
 export default class AppWithNavigationState extends Component {
   componentDidMount() {
-    const { dispatch, sessionListMap } = this.props;
+    const {
+      dispatch,
+      sessionListMap
+    } = this.props;
     BackHandler.addEventListener('hardwareBackPress', this.onBackPress);
     //注册socket.io
     dispatch(socketActions.registerSocket(sessionListMap));
@@ -30,7 +50,10 @@ export default class AppWithNavigationState extends Component {
   }
 
   onBackPress = () => {
-    const { dispatch, nav } = this.props;
+    const {
+      dispatch,
+      nav
+    } = this.props;
     if (nav.index === 0) {
       if (this.lastBackPressed && this.lastBackPressed + 2000 >= Date.now()) {
         return false;
@@ -42,7 +65,11 @@ export default class AppWithNavigationState extends Component {
     return true;
   };
   _handleAppStateChange = appState => {
-    const { socket, sessionListMap, dispatch } = this.props;
+    const {
+      socket,
+      sessionListMap,
+      dispatch
+    } = this.props;
     if (Platform.OS === 'ios' && appState === 'inactive') {
       socket.close();
       dispatch(socketActions.saveSession(sessionListMap));
@@ -57,13 +84,24 @@ export default class AppWithNavigationState extends Component {
   };
 
   render() {
-    const { dispatch, nav } = this.props;
+    const {
+      dispatch,
+      nav
+    } = this.props;
     const addListener = createReduxBoundAddListener('root');
     const navigation = addNavigationHelpers({
       dispatch,
       state: nav,
       addListener
     });
-    return <Routers navigation={navigation} />;
+    return <Routers navigation = {
+      navigation
+    }
+    ref = {
+      el => {
+        NavigatorService.setContainer(el);
+      }
+    }
+    />;
   }
 }

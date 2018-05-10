@@ -1,6 +1,7 @@
 /**
  * Created by bear on 2017/12/12.
  */
+
 import {StackNavigator, TabNavigator, TabBarBottom} from 'react-navigation';
 // msg pages
 import message from '../containers/message/screen/index'
@@ -102,7 +103,6 @@ const Tabs = TabNavigator(
                     activeIcon: 'ios-contact-outline',
                     label: TabBarText.User,
                     headerTitle: '我的'
-
 
                 })
             },
