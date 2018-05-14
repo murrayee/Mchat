@@ -2,7 +2,11 @@
  * Created by bear on 2017/12/12.
  */
 
-import {StackNavigator, TabNavigator, TabBarBottom} from 'react-navigation';
+import {
+    StackNavigator,
+    TabNavigator,
+    TabBarBottom
+} from 'react-navigation';
 // msg pages
 import message from '../containers/message/screen/index'
 import chat from '../containers/message/screen/chat'
@@ -27,7 +31,13 @@ import setting from '../containers/user/screen/setting'
 import login from '../containers/auth/screen/login'
 import register from '../containers/auth/screen/register'
 
-import {headerOptions, RouteConfigs, TabNavigatorConfig, StackNavigatorConfig} from "./config"
+import {
+    headerOptions,
+    RouteConfigs,
+    TabNavigatorConfig,
+    StackNavigatorConfig
+} from "./config"
+import {AsyncStorage} from "react-native";
 const TabBarText = {
     Message: "消息",
     Contact: "联系人",
@@ -35,8 +45,7 @@ const TabBarText = {
     Application: "应用",
     User: "我的",
 }
-const Tabs = TabNavigator(
-    {
+const Tabs = TabNavigator({
         message: {
             screen: message,
             path: "message",
@@ -47,7 +56,6 @@ const Tabs = TabNavigator(
                     activeIcon: 'ios-paw-outline',
                     label: TabBarText.Message,
                     headerTitle: '消息中心'
-
                 })
             },
         },
@@ -111,108 +119,109 @@ const Tabs = TabNavigator(
     TabNavigatorConfig({
         lazy: true,
         initialRouteName: "message",
-        tabBarComponent: TabBarBottom,  //解决安卓底栏不显示图标问题
+        tabBarComponent: TabBarBottom, //解决安卓底栏不显示图标问题
     }),
-)
-const Navigation = StackNavigator(
-    {
-        tabs: {screen: Tabs},
-        userInfo: {
-            screen: userInfo,
-            navigationOptions: props => {
-                return headerOptions({
-                    ...props,
-                    back: true
-                })
-            }
+);
+const Routers= StackNavigator({
+            tabs: {
+                screen: Tabs
+            },
+            userInfo: {
+                screen: userInfo,
+                navigationOptions: props => {
+                    return headerOptions({
+                        ...props,
+                        back: true
+                    })
+                }
+            },
+            setting: {
+                screen: setting,
+                navigationOptions: props => {
+                    return headerOptions({
+                        ...props,
+                        back: true
+                    })
+                }
+            },
+            login: {
+                screen: login,
+                navigationOptions: props => {
+                    return headerOptions({
+                        ...props,
+                        visible: false
+                    })
+                }
+            },
+            register: {
+                screen: register,
+                navigationOptions: props => {
+                    return headerOptions({
+                        ...props,
+                        back: true
+                    })
+                }
+            },
+            chat: {
+                screen: chat,
+                navigationOptions: props => {
+                    return headerOptions({
+                        ...props,
+                        back: true,
+                        title: `${props.navigation.state.params.profile.username}`
+                    })
+                }
+            },
+            contactInfo: {
+                screen: contactInfo,
+                navigationOptions: props => {
+                    return headerOptions({
+                        ...props,
+                        back: true
+                    })
+                }
+            },
+            componentExample: {
+                screen: componentExample,
+                navigationOptions: props => {
+                    return headerOptions({
+                        ...props,
+                        back: false
+                    })
+                }
+            },
+            webApp: {
+                screen: webApp,
+                navigationOptions: props => {
+                    return headerOptions({
+                        ...props,
+                        back: false
+                    })
+                }
+            },
+            article: {
+                screen: article,
+                navigationOptions: props => {
+                    return headerOptions({
+                        ...props,
+                        back: false
+                    })
+                }
+            },
+            release: {
+                screen: release,
+                navigationOptions: props => {
+                    return headerOptions({
+                        ...props,
+                        back: false
+                    })
+                }
+            },
         },
-        setting: {
-            screen: setting,
-            navigationOptions: props => {
-                return headerOptions({
-                    ...props,
-                    back: true
-                })
-            }
-        },
-        login: {
-            screen: login,
-            navigationOptions: props => {
-                return headerOptions({
-                    ...props,
-                    visible: false
-                })
-            }
-        },
-        register: {
-            screen: register,
-            navigationOptions: props => {
-                return headerOptions({
-                    ...props,
-                    back: true
-                })
-            }
-        },
-        chat: {
-            screen: chat,
-            navigationOptions: props => {
-                return headerOptions({
-                    ...props,
-                    back: true,
-                    title: `${props.navigation.state.params.profile.username}`
-                })
-            }
-        },
-        contactInfo: {
-            screen: contactInfo,
-            navigationOptions: props => {
-                return headerOptions({
-                    ...props,
-                    back: true
-                })
-            }
-        },
-        componentExample: {
-            screen: componentExample,
-            navigationOptions: props => {
-                return headerOptions({
-                    ...props,
-                    back: false
-                })
-            }
-        },
-        webApp: {
-            screen: webApp,
-            navigationOptions: props => {
-                return headerOptions({
-                    ...props,
-                    back: false
-                })
-            }
-        },
-        article: {
-            screen: article,
-            navigationOptions: props => {
-                return headerOptions({
-                    ...props,
-                    back: false
-                })
-            }
-        },
-        release: {
-            screen: release,
-            navigationOptions: props => {
-                return headerOptions({
-                    ...props,
-                    back: false
-                })
-            }
-        },
+        StackNavigatorConfig({
+            initialRouteName:'login'
+        }),
+    );
 
 
-    },
-    StackNavigatorConfig({
-        initialRouteName: "login"
-    }),
-)
-export default Navigation;
+export default Routers;

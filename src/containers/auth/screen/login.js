@@ -4,7 +4,7 @@
 import React, {
     Component
 } from 'react';
-import * as Animatable from 'react-native-animatable';
+
 import {bindActionCreators} from 'redux';
 import {
     Text,
@@ -14,6 +14,7 @@ import {
     TouchableOpacity,
     SafeAreaView,
     TextInput,
+    AsyncStorage
 } from 'react-native';
 import * as auth from '../../../actions/auth';
 import {connect} from 'react-redux';
@@ -22,8 +23,8 @@ import {
     ActionSheet,
 } from 'antd-mobile';
 import {authStyles} from '../styleSheet/index';
-import {Icon} from '../../../components/Icon'
-
+import {Icon} from '../../../components/Icon';
+import NavigatorService from '../../../services/navigatorService';
 
 @connect(
     state => {
@@ -47,6 +48,14 @@ export default class Authorize extends Component {
         };
     }
 
+    componentWillMount() {
+        this.checkLogin()
+    }
+    checkLogin= async ()=>{
+        const {navigation} = this.props;
+        const accessToken = await AsyncStorage.getItem('mryAccessToken')
+        if(accessToken) NavigatorService.reset('tabs')
+    }
     _onClickLogin = () => {
         const {
             userLogin,

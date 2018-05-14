@@ -41,7 +41,7 @@ export const userLogin = (params, navigation, socketId) => {
                     AsyncStorage.save({
                         key: 'mryAccessToken',
                         data: res.data.accessToken,
-                        expires: 1000 * 100
+                        expires:expires
                     })
                     const resetAction = NavigationActions.reset({
                         index: 0,
@@ -92,7 +92,7 @@ export const userModify = (params) => {
                 console.log(error)
             })
     }
-}
+};
 
 export const userProfile = (params) => {
     return dispatch => {
