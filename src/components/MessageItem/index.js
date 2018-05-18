@@ -55,7 +55,7 @@ export  default  class MessageItem extends PureComponent {
                             <View  style={styles.item}>
                                 <Image style={styles.thumb} source={{url:row.item.ext.avatar}}/>
                                 <View style={styles.msgInfo}>
-                                    <Text numberOfLines={1} style={styles.title}>{row.item.ext.name}</Text>
+                                    <Text numberOfLines={1} style={styles.title}>{row.item.ext.username}</Text>
                                     <Text numberOfLines={1} style={styles.brief}>{row.item.msg.content} </Text>
                                 </View>
                                 <View style={styles.extra}>

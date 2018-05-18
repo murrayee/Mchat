@@ -69,10 +69,8 @@ class Chat extends Component {
                 type: 'txt',
                 content: this.state.inputValue
             },
-            ext: {
-                avatar: 'https://gw.alipayobjects.com/zos/rmsportal/WXoqXTHrSnRcUwEaQgXJ.png',
-                name: userInfo.username
-            }
+            fromProfile:userInfo,
+            toProfile:toUserInfo
         };
         this._userHasBeenInputed = true
         emitMessage(sessionListMap,socket, messageParams)
@@ -81,9 +79,9 @@ class Chat extends Component {
     _getCurrentChatKey = () => {
         const {navigation, userProfile} = this.props
         const {state} = navigation
-        const toUserInfo = state.params.profile
+        const toUserInfo = state.params.profile;
         let userInfo = userProfile
-        return `${userInfo._id}-${toUserInfo._id}`
+        return `${userInfo._id}-${toUserInfo._id}`;
     };
 
     componentDidMount() {
@@ -97,6 +95,7 @@ class Chat extends Component {
     }
 
     render() {
+        console.log(this.props.currentChatRoomHistory[this._getCurrentChatKey()])
         return (
             <KeyboardAware style={roomStyles.KeyboardAvoidingView}>
                 <SafeAreaView style={roomStyles.container}>

@@ -29,18 +29,13 @@ export const getCsList = () => {
     "use strict";
     return async dispatch => {
         dispatch(requestCsList());
-        const contactsList = await  AsyncStorage.getItem('murrayContactsList');
-         if(contactsList){
-             dispatch(receiveCsList(contactIndexFilter(JSON.parse(contactsList).rawData)))
-         }else {
-             fetchs.fetchContactList().then((res) => {
-                     let data = res.data.data;
-                 AsyncStorage.setItem('murrayContactsList',JSON.stringify(data))
-                     dispatch(receiveCsList(contactIndexFilter(data)))
-                 })
-                 .catch(error => {
-                     console.log(error)
-                 })
-         }
+        fetchs.fetchContactList().then((res) => {
+            let data = res.data.data;
+            dispatch(receiveCsList(contactIndexFilter(data)))
+        })
+            .catch(error => {
+                console.log(error)
+            })
     }
+
 };
