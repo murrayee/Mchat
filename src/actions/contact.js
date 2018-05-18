@@ -1,14 +1,19 @@
 /**
  * Created by bear on 2017/7/23.
  */
-
+import {
+    AsyncStorage
+} from 'react-native'
 import {
     contactTypes
 } from '../config/constant';
 import * as fetchs from '../services/contactService'
+
+
 import {
     contactIndexFilter
 } from '../utils/filter'
+
 const requestCsList = () => ({
     type: contactTypes.REQUEST_CST_LIST
 });
@@ -22,14 +27,20 @@ export const recordSection = (section) => ({
 })
 export const getCsList = () => {
     "use strict";
-    return dispatch => {
-        dispatch(requestCsList())
-        fetchs.fetchContactList().then((res) => {
-                let data = res.data.data
-                dispatch(receiveCsList(contactIndexFilter(data)))
-            })
-            .catch(error => {
-                console.log(error)
-            })
+    return async dispatch => {
+        dispatch(requestCsList());
+        const contactsList = await  AsyncStorage.getItem('murrayContactsList');
+         if(contactsList){
+             dispatch(receiveCsList(contactIndexFilter(JSON.parse(contactsList).rawData)))
+         }else {
+             fetchs.fetchContactList().then((res) => {
+                     let data = res.data.data;
+                 AsyncStorage.setItem('murrayContactsList',JSON.stringify(data))
+                     dispatch(receiveCsList(contactIndexFilter(data)))
+                 })
+                 .catch(error => {
+                     console.log(error)
+                 })
+         }
     }
-}
+};

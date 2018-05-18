@@ -35,6 +35,9 @@ export const registerSocket = (sessionListMap) => {
                 dispatch(socketConnection(socket, socket.id))
             });
             socket.on('message', (params) => {
+
+                console.log(params)
+
                 let key = `${params[0].to}-${params[0].from}`;
                 sessionListMap.set(String(key), formatParamsToSessionItem(key, params[0]))
                 socketService.saveMessageToLocal(key, params, null)
@@ -48,7 +51,9 @@ export const registerSocket = (sessionListMap) => {
 }
 export const emitMessage = (sessionListMap, socket, messageProfile) => {
     return dispatch => {
+
         socket.emit('message', [messageProfile])
+
         let key = `${messageProfile.from}-${messageProfile.to}`
         sessionListMap.set(String(key), formatParamsToSessionItem(key, messageProfile))
         socketService.saveMessageToLocal(key, [messageProfile])

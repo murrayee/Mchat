@@ -9,8 +9,6 @@ import {
     serverUrl
 } from './api'
 import NavigatorService from '../services/navigatorService';
-const alert = Alert.alert
-let url = serverUrl.dev
 const instance = axios.create({
     baseURL: serverUrl.dev,
     timeout: 5000, //设置超时时间
@@ -23,9 +21,9 @@ const instance = axios.create({
 // http request 拦截器
 instance.interceptors.request.use(
     async config => {
-        const accessToken = await AsyncStorage.getItem('mryAccessToken')
+        const accessToken = await AsyncStorage.getItem('murrayUserProfile')
         if (accessToken && !config.url.includes('authorize')) {
-            config.headers.Authorization = `Bearer ${JSON.parse(accessToken).rawData}`;
+            config.headers.Authorization = `Bearer ${JSON.parse(accessToken).rawData.accessToken}`;
         }
         return config
     },
@@ -36,7 +34,7 @@ instance.interceptors.request.use(
 instance.interceptors.response.use(
     response => {
         if (response.status && !response.data.success) {
-            // alert(response.data.message)
+
         }
         return response;
     },

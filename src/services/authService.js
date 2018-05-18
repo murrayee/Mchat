@@ -32,13 +32,10 @@ export const fetchUserSingUp = async (params) => {
     return await axios.post(authApi.register, params)
 }
 export const fetchUserModify = async (params) => {
-    const {
-        userId,
-        field,
-        value
-    } = params
+    const {userId, field } = params;
     let url = authApi.modify.replace('userId', userId).replace('field', field)
-    return await axios.put(url, params)
+
+    return await axios.put(url, qs.stringify(params))
 }
 export const fetchUserProfile = async (params) => {
     const {

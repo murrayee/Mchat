@@ -3,8 +3,6 @@
  */
 import React, {Component} from 'react';
 import {
-    StyleSheet,
-    Text,
     View,
     Image,
     ScrollView,
@@ -12,7 +10,6 @@ import {
 } from 'react-native'
 import {  Button, ActionSheet, List,WhiteSpace} from 'antd-mobile';
 import {connect} from 'react-redux'
-import {bindActionCreators} from 'redux'
 import {indexStyles} from '../styleSheet/index'
 const Item = List.Item;
 const Brief = Item.Brief;
@@ -20,8 +17,8 @@ const Brief = Item.Brief;
     state => {return {...state.auth}}
 )
 class User extends Component{
-    constructor(props) {
-        super(props)
+    constructor(props,context) {
+        super(props,context)
         this.state = {
             clicked: 'none',
             text: '',
@@ -55,8 +52,7 @@ class User extends Component{
             });
     }
     render() {
-        const {navigation,authProfile}=this.props
-        const userInfo=authProfile.data.data
+        const {navigation,userProfile}=this.props
         return (
             <ScrollView
                         automaticallyAdjustContentInsets={false}
@@ -72,7 +68,7 @@ class User extends Component{
                             multipleLine
                             thumb={<Image source={{uri: 'https://os.alipayobjects.com/rmsportal/mOoPurdIfmcuqtr.png'}} style={{width: 50, height: 50,marginRight:10}}/>}
                         >
-                            <Brief />{userInfo.username}<Brief style={{fontSize:12,marginTop:10}}>辅助文字内容</Brief><Brief />
+                            <Brief />{userProfile.username}<Brief style={{fontSize:12,marginTop:10}}>辅助文字内容</Brief><Brief />
                         </Item>
                     </List>
                     <WhiteSpace/>

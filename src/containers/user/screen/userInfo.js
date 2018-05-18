@@ -20,7 +20,7 @@ export default class userInfo extends Component {
         headerStyle: {position: "absolute", top: 0}
     }
     render() {
-        const{authProfile}=this.props
+        const{userProfile}=this.props
         return (
             <View style={userInfoStyles.container}>
                 <HeaderImageScrollView

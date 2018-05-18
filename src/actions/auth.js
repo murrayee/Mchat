@@ -5,11 +5,11 @@ import {
     authTypes
 } from '../config/constant';
 import * as fetches from '../services/authService'
-import AsyncStorage from '../utils/asyncStorage'
+import Storage from '../utils/asyncStorage'
+import NavigatorService from '../services/navigatorService'
 import {
-    NavigationActions
-} from 'react-navigation';
-
+    AsyncStorage
+} from 'react-native';
 
 import {
     Toast
@@ -26,7 +26,7 @@ const userResSingUp = (data) => ({
 const modify = () => ({
     type: authTypes.USER_MODIFY
 })
-const profile = (data) => ({
+export const profile = (data) => ({
     type: authTypes.USER_PROFILE,
     data
 })
@@ -35,33 +35,21 @@ export const userLogin = (params, navigation, socketId) => {
     return dispatch => {
         fetches.fetchUserLogin({ ...params
             }).then((res) => {
+            Toast.hide();
                 if (res.data.success) {
-                    Toast.hide()
                     const expires = new Date(res.data.refreshTokenExpiresAt).getTime() - new Date(res.data.accessTokenExpiresAt).getTime()
-                    AsyncStorage.save({
-                        key: 'mryAccessToken',
-                        data: res.data.accessToken,
+                    Storage.save({
+                        key: 'murrayUserProfile',
+                        data:{...res.data},
                         expires:expires
-                    })
-                    const resetAction = NavigationActions.reset({
-                        index: 0,
-                        actions: [NavigationActions.navigate({
-                            routeName: 'tabs'
-                        })],
                     });
-                    navigation.dispatch(resetAction);
-                    dispatch(userResLogin(res))
-                    if (socketId) {
-                        dispatch(userModify({
-                            userId: res.data.data._id,
-                            field: 'socketId',
-                            value: socketId
-                        }))
-                    }
+                    NavigatorService.reset('tabs');
+                    dispatch(userResLogin(res.data.data));
+                    dispatch(userModify({userId: res.data.data._id, field: 'socketId', value: socketId}))
                 }
             })
             .catch(error => {
-
+                Toast.hide();
                 console.log(error)
             })
     }
@@ -84,7 +72,7 @@ export const userModify = (params) => {
     return dispatch => {
         fetches.fetchUserModify(params).then((res) => {
                 if (res.data.success) {
-                    dispatch(modify())
+                    dispatch(modify());
                     dispatch(userProfile(params))
                 }
             })
@@ -95,10 +83,20 @@ export const userModify = (params) => {
 };
 
 export const userProfile = (params) => {
-    return dispatch => {
+    return async dispatch => {
+        let localProfile=await AsyncStorage.getItem('murrayUserProfile');
         fetches.fetchUserProfile(params).then((res) => {
                 if (res.data.success) {
-                    dispatch(profile(res))
+                if(localProfile){
+                    Storage.save({
+                        key: 'murrayUserProfile',
+                        data:{
+                            ...JSON.parse(localProfile).rawData,
+                            data:res.data.data
+                        },
+                    });
+                }
+                    dispatch(profile(res.data.data))
                 }
             })
             .catch(error => {

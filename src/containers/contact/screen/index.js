@@ -37,7 +37,7 @@ export  default  class Contact extends Component {
     }
 
     componentDidMount() {
-        const {getCsList} = this.props
+        const {getCsList} = this.props;
         getCsList()
     }
     _scrollToSection = (sectionIndex, itemIndex) => {

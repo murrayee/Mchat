@@ -52,10 +52,13 @@ export default class Authorize extends Component {
         this.checkLogin()
     }
     checkLogin= async ()=>{
-        const {navigation} = this.props;
-        const accessToken = await AsyncStorage.getItem('mryAccessToken')
-        if(accessToken) NavigatorService.reset('tabs')
-    }
+        const {profile} = this.props;
+        const userProfile = await AsyncStorage.getItem('murrayUserProfile');
+        if(userProfile){
+            profile(JSON.parse(userProfile).rawData.data);
+            NavigatorService.reset('tabs')
+        }
+    };
     _onClickLogin = () => {
         const {
             userLogin,
@@ -114,7 +117,7 @@ export default class Authorize extends Component {
                         <TextInput
                             style={authStyles.inputItem}
                             value={this.state.username}
-                            onChange={v => {this.setState({username: v});}}
+                            onChangeText={v => {this.setState({username: v});}}
                             placeholder="请输入用户名"
                         />
                         <View style={authStyles.icon}>
@@ -122,19 +125,6 @@ export default class Authorize extends Component {
                                 <Icon name={`iconfont|${this.state.isShow?'shang':'xia'}`}  size={18} color="#404040"/>
                             </TouchableOpacity>
                         </View>
-                        {/*{*/}
-                            {/*!this.state.isShow&&*/}
-                            {/*<Animatable.View*/}
-                                {/*animation='slideInDown'*/}
-                                {/*style={authStyles.accountList}*/}
-                            {/*>*/}
-                                {/*<Text style={authStyles.inputTitle}> Account </Text>*/}
-                                {/*<Text style={authStyles.inputTitle}> Account </Text>*/}
-                                {/*<Text style={authStyles.inputTitle}> Account </Text>*/}
-                                {/*<Text style={authStyles.inputTitle}> Account </Text>*/}
-
-                            {/*</Animatable.View>*/}
-                        {/*}*/}
                     </View>
                     <View style={authStyles.input}>
                         <Text style={authStyles.inputTitle}> 密码 </Text>
@@ -142,7 +132,7 @@ export default class Authorize extends Component {
                             style={authStyles.inputItem}
                             secureTextEntry={!this.state.ishPassword}
                             value={this.state.password}
-                            onChange={v => {this.setState({password: v});}}
+                            onChangeText={v => {this.setState({password: v});}}
                             placeholder="请输入登录密码"
                         />
                         <View  style={authStyles.icon}>

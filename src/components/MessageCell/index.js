@@ -7,8 +7,8 @@ import {
 import styles from './style'
 export default  class MessageCell extends PureComponent {
     _isOwn = () => {
-        const {authProfile, row} = this.props
-        let userInfo = authProfile.data.data;
+        const {userProfile, row} = this.props
+        let userInfo =userProfile;
         return userInfo._id === row.item.from
     }
     render() {

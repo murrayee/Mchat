@@ -1,10 +1,6 @@
 /**
  * Created by bear on 2018/2/24.
  */
-/**
- * Created by bear on 2017/8/20.
- */
-//解决键盘遮挡
 import React, {Component} from 'react';
 import {
     TextInput,
@@ -42,7 +38,7 @@ class Chat extends Component {
     }
 
     _renderItemComponent = (row) => {
-        return <MessageCell row={row} authProfile={this.props.authProfile}/>
+        return <MessageCell row={row} userProfile={this.props.userProfile}/>
     };
 
     _scrollToBottom() {
@@ -59,13 +55,12 @@ class Chat extends Component {
         } else {
             return false
         }
-
     }
     _onSubmitEditing = () => {
-        const {navigation, socket, authProfile, emitMessage,sessionListMap} = this.props
+        const {navigation, socket, userProfile, emitMessage,sessionListMap} = this.props
         const {state} = navigation
         const toUserInfo = state.params.profile
-        let userInfo = authProfile.data.data;
+        let userInfo = userProfile
         let messageParams = {
             from: userInfo._id,
             to: toUserInfo._id,
@@ -81,12 +76,13 @@ class Chat extends Component {
         };
         this._userHasBeenInputed = true
         emitMessage(sessionListMap,socket, messageParams)
+        this.setState({inputValue:''})
     };
     _getCurrentChatKey = () => {
-        const {navigation, authProfile} = this.props
+        const {navigation, userProfile} = this.props
         const {state} = navigation
         const toUserInfo = state.params.profile
-        let userInfo = authProfile.data.data;
+        let userInfo = userProfile
         return `${userInfo._id}-${toUserInfo._id}`
     };
 
@@ -131,7 +127,7 @@ class Chat extends Component {
                                 // clearButtonMode='always'
                                 numberOfLines={5}
                                 controlled={true}
-                                blurOnSubmit={false}
+                                blurOnSubmit={true}
                                 underlineColorAndroid="transparent"
                                 value={this.state.inputValue}
                                 enablesReturnKeyAutomatically={true}
@@ -139,7 +135,7 @@ class Chat extends Component {
                                 }}
                                 onChangeText={(v) => this.setState({inputValue: v})}
                                 onEndEditing={(e) => console.log("编辑完成")}
-                                onSubmitEditing={this._onSubmitEditing}
+                                onSubmitEditing={()=>this._onSubmitEditing()}
                             />
                         </View>
                         <View style={roomStyles.face}>
