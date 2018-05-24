@@ -30,14 +30,11 @@ export default class AppWithNavigationState extends Component {
     //注册socket.io
     dispatch(socketActions.registerSocket(sessionListMap));
     AppState.addEventListener('change', this._handleAppStateChange);
-
   }
-
   componentWillUnmount() {
     BackHandler.removeEventListener('hardwareBackPress', this.onBackPress);
     this.lastBackPressed = null;
   }
-
   onBackPress = () => {
     const {dispatch, nav} = this.props;
     if (nav.index === 0) {
@@ -64,7 +61,6 @@ export default class AppWithNavigationState extends Component {
       socket.open();
     }
   };
-
   _addHelpers=()=>{
       const {dispatch, nav} = this.props;
       const addListener = createReduxBoundAddListener('root');

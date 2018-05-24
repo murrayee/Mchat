@@ -2,7 +2,21 @@
  * Created by bear on 2018/2/5.
  */
 import {StyleSheet, Dimensions} from 'react-native'
-const {width} = Dimensions.get('window')
+const {width} = Dimensions.get('window');
+import badgeStyles from 'antd-mobile/lib/badge/style/index.native'
+
+export const customBadgeStyle=StyleSheet.create({
+    ...badgeStyles,
+    text:{
+        ...badgeStyles.text,
+        fontSize:10
+    },
+    textDom:{
+        ...badgeStyles.textDom,
+        backgroundColor: "#ff363f",
+        top:0
+    }
+});
 const styles = StyleSheet.create({
     info: {
         backgroundColor: '#fff',
@@ -23,6 +37,7 @@ const styles = StyleSheet.create({
     },
     extra: {
         width: 40,
+        paddingRight:10
 
     },
     extraText:{
@@ -51,5 +66,5 @@ const styles = StyleSheet.create({
         height:66,
         paddingTop:8
     }
-})
+});
 export default  styles

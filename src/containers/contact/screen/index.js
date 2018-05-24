@@ -54,8 +54,8 @@ export  default  class Contact extends Component {
                     refreshing={false}
                     showsVerticalScrollIndicator={false}//隐藏竖直滚动条
                     renderItem={({item}) => <ContactItem item={item} navigation={navigation}/>}
-                    renderSectionHeader={({section}) => <SectionHeader section={section}/>}
-                    ListHeaderComponent={<SearchBox/>}
+                    renderSectionHeader={({section}) => <SectionHeader section={section} />}
+                    ListHeaderComponent={<SearchBox navigation={navigation}/>}
                     stickySectionHeadersEnabled
                     sections={data || []}
                     enableEmptySections={true}

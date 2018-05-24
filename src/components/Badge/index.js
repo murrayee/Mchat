@@ -7,11 +7,14 @@ import {
     Text
 } from 'react-native'
 import styles  from './style'
-export  default  class SectionHeader extends PureComponent {
+export  default  class SearchBox extends PureComponent {
+    constructor(props) {
+        super(props)
+    }
     render() {
-        return (
-            <View style={styles.info} >
-                <Text style={styles.letter}>{this.props.section.key}</Text>
+        return(
+            <View style={styles.searchInfo} >
+                <Text>123</Text>
             </View>
 
         )

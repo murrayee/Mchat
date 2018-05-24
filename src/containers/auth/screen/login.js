@@ -47,18 +47,6 @@ export default class Authorize extends Component {
             ishPassword:false
         };
     }
-
-    componentWillMount() {
-        this.checkLogin()
-    }
-    checkLogin= async ()=>{
-        const {profile} = this.props;
-        const userProfile = await AsyncStorage.getItem('murrayUserProfile');
-        if(userProfile){
-            profile(JSON.parse(userProfile).rawData.data);
-            NavigatorService.reset('tabs')
-        }
-    };
     _onClickLogin = () => {
         const {
             userLogin,

@@ -26,7 +26,8 @@ const restoreSession = (sessionListMap) => ({
     type: socketTypes.SESSION_RESTORE, sessionListMap
 })
 export const registerSocket = (sessionListMap) => {
-    return dispatch => {
+    return (dispatch,getState) => {
+       // 其实这里可以直接通过getState()拿到sessionListMap。
         socketService.connection().then(socket => {
             socketService.restoreSessionFromLocal(sessionListMap).then(res => {
                 dispatch(restoreSession(res))
@@ -36,9 +37,7 @@ export const registerSocket = (sessionListMap) => {
             });
             socket.on('message', (params) => {
                 // to.user
-
                 let key = `${params[0].to}-${params[0].from}`;
-
                 sessionListMap.set(String(key), formatParamsToSessionItem(key, {...params[0],ext:params[0].fromProfile}))
                 socketService.saveMessageToLocal(key, params, null);
                 dispatch(receivedMessage(params[0], key))
@@ -54,7 +53,6 @@ export const emitMessage = (sessionListMap, socket, messageProfile) => {
         //from.user
         socket.emit('message', [messageProfile])
         let key = `${messageProfile.from}-${messageProfile.to}`;
-
         sessionListMap.set(String(key), formatParamsToSessionItem(key, {...messageProfile,ext:messageProfile.toProfile}))
         socketService.saveMessageToLocal(key, [messageProfile])
         dispatch(currentMessage(messageProfile, key))

@@ -4,7 +4,8 @@
 import  React, {PureComponent} from 'react'
 import {
     View,
-    Text
+    Text,
+    TouchableOpacity
 } from 'react-native'
 import styles  from './style'
 import Icon from 'react-native-vector-icons/Ionicons'
@@ -14,13 +15,13 @@ export  default  class SearchBox extends PureComponent {
     }
     render() {
         return(
-        <View style={styles.searchInfo} >
-            <View style={styles.box}>
+        <TouchableOpacity activeOpacity = {1} style={styles.searchInfo} onPress={()=>this.props.navigation.navigate("search")}>
+            <View style={styles.box} >
                 <Icon name='ios-search-outline' size={16} style={styles.searchIcon}/>
                 <Text style={styles.text}>搜索</Text>
                 <Icon name='ios-mic' size={18} style={styles.voiceIcon}/>
             </View>
-        </View>
+        </TouchableOpacity>
 
         )
     }

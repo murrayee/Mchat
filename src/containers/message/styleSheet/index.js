@@ -11,7 +11,7 @@ export  const roomStyles = StyleSheet.create({
         flex: 1,
         justifyContent: 'flex-start',
         alignItems: 'stretch',
-        backgroundColor: "rgb(243,243,243)"
+        backgroundColor: "white"
     },
     KeyboardAvoidingView: {
         flex: 1

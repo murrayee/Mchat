@@ -7,10 +7,11 @@ import {
     Text,
     Image
 } from 'react-native'
-import {List, SwipeAction} from 'antd-mobile';
+import {List, SwipeAction,Badge} from 'antd-mobile';
+
 import Icon from 'react-native-vector-icons/Ionicons'
 const Item = List.Item;
-import styles  from './style'
+import styles,{customBadgeStyle} from './style'
 export  default  class MessageItem extends PureComponent {
     constructor(props) {
         super(props)
@@ -24,7 +25,7 @@ export  default  class MessageItem extends PureComponent {
     _rightButton=()=>{
         return [
             {
-                text: '置顶',
+                text: '标记未读',
                 onPress: () => console.log('cancel'),
                 style:{
                     backgroundColor: '#ddd',
@@ -61,7 +62,9 @@ export  default  class MessageItem extends PureComponent {
                                 <View style={styles.extra}>
                                     <Text numberOfLines={1} style={styles.extraText}>昨天</Text>
                                     <Text style={styles.extraIcon}>
-                                        <Icon name="ios-notifications-off-outline" size={14} />
+                                        {/*<Icon name="ios-notifications-off-outline" size={14} />*/}
+                                        <Badge text={1} overflowCount={99} size='small' styles={customBadgeStyle}
+                                               style={{width:5, height:5}}/>
                                     </Text>
                                 </View>
                             </View>

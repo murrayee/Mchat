@@ -24,12 +24,12 @@ export default class contactInfo extends Component {
                     minOverlayOpacity={0.3}
                     fadeOutForeground
                     renderHeader={() => (
-                        <Image source={require('./79f6013381fda5221972db3dfb500931.jpg')}
+                        <Image source={require('../../../assets/images/header.jpg')}
                                style={contactInfoStyles.image}/>
                     )}
                     renderForeground={() => (
                         <View style={contactInfoStyles.titleContainer}>
-                            <Image source={require('./79f6013381fda5221972db3dfb500931.jpg')}
+                            <Image source={require('../../../assets/images/header.jpg')}
                                    style={contactInfoStyles.avatar}/>
                             <Text style={contactInfoStyles.username}> {profile.username} </Text>
                         </View>

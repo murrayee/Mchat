@@ -5,7 +5,7 @@
 import {
     StackNavigator,
     TabNavigator,
-    TabBarBottom
+    TabBarBottom,
 } from 'react-navigation';
 // msg pages
 import message from '../containers/message/screen/index'
@@ -23,6 +23,8 @@ import webApp from '../containers/application/screen/webApp'
 // contact pages
 import contact from '../containers/contact/screen/index'
 import contactInfo from '../containers/contact/screen/contactInfo'
+import search from '../containers/contact/screen/search'
+
 //user pages
 import user from '../containers/user/screen/index'
 import userInfo from '../containers/user/screen/userInfo'
@@ -37,7 +39,8 @@ import {
     TabNavigatorConfig,
     StackNavigatorConfig
 } from "./config"
-import {AsyncStorage} from "react-native";
+
+
 const TabBarText = {
     Message: "消息",
     Contact: "联系人",
@@ -122,106 +125,115 @@ const Tabs = TabNavigator({
         tabBarComponent: TabBarBottom, //解决安卓底栏不显示图标问题
     }),
 );
-const Routers= StackNavigator({
-            tabs: {
-                screen: Tabs
-            },
-            userInfo: {
-                screen: userInfo,
-                navigationOptions: props => {
-                    return headerOptions({
-                        ...props,
-                        back: true
-                    })
-                }
-            },
-            setting: {
-                screen: setting,
-                navigationOptions: props => {
-                    return headerOptions({
-                        ...props,
-                        back: true
-                    })
-                }
-            },
-            login: {
-                screen: login,
-                navigationOptions: props => {
-                    return headerOptions({
-                        ...props,
-                        visible: false
-                    })
-                }
-            },
-            register: {
-                screen: register,
-                navigationOptions: props => {
-                    return headerOptions({
-                        ...props,
-                        back: true
-                    })
-                }
-            },
-            chat: {
-                screen: chat,
-                navigationOptions: props => {
-                    return headerOptions({
-                        ...props,
-                        back: true,
-                        title: `${props.navigation.state.params.profile.username}`
-                    })
-                }
-            },
-            contactInfo: {
-                screen: contactInfo,
-                navigationOptions: props => {
-                    return headerOptions({
-                        ...props,
-                        back: true
-                    })
-                }
-            },
-            componentExample: {
-                screen: componentExample,
-                navigationOptions: props => {
-                    return headerOptions({
-                        ...props,
-                        back: false
-                    })
-                }
-            },
-            webApp: {
-                screen: webApp,
-                navigationOptions: props => {
-                    return headerOptions({
-                        ...props,
-                        back: false
-                    })
-                }
-            },
-            article: {
-                screen: article,
-                navigationOptions: props => {
-                    return headerOptions({
-                        ...props,
-                        back: false
-                    })
-                }
-            },
-            release: {
-                screen: release,
-                navigationOptions: props => {
-                    return headerOptions({
-                        ...props,
-                        back: false
-                    })
-                }
-            },
+const Routers = StackNavigator({
+        tabs: {
+            screen: Tabs
         },
-        StackNavigatorConfig({
-            initialRouteName:'login'
-        }),
-    );
+        userInfo: {
+            screen: userInfo,
+            navigationOptions: props => {
+                return headerOptions({
+                    ...props,
+                    back: true
+                })
+            }
+        },
+        setting: {
+            screen: setting,
+            navigationOptions: props => {
+                return headerOptions({
+                    ...props,
+                    back: true
+                })
+            }
+        },
+        login: {
+            screen: login,
+            navigationOptions: props => {
+                return headerOptions({
+                    ...props,
+                    visible: false
+                })
+            }
+        },
+        register: {
+            screen: register,
+            navigationOptions: props => {
+                return headerOptions({
+                    ...props,
+                    back: true
+                })
+            }
+        },
+        chat: {
+            screen: chat,
+            navigationOptions: props => {
+                return headerOptions({
+                    ...props,
+                    back: true,
+                    title: `${props.navigation.state.params.profile.username}`
+                })
+            }
+        },
+        contactInfo: {
+            screen: contactInfo,
+            navigationOptions: props => {
+                return headerOptions({
+                    ...props,
+                    back: true
+                })
+            }
+        },
+        componentExample: {
+            screen: componentExample,
+            navigationOptions: props => {
+                return headerOptions({
+                    ...props,
+                    back: false
+                })
+            }
+        },
+        webApp: {
+            screen: webApp,
+            navigationOptions: props => {
+                return headerOptions({
+                    ...props,
+                    back: false
+                })
+            }
+        },
+        article: {
+            screen: article,
+            navigationOptions: props => {
+                return headerOptions({
+                    ...props,
+                    back: false
+                })
+            }
+        },
+        release: {
+            screen: release,
+            navigationOptions: props => {
+                return headerOptions({
+                    ...props,
+                    back: false
+                })
+            }
+        },
+        search: {
+            screen: search,
+            navigationOptions: props => {
+                return headerOptions({
+                    ...props,
+                    back: false
+                })
+            }
+        },
+    },
+    StackNavigatorConfig({
+        initialRouteName: 'tabs'
+    }),
+);
 
 
 export default Routers;

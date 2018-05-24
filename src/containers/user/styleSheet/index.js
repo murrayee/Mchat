@@ -2,7 +2,8 @@
  * Created by bear on 2018/2/5.
  */
 import {StyleSheet, Dimensions} from 'react-native'
-const {width} = Dimensions.get("window")
+const {width} = Dimensions.get("window");
+
 const MAX_HEIGHT = 200
 export const indexStyles = StyleSheet.create({
     container: {},
@@ -24,8 +25,7 @@ export const indexStyles = StyleSheet.create({
     Item: {
         fontSize: 16
     }
-})
-
+});
 export const userInfoStyles = StyleSheet.create({
     container: {
         flex: 1
@@ -59,4 +59,4 @@ export const userInfoStyles = StyleSheet.create({
         borderRadius: 35
 
     }
-})
+});

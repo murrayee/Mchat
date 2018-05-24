@@ -2,9 +2,19 @@ import io from 'socket.io-client'
 import {serverUrl} from '../config/api'
 import {AsyncStorage} from 'react-native'
 
+/**
+ * socket 初始化
+ * @returns {Promise<*>}
+ */
 export const connection = async () => {
     return io(serverUrl.dev, {transports: ['websocket']});
 };
+/**
+ * 存储消息队列
+ * @param key
+ * @param params
+ * @returns {Promise<void>}
+ */
 export const saveMessageToLocal = async (key, params) => {
     let historyKey = `message:history:${key}`;
     let uuids = params.map((param) => param.uuid);
@@ -14,6 +24,13 @@ export const saveMessageToLocal = async (key, params) => {
         AsyncStorage.setItem(`message:item:${param.uuid}`, JSON.stringify(param));
     });
 };
+/**
+ * 恢复消息队列
+ * @param key
+ * @param number
+ * @param size
+ * @returns {Promise<Array>}
+ */
 export const restoreMessageFromLocal = async (key, number = 0, size) => {
     let history = await AsyncStorage.getItem(`message:history:${key}`), result = [];
     if (history) {
@@ -23,7 +40,11 @@ export const restoreMessageFromLocal = async (key, number = 0, size) => {
     }
     return result
 };
-
+/**
+ * 存储会话列表
+ * @param sessionListMap
+ * @returns {Promise<void>}
+ */
 export const saveSessionToLocal = async (sessionListMap) => {
     AsyncStorage.setItem('session:list:map:keys', [...sessionListMap.keys()].join(','));
     for (let [key, value] of sessionListMap.entries()) {
@@ -31,7 +52,11 @@ export const saveSessionToLocal = async (sessionListMap) => {
     }
 
 };
-
+/**
+ * 恢复会话列表
+ * @param sessionListMap
+ * @returns {Promise<*>}
+ */
 export const restoreSessionFromLocal = async (sessionListMap) => {
     let keys = await AsyncStorage.getItem('session:list:map:keys');
     if (keys) {

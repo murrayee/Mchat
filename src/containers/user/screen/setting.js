@@ -25,7 +25,7 @@ class Setting extends Component {
             Toast.loading('正在退出...', 1, () => {
                 console.log('Load complete !!!');
             });
-            AsyncStorage.clear();
+            // AsyncStorage.clear();
             this.timer = setTimeout(() => {
                 NavigatorService.reset('login')
             }, 2000)

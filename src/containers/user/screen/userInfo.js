@@ -30,11 +30,11 @@ export default class userInfo extends Component {
                     minOverlayOpacity={0.3}
                     fadeOutForeground
                     renderHeader={() => (
-                        <Image source={require('./79f6013381fda5221972db3dfb500931.jpg')} style={userInfoStyles.image}/>
+                        <Image source={require('../../../assets/images/header.jpg')} style={userInfoStyles.image}/>
                     )}
                     renderForeground={() => (
                         <View style={userInfoStyles.titleContainer}>
-                            <Image source={require('./79f6013381fda5221972db3dfb500931.jpg')}
+                            <Image source={require('../../../assets/images/header.jpg')}
                                    style={userInfoStyles.avatar}/>
                             <Text style={userInfoStyles.username}> Murray </Text>
                         </View>

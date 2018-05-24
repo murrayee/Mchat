@@ -93,7 +93,6 @@ class Chat extends Component {
             fetchCurrentHistory(key, currentChatPage.defaultNumber, currentChatPage.defaultSize)
         }
     }
-
     render() {
         console.log(this.props.currentChatRoomHistory[this._getCurrentChatKey()])
         return (
@@ -106,6 +105,7 @@ class Chat extends Component {
                         showsVerticalScrollIndicator={false}//隐藏竖直滚动条
                         onRefresh={() => this._loadMoreHistoryMessage()}
                         refreshing={false}
+                        style={{backgroundColor:'rgb(243,243,243)'}}
                         // scrollEnabled={} ////操作时会用到~~（滑动禁止）
                         renderItem={this._renderItemComponent}
                         onLayout={(e) => this._scrollToBottom(e)}

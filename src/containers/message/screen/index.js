@@ -9,6 +9,7 @@ import * as message from '../../../actions/message';
 import MessageItem from '../../../components/MessageItem';
 import SearchBox from '../../../components/SearchBox';
 
+
 @connect(
   state => {
     return { ...state.message, ...state.io };
@@ -25,7 +26,7 @@ class Message extends Component {
   }
   _itemOnPress = row => {
     const { navigation } = this.props;
-    navigation.navigate('chat', { profile: {} });
+    navigation.navigate('chat', { profile: row.item.ext });
   };
   _renderItemComponent = row => {
     return (
@@ -42,7 +43,7 @@ class Message extends Component {
   };
 
   render() {
-    const { sessionListMap } = this.props;
+    const { sessionListMap,navigation } = this.props;
     return (
       <FlatList
         data={[...sessionListMap.values()]}
@@ -53,7 +54,7 @@ class Message extends Component {
         // onRefresh={() => console.log('onRefresh: nothing to refresh :P')}
         // // onViewableItemsChanged={this._onViewableItemsChanged}
         // refreshing={false}
-        ListHeaderComponent={<SearchBox />}
+        ListHeaderComponent={<SearchBox navigation={navigation}/>}
         renderItem={this._renderItemComponent}
       />
     );
