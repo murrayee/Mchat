@@ -4,7 +4,6 @@
 import React, {
     Component
 } from 'react';
-
 import {bindActionCreators} from 'redux';
 import {
     Text,
@@ -14,7 +13,6 @@ import {
     TouchableOpacity,
     SafeAreaView,
     TextInput,
-    AsyncStorage
 } from 'react-native';
 import * as auth from '../../../actions/auth';
 import {connect} from 'react-redux';
@@ -48,18 +46,19 @@ export default class Authorize extends Component {
         };
     }
     _onClickLogin = () => {
-        const {
-            userLogin,
-            navigation,
-            socketId
-        } = this.props;
-        let username = this.state.username;
-        let password = this.state.password;
-        if (username === '' || password === '') {
-            Alert.alert('用户名或者密码不能为空');
-            return false;
-        }
-        userLogin({username, password}, navigation, socketId);
+        // const {
+        //     userLogin,
+        //     navigation,
+        //     socketId
+        // } = this.props;
+        // let username = this.state.username;
+        // let password = this.state.password;
+        // if (username === '' || password === '') {
+        //     Alert.alert('用户名或者密码不能为空');
+        //     return false;
+        // }
+        // userLogin({username, password}, navigation, socketId);
+        NavigatorService.reset('Auth')
 
     };
     showActionSheet = () => {

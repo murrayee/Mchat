@@ -6,7 +6,6 @@ import {
 } from '../config/constant';
 import * as fetches from '../services/authService'
 import Storage from '../utils/asyncStorage'
-import NavigatorService from '../services/navigatorService'
 import {
     AsyncStorage
 } from 'react-native';
@@ -43,7 +42,7 @@ export const userLogin = (params, navigation, socketId) => {
                         data:{...res.data},
                         expires:expires
                     });
-                    NavigatorService.reset('tabs');
+                    navigation.navigate('App');
                     dispatch(userResLogin(res.data.data));
                     dispatch(userModify({userId: res.data.data._id, field: 'socketId', value: socketId}))
                 }

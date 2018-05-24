@@ -12,9 +12,7 @@ import {connect} from 'react-redux';
 import {NavigationActions} from 'react-navigation';
 import * as socketActions from '../actions/socket';
 import {
-    createReduxBoundAddListener,
-    createReactNavigationReduxMiddleware,
-    createNavigationReducer,
+    createReduxBoundAddListener
 } from 'react-navigation-redux-helpers';
 import Routers from './navigator';
 import NavigatorService from '../services/navigatorService';

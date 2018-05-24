@@ -8,7 +8,7 @@ export default class AuthLoading extends Component {
     }
     _hasAccessToken=async ()=>{
         const profile = await AsyncStorage.getItem('murrayUserProfile');
-        this.props.navigation.navigate(profile ? 'tabs' : 'auth');
+        this.props.navigation.navigate(profile ? 'Auth' : 'Auth');
     };
     render() {
         return (<View />)

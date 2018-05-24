@@ -12,7 +12,7 @@ import {
 } from 'react-native'
 import {connect} from 'react-redux'
 import {WhiteSpace, List, ActionSheet, Toast} from 'antd-mobile';
-import NavigatorService from '../../../services/navigatorService';
+// import NavigatorService from '../../../services/navigatorService';
 const Item = List.Item;
 const Brief = Item.Brief;
 class Setting extends Component {
@@ -23,12 +23,8 @@ class Setting extends Component {
     loginOut = (index) => {
         if (index === 0) {
             Toast.loading('正在退出...', 1, () => {
-                console.log('Load complete !!!');
+                this.props.navigation.navigate('Auth')
             });
-            // AsyncStorage.clear();
-            this.timer = setTimeout(() => {
-                NavigatorService.reset('login')
-            }, 2000)
         }
     };
     showActionSheet = () => {

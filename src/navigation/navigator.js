@@ -3,9 +3,9 @@
  */
 
 import {
-    StackNavigator,
-    TabNavigator,
-    TabBarBottom,
+    createStackNavigator,
+    createBottomTabNavigator,
+    createSwitchNavigator
 } from 'react-navigation';
 // msg pages
 import message from '../containers/message/screen/index'
@@ -32,6 +32,7 @@ import setting from '../containers/user/screen/setting'
 // auth pages
 import login from '../containers/auth/screen/login'
 import register from '../containers/auth/screen/register'
+import authLoading from '../containers/auth/screen/authLoading'
 
 import {
     headerOptions,
@@ -48,7 +49,7 @@ const TabBarText = {
     Application: "应用",
     User: "我的",
 }
-const Tabs = TabNavigator({
+const Tabs = createBottomTabNavigator({
         message: {
             screen: message,
             path: "message",
@@ -122,10 +123,34 @@ const Tabs = TabNavigator({
     TabNavigatorConfig({
         lazy: true,
         initialRouteName: "message",
-        tabBarComponent: TabBarBottom, //解决安卓底栏不显示图标问题
     }),
 );
-const Routers = StackNavigator({
+
+const Auth = createStackNavigator({
+        login: {
+            screen: login,
+            navigationOptions: props => {
+                return headerOptions({
+                    ...props,
+                    visible: false
+                })
+            }
+        },
+        register: {
+            screen: register,
+            navigationOptions: props => {
+                return headerOptions({
+                    ...props,
+                    back: true
+                })
+            }
+        },
+    },
+    StackNavigatorConfig({
+        initialRouteName: 'login'
+    })
+);
+const App = createStackNavigator({
         tabs: {
             screen: Tabs
         },
@@ -147,24 +172,7 @@ const Routers = StackNavigator({
                 })
             }
         },
-        login: {
-            screen: login,
-            navigationOptions: props => {
-                return headerOptions({
-                    ...props,
-                    visible: false
-                })
-            }
-        },
-        register: {
-            screen: register,
-            navigationOptions: props => {
-                return headerOptions({
-                    ...props,
-                    back: true
-                })
-            }
-        },
+
         chat: {
             screen: chat,
             navigationOptions: props => {
@@ -232,8 +240,13 @@ const Routers = StackNavigator({
     },
     StackNavigatorConfig({
         initialRouteName: 'tabs'
-    }),
+    })
 );
 
-
+const Routers = createSwitchNavigator({
+        AuthLoading: authLoading,
+        App: App,
+        Auth: Auth,
+    },
+    {initialRouteName: 'AuthLoading'});
 export default Routers;
