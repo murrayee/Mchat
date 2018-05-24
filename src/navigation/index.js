@@ -9,9 +9,13 @@ import {
   Platform
 } from 'react-native';
 import {connect} from 'react-redux';
-import {addNavigationHelpers, NavigationActions,} from 'react-navigation';
+import {NavigationActions} from 'react-navigation';
 import * as socketActions from '../actions/socket';
-import {createReduxBoundAddListener} from 'react-navigation-redux-helpers';
+import {
+    createReduxBoundAddListener,
+    createReactNavigationReduxMiddleware,
+    createNavigationReducer,
+} from 'react-navigation-redux-helpers';
 import Routers from './navigator';
 import NavigatorService from '../services/navigatorService';
 
@@ -64,11 +68,11 @@ export default class AppWithNavigationState extends Component {
   _addHelpers=()=>{
       const {dispatch, nav} = this.props;
       const addListener = createReduxBoundAddListener('root');
-      const navigation = addNavigationHelpers({
+      const navigation = {
           dispatch,
           state: nav,
           addListener
-      });
+      };
       return navigation
   }
   render() {
