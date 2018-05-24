@@ -10,11 +10,11 @@ function setContainer(container) {
 
 function reset(routeName, params) {
     _container.props.navigation.dispatch(
-        NavigationActions.reset({
+        NavigationActions.init({
             index: 0,
             actions: [
                 NavigationActions.navigate({
-                    type: 'Navigation/NAVIGATE',
+                    type: 'Navigation/INIT',
                     routeName,
                     params,
                 }),

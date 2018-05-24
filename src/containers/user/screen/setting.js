@@ -12,7 +12,6 @@ import {
 } from 'react-native'
 import {connect} from 'react-redux'
 import {WhiteSpace, List, ActionSheet, Toast} from 'antd-mobile';
-// import NavigatorService from '../../../services/navigatorService';
 const Item = List.Item;
 const Brief = Item.Brief;
 class Setting extends Component {
@@ -23,7 +22,7 @@ class Setting extends Component {
     loginOut = (index) => {
         if (index === 0) {
             Toast.loading('正在退出...', 1, () => {
-                this.props.navigation.navigate('Auth')
+                AsyncStorage.removeItem('murrayUserProfile').then(()=> this.props.navigation.navigate('Auth'))
             });
         }
     };
@@ -116,12 +115,6 @@ const styles = StyleSheet.create({
 });
 const mapStateToPropsa = (state) => {
     "use strict";
-
-
     return {...state}
-
-
 }
-
-
 export default connect()(Setting)

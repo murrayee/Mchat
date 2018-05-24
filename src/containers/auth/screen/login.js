@@ -22,8 +22,6 @@ import {
 } from 'antd-mobile';
 import {authStyles} from '../styleSheet/index';
 import {Icon} from '../../../components/Icon';
-import NavigatorService from '../../../services/navigatorService';
-
 @connect(
     state => {
         return {
@@ -46,20 +44,18 @@ export default class Authorize extends Component {
         };
     }
     _onClickLogin = () => {
-        // const {
-        //     userLogin,
-        //     navigation,
-        //     socketId
-        // } = this.props;
-        // let username = this.state.username;
-        // let password = this.state.password;
-        // if (username === '' || password === '') {
-        //     Alert.alert('用户名或者密码不能为空');
-        //     return false;
-        // }
-        // userLogin({username, password}, navigation, socketId);
-        NavigatorService.reset('Auth')
-
+        const {
+            userLogin,
+            navigation,
+            socketId
+        } = this.props;
+        let username = this.state.username;
+        let password = this.state.password;
+        if (username === '' || password === '') {
+            Alert.alert('用户名或者密码不能为空');
+            return false;
+        }
+        userLogin({username, password}, navigation, socketId);
     };
     showActionSheet = () => {
         const BUTTONS = ['手势登录', '遇到问题？', '注册', '取消'];
