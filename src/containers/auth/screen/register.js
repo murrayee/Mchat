@@ -86,7 +86,7 @@ export default class Register extends Component {
                         <Button
                             style={{height: 40}}
                             loading={this.state.loading}
-                            disabled={this._disabled}
+                            // disabled={this._disabled}
                             type="primary"
                             onClick={() => this._onClickLogin()}>
 
