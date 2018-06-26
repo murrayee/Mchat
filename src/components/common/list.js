@@ -7,7 +7,7 @@ import {
     View, Image, TouchableOpacity, Modal, Text, ListView, Platform, Dimensions, StyleSheet, Alert, PanResponder
 } from 'react-native';
 
-import {Toast} from 'antd-mobile'
+import {Toast} from 'antd-mobile-rn'
 
 const {width, height} = Dimensions.get('window')
 

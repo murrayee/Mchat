@@ -2,7 +2,7 @@ import React, {Component} from "react"
 import {Text, View, Image} from "react-native"
 import {Header} from "react-navigation"
 import HeaderImageScrollView from "react-native-image-header-scroll-view"
-import {WhiteSpace, List,Button} from 'antd-mobile';
+import {WhiteSpace, List,Button} from 'antd-mobile-rn';
 import {contactInfoStyles} from '../styleSheet/index'
 const MIN_HEIGHT = Header.HEIGHT
 const MAX_HEIGHT = 200

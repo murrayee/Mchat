@@ -9,7 +9,7 @@
     [
       "import",
       {
-        "libraryName": "antd-mobile"
+        "libraryName": "antd-mobile-rn-rn"
       }
     ]
   ],

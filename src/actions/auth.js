@@ -12,7 +12,7 @@ import {
 
 import {
     Toast
-} from 'antd-mobile'
+} from 'antd-mobile-rn'
 const userResLogin = (data) => ({
     type: authTypes.USER_LOGIN,
     data

@@ -11,7 +11,7 @@ import {
     AsyncStorage
 } from 'react-native'
 import {connect} from 'react-redux'
-import {WhiteSpace, List, ActionSheet, Toast} from 'antd-mobile';
+import {WhiteSpace, List, ActionSheet, Toast} from 'antd-mobile-rn';
 const Item = List.Item;
 const Brief = Item.Brief;
 class Setting extends Component {

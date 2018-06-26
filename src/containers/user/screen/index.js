@@ -8,7 +8,7 @@ import {
     ScrollView,
     Platform,Alert
 } from 'react-native'
-import {  Button, ActionSheet, List,WhiteSpace} from 'antd-mobile';
+import {  Button, ActionSheet, List,WhiteSpace} from 'antd-mobile-rn';
 import {connect} from 'react-redux'
 import {indexStyles} from '../styleSheet/index'
 const Item = List.Item;

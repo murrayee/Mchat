@@ -19,7 +19,7 @@ import {connect} from 'react-redux';
 import {
     Button,
     ActionSheet,
-} from 'antd-mobile';
+} from 'antd-mobile-rn';
 import {authStyles} from '../styleSheet/index';
 import {Icon} from '../../../components/Icon';
 @connect(

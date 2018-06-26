@@ -7,7 +7,7 @@ import {
     Text,
     Image
 } from 'react-native'
-import {List, SwipeAction,Badge} from 'antd-mobile';
+import {List, SwipeAction,Badge} from 'antd-mobile-rn';
 
 import Icon from 'react-native-vector-icons/Ionicons'
 const Item = List.Item;

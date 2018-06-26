@@ -11,7 +11,7 @@ import {
 import {indexStyles} from '../styleSheet/index'
 import MyCarousel from '../../../components/Carousel/index'
 import * as application from '../../../actions/application'
-import {Grid} from 'antd-mobile';
+import {Grid} from 'antd-mobile-rn';
 
 @connect(
     state => {

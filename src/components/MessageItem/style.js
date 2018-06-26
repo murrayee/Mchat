@@ -3,7 +3,7 @@
  */
 import {StyleSheet, Dimensions} from 'react-native'
 const {width} = Dimensions.get('window');
-import badgeStyles from 'antd-mobile/lib/badge/style/index.native'
+import badgeStyles from 'antd-mobile-rn/lib/badge/style/index.native'
 
 export const customBadgeStyle=StyleSheet.create({
     ...badgeStyles,

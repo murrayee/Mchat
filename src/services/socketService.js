@@ -5,7 +5,7 @@
 import io from 'socket.io-client'
 import _ from 'lodash';
 import {serverUrl} from '../config/api'
-import {Toast} from 'antd-mobile'
+import {Toast} from 'antd-mobile-rn'
 import {
     Platform,
     AppState,

@@ -149,9 +149,28 @@ ansi@^0.3.0, ansi@~0.3.1:
   version "0.3.1"
   resolved "http://registry.npm.taobao.org/ansi/download/ansi-0.3.1.tgz#0c42d4fb17160d5a9af1e484bace1c66922c1b21"
 
-antd-mobile@^2.1.5:
+antd-mobile-rn-rn@^2.2.0:
+  version "2.2.0"
+  resolved "http://registry.npm.taobao.org/antd-mobile-rn-rn/download/antd-mobile-rn-rn-2.2.0.tgz#347946cfce9ca01d668db1756f0663f607f7d29c"
+  dependencies:
+    array-tree-filter "~2.1.0"
+    babel-runtime "6.x"
+    rc-swipeout "~2.0.0"
+    react-native-camera-roll-picker "^1.2.1"
+    react-native-collapsible "^0.9.0"
+    react-native-drawer-layout "~1.3.0"
+    react-native-menu "^0.23.0"
+    rmc-cascader "~5.0.0"
+    rmc-date-picker "^6.0.8"
+    rmc-dialog "^1.0.1"
+    rmc-input-number "^1.0.0"
+    rmc-picker "~5.0.0"
+    rmc-tabs "~1.2.0"
+    rn-topview "^0.1.6"
+
+antd-mobile-rn@^2.1.5:
   version "2.1.5"
-  resolved "http://registry.npm.taobao.org/antd-mobile/download/antd-mobile-2.1.5.tgz#259f4526b7ff4e6dfd4bba0f7b1eebea32f247ea"
+  resolved "http://registry.npm.taobao.org/antd-mobile-rn/download/antd-mobile-rn-2.1.5.tgz#259f4526b7ff4e6dfd4bba0f7b1eebea32f247ea"
   dependencies:
     array-tree-filter "~2.0.0"
     babel-runtime "6.x"
@@ -266,6 +285,10 @@ array-tree-filter@1.0.x:
 array-tree-filter@~2.0.0:
   version "2.0.0"
   resolved "http://registry.npm.taobao.org/array-tree-filter/download/array-tree-filter-2.0.0.tgz#20fbc2d5a0de83242c0a9eb90894d4bfb7e2a69e"
+
+array-tree-filter@~2.1.0:
+  version "2.1.0"
+  resolved "http://registry.npm.taobao.org/array-tree-filter/download/array-tree-filter-2.1.0.tgz#873ac00fec83749f255ac8dd083814b4f6329190"
 
 array-union@^1.0.1:
   version "1.0.2"
@@ -5040,6 +5063,13 @@ rmc-cascader@~5.0.0:
   resolved "http://registry.npm.taobao.org/rmc-cascader/download/rmc-cascader-5.0.0.tgz#f204e2b82a8344091409657fcf795702668b9cbe"
   dependencies:
     array-tree-filter "1.0.x"
+    babel-runtime "6.x"
+    rmc-picker "~5.0.0"
+
+rmc-date-picker@^6.0.8:
+  version "6.0.8"
+  resolved "http://registry.npm.taobao.org/rmc-date-picker/download/rmc-date-picker-6.0.8.tgz#9aab87b3aa8dc9c5a57349d8f0b05de4e8f4808a"
+  dependencies:
     babel-runtime "6.x"
     rmc-picker "~5.0.0"
 
