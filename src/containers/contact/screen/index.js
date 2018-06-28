@@ -17,6 +17,7 @@ import ContactItem from '../../../components/ContactItem'
 import ContactIndexList from '../../../components/ContactIndexList'
 import SearchBox from '../../../components/SearchBox'
 import * as  contacts from "../../../actions/contact"
+import SearchModal from '../../../components/SearchModal';
 import {styles} from '../styleSheet/index'
 @connect(
     state => {
@@ -27,6 +28,9 @@ import {styles} from '../styleSheet/index'
 export  default  class Contact extends Component {
     constructor(props, context) {
         super(props, context)
+        this.state = {
+            modalVisible: false
+        };
         this._scrollPos = new Animated.Value(0);
         this._scrollSinkY = Animated.event([{
                 nativeEvent: {
@@ -35,6 +39,10 @@ export  default  class Contact extends Component {
             }],
             {useNativeDriver: true});
     }
+
+    setModalVisible=(visible)=> {
+        this.setState({modalVisible: visible});
+    };
 
     componentDidMount() {
         const {getCsList} = this.props;
@@ -55,7 +63,7 @@ export  default  class Contact extends Component {
                     showsVerticalScrollIndicator={false}//隐藏竖直滚动条
                     renderItem={({item}) => <ContactItem item={item} navigation={navigation}/>}
                     renderSectionHeader={({section}) => <SectionHeader section={section} />}
-                    ListHeaderComponent={<SearchBox navigation={navigation}/>}
+                    ListHeaderComponent={<SearchBox navigation={navigation}  onPress={this.setModalVisible}/>}
                     stickySectionHeadersEnabled
                     sections={data || []}
                     enableEmptySections={true}
@@ -68,6 +76,7 @@ export  default  class Contact extends Component {
                     }}
                 />
                 <ContactIndexList letters={sectionListArr(data)} scrollToSection={this._scrollToSection} section={section}/>
+                <SearchModal modalVisible={this.state.modalVisible} onPress={this.setModalVisible}/>
             </View>
         );
     }

@@ -1,0 +1,11 @@
+
+Hope you enjoy your new logo, here are the people that
+made your beautiful logo happen :)
+
+font name: Merienda-Regular
+font link: https://fonts.google.com/specimen/Merienda
+font author: Eduardo Tunni
+font author site: http://www.tipo.net.ar/
+
+{"bg":"#E1EAE7","icon-gradient-0":"#041804","icon-gradient-1":"#6FD2C4","font":"#152925"}
+      

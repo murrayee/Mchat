@@ -13,9 +13,12 @@ export  default  class SearchBox extends PureComponent {
     constructor(props) {
         super(props)
     }
+    setModalVisible(visible){
+        this.props.onPress(visible)
+    }
     render() {
         return(
-        <TouchableOpacity activeOpacity = {1} style={styles.searchInfo} onPress={()=>this.props.navigation.navigate("search")}>
+        <TouchableOpacity activeOpacity = {1} style={styles.searchInfo} onPress={()=>this.setModalVisible(true)}>
             <View style={styles.box} >
                 <Icon name='ios-search-outline' size={16} style={styles.searchIcon}/>
                 <Text style={styles.text}>搜索</Text>

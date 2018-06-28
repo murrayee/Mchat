@@ -36,7 +36,6 @@ class Chat extends Component {
             inputValue: '',
         }
     }
-
     _renderItemComponent = (row) => {
         return <MessageCell row={row} userProfile={this.props.userProfile}/>
     };

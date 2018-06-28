@@ -9,7 +9,6 @@
     "test": "jest"
   },
   "dependencies": {
-
     "antd-mobile-rn-rn": "^2.2.0",
     "axios": "^0.17.1",
     "buffer": "^5.1.0",
