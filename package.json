@@ -9,7 +9,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "antd-mobile-rn-rn": "^2.2.0",
+    "antd-mobile-rn": "^2.2.0",
     "axios": "^0.17.1",
     "buffer": "^5.1.0",
     "js-base64": "^2.4.3",
