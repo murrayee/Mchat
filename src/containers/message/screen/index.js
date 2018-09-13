@@ -26,7 +26,6 @@ export default class Message extends Component {
             modalVisible: false
         };
     }
-
     setModalVisible=(visible)=> {
         this.setState({modalVisible: visible});
     };

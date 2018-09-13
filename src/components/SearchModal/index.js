@@ -21,6 +21,7 @@ export default class SearchModal extends Component {
 
     clear = () => {
         this.setState({ value: '' });
+        this.setModalVisible(false)
     }
     render() {
         return (
@@ -42,12 +43,6 @@ export default class SearchModal extends Component {
                                 onChange={this.onChange}
                                 showCancelButton
                             />
-                            {/*/>*/}
-
-                            {/*<Button onClick={() => {*/}
-                                {/*this.setModalVisible(false)*/}
-                            {/*}} type='primary'>隐藏</Button>*/}
-
                     </View>
                 </Modal>
             </SafeAreaView>

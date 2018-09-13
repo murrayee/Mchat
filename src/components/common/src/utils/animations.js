@@ -85,7 +85,7 @@ function animatedStyles2 (index, animatedValue, carouselProps) {
     };
 }
 
-// Left/right translate effect
+// Left/right Translate effect
 function scrollInterpolator3 (index, carouselProps) {
     const range = [2, 1, 0, -1];
     const inputRange = getInputRangeFromIndexes(range, index, carouselProps);
