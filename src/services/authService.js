@@ -4,7 +4,7 @@
 import axios from '../config/instance'
 import {
     Base64
-} from 'js-base64';
+} from '../utils/base64.min';
 import qs from 'qs'
 import appKey from '../utils/appKey';
 
@@ -29,6 +29,7 @@ export const fetchUserLogin = async (params) => {
     })
 }
 export const fetchUserSingUp = async (params) => {
+    console.log(params);
     return await axios.post(authApi.register, params)
 }
 export const fetchUserModify = async (params) => {

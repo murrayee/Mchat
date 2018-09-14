@@ -37,7 +37,7 @@ export default class Authorize extends Component {
     constructor(props, context) {
         super(props, context);
         this.state = {
-            username: 'admin',
+            username: 'Admin',
             password: '123456',
             isShow:false,
             ishPassword:false
