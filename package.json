@@ -4,18 +4,32 @@
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
+    "android": "react-native run-android",
+    "ios": "react-native run-ios --simulator 'iPhone X'",
     "test": "jest"
   },
   "dependencies": {
+    "antd-mobile-rn": "^2.2.1",
+    "axios": "^0.18.0",
     "react": "16.5.2",
-    "react-native": "0.57.1"
+    "react-native": "0.57.1",
+    "react-native-vector-icons": "^5.0.0",
+    "react-navigation": "^2.17.0",
+    "react-navigation-redux-helpers": "^2.0.6",
+    "react-redux": "^5.0.7",
+    "redux": "^4.0.0",
+    "redux-actions": "^2.6.1",
+    "redux-logger": "^3.0.6",
+    "redux-saga": "^0.16.0",
+    "reselect": "^3.0.1"
   },
   "devDependencies": {
     "@babel/runtime": "^7.0.0",
     "babel-jest": "23.6.0",
     "jest": "23.6.0",
     "metro-react-native-babel-preset": "0.45.2",
-    "react-test-renderer": "16.5.2"
+    "react-test-renderer": "16.5.2",
+    "schedule": "^0.4.0"
   },
   "jest": {
     "preset": "react-native"
