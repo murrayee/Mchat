@@ -21,9 +21,13 @@
     "redux-actions": "^2.6.1",
     "redux-logger": "^3.0.6",
     "redux-saga": "^0.16.0",
+    "redux-saga-routines": "^2.2.5",
     "reselect": "^3.0.1"
   },
   "devDependencies": {
+    "@babel/core": "^7.1.0",
+    "@babel/plugin-proposal-decorators": "^7.1.0",
+    "@babel/plugin-transform-runtime": "^7.1.0",
     "@babel/runtime": "^7.0.0",
     "babel-jest": "23.6.0",
     "jest": "23.6.0",

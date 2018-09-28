@@ -4,6 +4,21 @@ import {
   Text,
   ScrollView,
 } from 'react-native';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
+import * as users from '../../../actions/index';
+
+
+@connect(
+  state => {
+    return {
+      ...state.users
+    };
+  },
+  dispatch => bindActionCreators({
+    getUsers:users.getUsers.request
+  }, dispatch)
+)
 
 
 class User extends Component {
@@ -11,8 +26,11 @@ class User extends Component {
     super(...arguments);
   }
 
+  componentDidMount() {
+    this.props.getUsers()
+  }
   render() {
-
+  console.log(this.props);
     return (
       <ScrollView
         automaticallyAdjustContentInsets={false}
@@ -20,7 +38,7 @@ class User extends Component {
         showsVerticalScrollIndicator={false}
       >
         <View>
-          <Text>Message</Text>
+          <Text>123213</Text>
         </View>
       </ScrollView>
     );
