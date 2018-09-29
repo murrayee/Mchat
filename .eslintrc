@@ -7,7 +7,10 @@
     "prettier/react"
   ],
   "parser": "babel-eslint",
-  "plugins": ["react", "prettier"],
+  "plugins": [
+    "react",
+    "prettier"
+  ],
   "env": {
     "jasmine": true
   },
@@ -19,7 +22,6 @@
         "singleQuote": true
       }
     ],
-
     "no-underscore-dangle": "off",
     "no-use-before-define": "off",
     "no-unused-expressions": "off",
@@ -30,13 +32,18 @@
     "import/extensions": "off",
     "import/no-extraneous-dependencies": "off",
     "import/no-unresolved": "off",
-
-    "react/jsx-filename-extension": ["off", { "extensions": [".js", ".jsx"] }],
-
+    "react/jsx-filename-extension": [
+      "off",
+      {
+        "extensions": [
+          ".js",
+          ".jsx"
+        ]
+      }
+    ],
     "react/sort-comp": "off",
     "react/prefer-stateless-function": "off",
     "react/no-deprecated": "off",
-
     "react/forbid-prop-types": "warn",
     "react/prop-types": "off",
     "react/require-default-props": "off",
