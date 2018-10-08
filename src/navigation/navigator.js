@@ -8,6 +8,10 @@ import dynamic from '../containers/dynamic/screen/index';
 import application from '../containers/application/screen/index';
 import contact from '../containers/contact/screen/index';
 import user from '../containers/user/screen/index';
+import login from '../containers/authorization/screen/login';
+import register from '../containers/authorization/screen/register';
+import authLoading from '../containers/loading/auth';
+import guide from '../containers/guide/screen';
 
 import {
   headerOptions,
@@ -16,7 +20,7 @@ import {
   StackNavigatorConfig,
 } from './config';
 
-const Tabs = createBottomTabNavigator({
+const tabs = createBottomTabNavigator({
     message: {
       screen: message,
       path: 'message',
@@ -85,9 +89,9 @@ const Tabs = createBottomTabNavigator({
   }),
 );
 
-const App = createStackNavigator({
+const app = createStackNavigator({
     tabs: {
-      screen: Tabs,
+      screen: tabs,
       navigationOptions: props => ({
         ...headerOptions({
           ...props,
@@ -100,8 +104,36 @@ const App = createStackNavigator({
   }),
 );
 
-const Routers = createSwitchNavigator({
-    App: App,
+const authorization = createStackNavigator({
+    login: {
+      screen: login,
+      navigationOptions: props => ({
+        ...headerOptions({
+          ...props,
+          visible: false,
+        }),
+      }),
+    },
+    register: {
+      screen: register,
+      navigationOptions: props => {
+        return headerOptions({
+          ...props,
+          back: true,
+        });
+      },
+    },
   },
-  { initialRouteName: 'App' });
+  StackNavigatorConfig({
+    initialRouteName: 'login',
+  }));
+
+const Routers = createSwitchNavigator({
+    app: app,
+    guide: guide,
+    authLoading: authLoading,
+    authorization: authorization,
+
+  },
+  { initialRouteName: 'authLoading' });
 export default Routers;

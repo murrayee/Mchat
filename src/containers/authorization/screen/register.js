@@ -11,18 +11,18 @@ import {
   SafeAreaView,
   TextInput,
 } from 'react-native';
-import * as  auth from '../../../actions/auth';
+// import * as  auth from '../../../actions/auth';
 import { connect } from 'react-redux';
 import { Button, InputItem } from 'antd-mobile-rn';
 import { authStyles } from '../styleSheet/index';
 import { Icon } from '../../../components/Icon';
 
-@connect(
-  state => {
-    return { ...state.auth };
-  },
-  dispatch => bindActionCreators({ ...auth }, dispatch),
-)
+// @connect(
+//   state => {
+//     return { ...state.auth };
+//   },
+//   dispatch => bindActionCreators({ ...auth }, dispatch),
+// )
 export default class Register extends Component {
   static navigationOptions = {
     headerStyle: {

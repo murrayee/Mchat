@@ -14,7 +14,7 @@ import {
     SafeAreaView,
     TextInput,
 } from 'react-native';
-import * as auth from '../../../actions/auth';
+// import * as auth from '../../../actions/auth';
 import {connect} from 'react-redux';
 import {
     Button,
@@ -22,17 +22,17 @@ import {
 } from 'antd-mobile-rn';
 import {authStyles} from '../styleSheet/index';
 import {Icon} from '../../../components/Icon';
-@connect(
-    state => {
-        return {
-            ...state.auth,
-            ...state.io
-        };
-    },
-    dispatch => bindActionCreators({
-        ...auth
-    }, dispatch)
-)
+// @connect(
+//     state => {
+//         return {
+//             ...state.auth,
+//             ...state.io
+//         };
+//     },
+//     dispatch => bindActionCreators({
+//         ...auth
+//     }, dispatch)
+// )
 export default class Authorize extends Component {
     constructor(props, context) {
         super(props, context);
