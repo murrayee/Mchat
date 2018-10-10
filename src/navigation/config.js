@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
-import StackViewStyleInterpolator from "react-navigation-stack/dist/views/StackView/StackViewStyleInterpolator";
+import StackViewStyleInterpolator from 'react-navigation-stack/dist/views/StackView/StackViewStyleInterpolator';
 import { Icon } from '../components/Icon';
 import color from '../constants/color';
 
@@ -93,9 +93,9 @@ export const StackNavigatorConfig = options => {
   return {
     initialRouteName: InitialRouteName, mode: 'card',
 
-    transitionConfig:()=>({
-      // 只要修改最后的forVertical就可以实现不同的动画了。
-      screenInterpolator:StackViewStyleInterpolator.forHorizontal, // 从右往左 forHorizontal // 从下往上 forVertical // 安卓从下往上forFadeFromBottomAndroid// 无动画forInitial
+    transitionConfig: () => ({
+      // 从右往左 forHorizontal // 从下往上 forVertical // 安卓从下往上forFadeFromBottomAndroid// 无动画forInitial
+      screenInterpolator: StackViewStyleInterpolator.forHorizontal,
     }),
     cardStyle: {
       backgroundColor: '#fff',

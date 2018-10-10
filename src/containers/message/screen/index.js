@@ -4,33 +4,20 @@ import {
   Text,
   ScrollView,
 } from 'react-native';
-import {bindActionCreators} from 'redux';
-import {connect} from 'react-redux';
-import * as users from '../../../actions/index';
-
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import * as users from '../../../actions/users';
 
 @connect(
-  state => {
-    return {
-      ...state.users
-    };
-  },
-  dispatch => bindActionCreators({
-    getUsers:users.getUsers.request
-  }, dispatch)
+  state => ({ ...state.users }),
+  dispatch => bindActionCreators({ userLogin: users.userLogin }, dispatch),
 )
-
-
 class User extends Component {
-  constructor(props, context) {
-    super(...arguments);
+  componentDidMount() {
+    this.props.userLogin({ username: 'Admin', password: '123456' });
   }
 
-  componentDidMount() {
-    this.props.getUsers()
-  }
   render() {
-  console.log(this.props);
     return (
       <ScrollView
         automaticallyAdjustContentInsets={false}

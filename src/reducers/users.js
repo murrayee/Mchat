@@ -1,28 +1,23 @@
 import { handleActions } from 'redux-actions';
+import * as types from '../constants/type';
 
-import { getUsers } from '../actions';
-
-const INITIAL_STATE = {
-  users: []
+const state = {
+  user: {},
 };
-
-const usersReducer = handleActions(
+const userReducer = handleActions(
   {
-    [getUsers.REQUEST]: state => ({
+    [types.USER_LOGIN]: state => ({
       ...state,
-      isLoadingUsers: true
     }),
-    [getUsers.FAILURE]: state => ({
+    [types.USER_LOGIN_REQUEST]: state => ({
       ...state,
-      isLoadingUsers: false,
-      errorGettingUsers: true
     }),
-    [getUsers.SUCCESS]: (state = INITIAL_STATE, { payload: { users } }) => ({
+    [types.USER_LOGIN_RECEIVE]: (state, action) => ({
       ...state,
-      users
-    })
+      user: action.data,
+    }),
   },
-  INITIAL_STATE
+  state,
 );
 
-export default usersReducer;
+export default userReducer;
