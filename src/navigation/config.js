@@ -2,7 +2,7 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import StackViewStyleInterpolator from 'react-navigation-stack/dist/views/StackView/StackViewStyleInterpolator';
 import { Icon } from '../components/Icon';
-import color from '../constants/color';
+import color from '../config/color';
 
 export const headerOptions = props => {
   const {
