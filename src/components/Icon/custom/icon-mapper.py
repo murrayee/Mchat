@@ -21,22 +21,22 @@ def main(fontFile, output):
         for k in glyphMap:
             tmp += '"%s":%d,' % (glyphMap[k], k)
 
-        f = file(output, "w+")
+        f = open(output, "w+")
         f.write(tmpl % tmp)
         f.close()
-    except Exception, ex:
-        print ex
+    except Exception as e:
+        print (e)
 
 
 def showHelp():
-    print """
+    print('')
+"""
 Iconfont map generator.
 
 usage: 
 iconfont-maper <iconfont> <output>      generate map file from iconfont file .
 iconfont-maper -h                       show this help.
 """
-
 
 if __name__ == '__main__':
     if len(sys.argv) < 2:
@@ -51,6 +51,6 @@ if __name__ == '__main__':
         if os.path.exists(sys.argv[1]):
             main(sys.argv[1], sys.argv[2])
         else:
-            print "Font file not found."
+            print ("Font file not found.")
 
         sys.exit()
