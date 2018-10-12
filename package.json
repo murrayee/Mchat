@@ -10,9 +10,12 @@
   },
   "dependencies": {
     "antd-mobile-rn": "^2.2.1",
-    "axios": "^0.18.0",
+    "dva": "^2.4.0",
+    "dva-core": "^1.4.0",
+    "dva-loading": "^2.0.5",
     "qs": "^6.5.2",
     "react": "16.5.2",
+    "react-dom": "^16.5.2",
     "react-native": "0.57.1",
     "react-native-snap-carousel": "^3.7.4",
     "react-native-vector-icons": "^5.0.0",
@@ -20,10 +23,8 @@
     "react-navigation-redux-helpers": "^2.0.6",
     "react-navigation-stack": "^1.0.0-alpha.8",
     "react-redux": "^5.0.7",
-    "redux": "^4.0.0",
     "redux-actions": "^2.6.1",
     "redux-logger": "^3.0.6",
-    "redux-saga": "^0.16.0",
     "reselect": "^3.0.1"
   },
   "devDependencies": {

@@ -1,20 +1,26 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Provider } from 'react-redux';
-import AppNavigator from './navigation/index';
-import storeConfigure from './store';
-import rootSaga from './sagas' ;
+import { create } from 'dva-core';
+import createLoading from 'dva-loading';
+import createLogger from 'redux-logger';
+import AppNavigator, { navigationReducer, navigationMiddleware } from './navigation/index';
+import models from './models';
 
-const store = storeConfigure();
-store.runSaga(rootSaga);
-
-class App extends Component {
-  render() {
-    return (
-      <Provider store={store}>
-        <AppNavigator/>
-      </Provider>
-    );
-  }
-}
-
-export default App;
+const dva = (options) => {
+  const app = create(options);
+  options.models.forEach(model => app.model(model));
+  app.use(createLoading());
+  app.start();
+  const store = app._store;
+  app.start = container => () => <Provider store={store}>{container}</Provider>;
+  return app;
+};
+const app = dva({
+  models: models,
+  extraReducers: { router: navigationReducer },
+  onAction: [navigationMiddleware, createLogger],
+  onError(e) {
+    console.log('onError', e);
+  },
+});
+export default app.start(<AppNavigator/>);

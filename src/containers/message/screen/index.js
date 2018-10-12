@@ -4,19 +4,18 @@ import {
   Text,
   ScrollView,
 } from 'react-native';
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import * as users from '../../../actions/users';
+import {createAction} from '../../../utils';
+
 
 @connect(
-  state => ({ ...state.users }),
-  dispatch => bindActionCreators({ userLogin: users.userLogin }, dispatch),
+  state => ({ ...state.app }),
 )
 class User extends Component {
   componentDidMount() {
-    this.props.userLogin({ username: 'Admin', password: '123456' });
+    console.log(this.props);
+  this.props.dispatch(createAction('auth/login')())
   }
-
   render() {
     return (
       <ScrollView

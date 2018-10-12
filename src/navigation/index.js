@@ -1,23 +1,27 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import {
   reduxifyNavigator,
+  createNavigationReducer,
   createReactNavigationReduxMiddleware,
 } from 'react-navigation-redux-helpers';
 import NavigatorService from '../services/navigatorService';
 import Routers from './navigator';
 
-// Note: createReactNavigationReduxMiddleware must be run before createReduxBoundAddListener
-export  const navigationMiddleware = createReactNavigationReduxMiddleware(
+export const navigationReducer = createNavigationReducer(Routers);
+export const navigationMiddleware = createReactNavigationReduxMiddleware(
   'root',
   state => state.nav,
 );
 const AppWithNavigationState = reduxifyNavigator(Routers, 'root');
 
-@connect(state => ({ state: state.nav }))
-class AppNavigator extends Component {
+
+@connect(({ app, router }) => ({ app, router }))
+class AppNavigator extends PureComponent {
+
   render() {
-    return <AppWithNavigationState {...this.props} ref={(el) => NavigatorService.setContainer(el)}/>;
+    const { dispatch, router } = this.props;
+    return <AppWithNavigationState dispatch={dispatch} state={router} ref={(el) => NavigatorService.setContainer(el)}/>;
   }
 }
 
