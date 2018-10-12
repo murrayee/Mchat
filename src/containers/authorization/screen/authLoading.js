@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { AsyncStorage, View, ActivityIndicator } from 'react-native';
-import curVersion from '../../config/version';
+import curVersion from '../../../config/version';
 
 export default class AuthLoading extends PureComponent {
   constructor() {

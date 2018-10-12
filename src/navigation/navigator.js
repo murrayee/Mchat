@@ -10,7 +10,7 @@ import contact from '../containers/contact/screen/index';
 import user from '../containers/user/screen/index';
 import login from '../containers/authorization/screen/login';
 import register from '../containers/authorization/screen/register';
-import authLoading from '../containers/loading/auth';
+import authLoading from '../containers/authorization/screen/authLoading';
 import guide from '../containers/guide/screen';
 
 import {

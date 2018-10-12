@@ -1,5 +1,6 @@
-import fetch from 'dva/fetch';
 // import {} from 'react-native';
+
+const host = 'http://127.0.0.1:9090';
 const codeMessage = {
   200: '服务器成功返回请求的数据。',
   201: '新建或修改数据成功。',
@@ -68,8 +69,7 @@ export default function request(
       };
     }
   }
-
-  return fetch(url, newOptions)
+  return fetch(`${host}${url}`, newOptions)
     .then(checkStatus)
     .then(response => {
       // DELETE and 204 do not return data by default
@@ -80,6 +80,7 @@ export default function request(
       return response.json();
     })
     .catch(e => {
+      console.log(e);
       const status = e.name;
       if (status === 401) {
         // @HACK

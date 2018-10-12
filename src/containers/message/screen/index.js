@@ -5,7 +5,7 @@ import {
   ScrollView,
 } from 'react-native';
 import { connect } from 'react-redux';
-import {createAction} from '../../../utils';
+import { createAction } from '../../../utils';
 
 
 @connect(
@@ -14,8 +14,9 @@ import {createAction} from '../../../utils';
 class User extends Component {
   componentDidMount() {
     console.log(this.props);
-  this.props.dispatch(createAction('auth/login')())
+    this.props.dispatch(createAction('auth/login')({ username: 'Admin', password: '123456' }));
   }
+
   render() {
     return (
       <ScrollView
