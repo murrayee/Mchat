@@ -5,7 +5,7 @@ import {
   createNavigationReducer,
   createReactNavigationReduxMiddleware,
 } from 'react-navigation-redux-helpers';
-import NavigatorService from '../services/navigatorService';
+import NavigatorService from '../services/navigator';
 import Routers from './navigator';
 
 export const navigationReducer = createNavigationReducer(Routers);

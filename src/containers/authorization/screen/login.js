@@ -53,10 +53,11 @@ export default class Authorize extends Component {
     );
   };
   submit = () => {
-    const { fetchLogin } = this.props;
+    const { fetchLogin,navigation } = this.props;
     const { username, password } = this.state;
     if (username && password) {
       fetchLogin({ username, password });
+      navigation.navigate('app');
     } else {
       Alert.alert('用户名或者密码不能为空');
     }

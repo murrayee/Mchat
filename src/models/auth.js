@@ -1,5 +1,5 @@
 import { createAction, Storage } from '../utils';
-import * as authService from '../services/auth';
+import authService from '../services/auth';
 
 export default {
   namespace: 'auth',
