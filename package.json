@@ -14,9 +14,9 @@
     "dva-core": "^1.4.0",
     "dva-loading": "^2.0.5",
     "qs": "^6.5.2",
-    "react": "16.5.2",
+    "react": "^16.6.0-alpha.f47a958",
     "react-dom": "^16.5.2",
-    "react-native": "0.57.1",
+    "react-native": "0.57.3",
     "react-native-snap-carousel": "^3.7.4",
     "react-native-vector-icons": "^5.0.0",
     "react-navigation": "^2.17.0",
@@ -34,7 +34,7 @@
     "babel-plugin-import": "^1.9.1",
     "jest": "23.6.0",
     "metro-react-native-babel-preset": "0.45.2",
-    "react-test-renderer": "16.5.2",
+    "react-test-renderer": "^16.6.0-alpha.8af6728",
     "schedule": "^0.4.0"
   },
   "jest": {

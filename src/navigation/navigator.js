@@ -120,6 +120,7 @@ const authorization = createStackNavigator({
         return headerOptions({
           ...props,
           back: true,
+          headerTransparent:true,
         });
       },
     },
@@ -135,5 +136,5 @@ const Routers = createSwitchNavigator({
     authorization: authorization,
 
   },
-  { initialRouteName: 'app' });
+  { initialRouteName: 'authLoading' });
 export default Routers;

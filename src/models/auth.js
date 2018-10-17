@@ -7,7 +7,7 @@ export default {
     user: {},
   },
   effects: {
-    * login({ payload }, { call, put }) {
+    * login({ payload }, { call, put, select }) {
       const user = yield call(authService.fetchUserLogin, payload);
       yield put(createAction('save')({ user }));
     },

@@ -8,12 +8,14 @@ export const headerOptions = props => {
   const {
     navigationOptions,
     visible = true,
+    headerTransparent=false,
     title = '',
   } = props;
   const header = visible === false ? null : undefined;
   return {
     header,
     title,
+    headerTransparent,
     headerBackTitle: null,
     headerTintColor: color.headerTintColor,
     headerTitleStyle: {
