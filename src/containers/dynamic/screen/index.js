@@ -4,6 +4,8 @@ import {
   Text,
   ScrollView,
 } from 'react-native';
+import {SafeAreaView} from 'react-navigation'
+import ArtDemo from '../../../components/bubble/example'
 
 
 class User extends Component {
@@ -14,6 +16,7 @@ class User extends Component {
   render() {
 
     return (
+      <SafeAreaView>
       <ScrollView
         automaticallyAdjustContentInsets={false}
         showsHorizontalScrollIndicator={false}
@@ -21,8 +24,10 @@ class User extends Component {
       >
         <View>
           <Text>Dynamic</Text>
+          <ArtDemo></ArtDemo>
         </View>
       </ScrollView>
+      </SafeAreaView>
     );
   }
 }
