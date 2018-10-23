@@ -43,9 +43,9 @@ export default class Demo extends React.Component {
         <TouchableOpacity style={{backgroundColor: '#665522', padding: 10}} onPress={()=>this.changeProgress()}>
           <Text>点击改变progress</Text></TouchableOpacity>
         <CircleProgressView progress={this.state.progress}>
-          <View style={{backgroundColor: '#987123', flex: 1,  alignItems: 'center'}}>
-            <Text>外部放入进度条中间的内容</Text>
-          </View>
+          {/*<View style={{backgroundColor: '#987123', flex: 1,  alignItems: 'center'}}>*/}
+            {/*<Text>外部放入进度条中间的内容</Text>*/}
+          {/*</View>*/}
         </CircleProgressView>
 
         <AnimatedCircleProgress progress={this.state.progress}>

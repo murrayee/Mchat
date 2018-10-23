@@ -85,7 +85,7 @@ const tabs = createBottomTabNavigator({
   },
   TabNavigatorConfig({
     lazy: true,
-    initialRouteName: 'message',
+    initialRouteName: 'dynamic',
   }),
 );
 
@@ -136,5 +136,5 @@ const Routers = createSwitchNavigator({
     authorization: authorization,
 
   },
-  { initialRouteName: 'authLoading' });
+  { initialRouteName: 'app' });
 export default Routers;
