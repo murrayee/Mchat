@@ -2054,7 +2054,7 @@ cosmiconfig@^5.0.5:
     js-yaml "^3.9.0"
     parse-json "^4.0.0"
 
-create-react-class@^15.6.0, create-react-class@^15.6.2, create-react-class@^15.6.3:
+create-react-class@^15.6.0, create-react-class@^15.6.3:
   version "15.6.3"
   resolved "http://registry.npm.taobao.org/create-react-class/download/create-react-class-15.6.3.tgz#2d73237fb3f970ae6ebe011a9e66f46dbca80036"
   integrity sha1-LXMjf7P5cK5uvgEanmb0bbyoADY=
@@ -2287,6 +2287,14 @@ dva-loading@^2.0.5:
   integrity sha1-ud0Oci9w3MYPBTnRzHOUVDKpE64=
   dependencies:
     "@babel/runtime" "7.0.0-beta.46"
+
+dva-socket.io@^0.0.8:
+  version "0.0.8"
+  resolved "http://registry.npm.taobao.org/dva-socket.io/download/dva-socket.io-0.0.8.tgz#6964a87da6708c2e70687a22adfe9ca81809657d"
+  integrity sha1-aWSofaZwjC5waHoirf6cqBgJZX0=
+  dependencies:
+    invariant "^2.2.2"
+    socket.io-client "^2.0.3"
 
 dva@^2.4.0:
   version "2.4.0"
@@ -5323,11 +5331,6 @@ react-native-menu@^0.23.0:
     prop-types "^15.5.10"
     react-timer-mixin "^0.13.3"
 
-react-native-rk-pull-to-refresh@^1.2.1:
-  version "1.2.1"
-  resolved "http://registry.npm.taobao.org/react-native-rk-pull-to-refresh/download/react-native-rk-pull-to-refresh-1.2.1.tgz#8f88c98aca72dca1a58cbfe21b0cb6aceffe31de"
-  integrity sha1-j4jJispy3KGljL/iGwy2rO/+Md4=
-
 react-native-safe-area-view@0.11.0:
   version "0.11.0"
   resolved "http://registry.npm.taobao.org/react-native-safe-area-view/download/react-native-safe-area-view-0.11.0.tgz#4f3dda43c2bace37965e7c6aef5fc83d4f19d174"
@@ -5339,15 +5342,6 @@ react-native-screens@^1.0.0-alpha.11:
   version "1.0.0-alpha.14"
   resolved "http://registry.npm.taobao.org/react-native-screens/download/react-native-screens-1.0.0-alpha.14.tgz#fe3ccdcec7be8e1ada090c34a7f8951337adf653"
   integrity sha1-/jzNzse+jhraCQw0p/iVEzet9lM=
-
-react-native-scrollable-tab-view@^0.9.0:
-  version "0.9.0"
-  resolved "http://registry.npm.taobao.org/react-native-scrollable-tab-view/download/react-native-scrollable-tab-view-0.9.0.tgz#cf8c09018f1e1c88bb26db6a003c90de275a1c6f"
-  integrity sha1-z4wJAY8eHIi7JttqADyQ3idaHG8=
-  dependencies:
-    create-react-class "^15.6.2"
-    prop-types "^15.6.0"
-    react-timer-mixin "^0.13.3"
 
 react-native-snap-carousel@^3.7.4:
   version "3.7.4"
@@ -6200,7 +6194,7 @@ snapdragon@^0.8.1:
     source-map-resolve "^0.5.0"
     use "^3.1.0"
 
-socket.io-client@^2.1.1:
+socket.io-client@^2.0.3, socket.io-client@^2.1.1:
   version "2.1.1"
   resolved "http://registry.npm.taobao.org/socket.io-client/download/socket.io-client-2.1.1.tgz#dcb38103436ab4578ddb026638ae2f21b623671f"
   integrity sha1-3LOBA0NqtFeN2wJmOK4vIbYjZx8=

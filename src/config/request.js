@@ -1,6 +1,7 @@
 // import {} from 'react-native';
+import HOST from './host';
 
-const host = 'http://127.0.0.1:9090';
+const host = HOST.dev_url;
 const codeMessage = {
   200: '服务器成功返回请求的数据。',
   201: '新建或修改数据成功。',

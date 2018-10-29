@@ -136,5 +136,5 @@ const Routers = createSwitchNavigator({
     authorization: authorization,
 
   },
-  { initialRouteName: 'app' });
+  { initialRouteName: 'authorization' });
 export default Routers;

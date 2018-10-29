@@ -25,6 +25,7 @@ import { createAction } from '../../../utils';
   }),
   dispatch => bindActionCreators({
     fetchLogin: createAction('auth/login'),
+    socketOpen: createAction('SOCKET/OPEN'),
   }, dispatch),
 )
 export default class Authorize extends Component {
@@ -53,10 +54,11 @@ export default class Authorize extends Component {
     );
   };
   submit = () => {
-    const { fetchLogin,navigation } = this.props;
+    const { fetchLogin, navigation,socketOpen } = this.props;
     const { username, password } = this.state;
     if (username && password) {
       fetchLogin({ username, password });
+      // socketOpen({token:'123213443'});
       navigation.navigate('app');
     } else {
       Alert.alert('用户名或者密码不能为空');
