@@ -35,7 +35,8 @@ export default class Fan extends  React.Component{
             originX={50}
             originY={50}
             stroke="#000000"
-            strokeWidth={1}/>
+            strokeWidth={1}
+          />
         </Surface>
       </View>
     )

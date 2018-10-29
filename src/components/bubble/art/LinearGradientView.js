@@ -38,6 +38,7 @@ export default class LinearGradientView extends React.Component{
       .lineTo(0,container.height)
       .close();
 
+
     return(
       <View style={styles.container}>
         <View style={{height: 200}} onLayout={e => {

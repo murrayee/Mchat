@@ -4,37 +4,27 @@ import {
   Text,
   ScrollView,
 } from 'react-native';
-import {SafeAreaView} from 'react-navigation'
-import CircleProgressView from '../../../components/Art/Fan'
-import ArtDemo from '../../../components/bubble/art'
-// import ArtLine from '../../../components/bubble'
+import { SafeAreaView } from 'react-navigation';
+import Bubble from '../../../components/Bubble';
 
 
 class User extends Component {
   constructor(props, context) {
     super(...arguments);
+    this.state = {};
   }
 
   render() {
 
     return (
-      <SafeAreaView style={{ flex: 1}}>
-      <ScrollView
-        automaticallyAdjustContentInsets={false}
-        showsHorizontalScrollIndicator={false}
-        showsVerticalScrollIndicator={false}
-        style={{ flex: 1}}
-      >
-        <View>
-          {/*<Text>Dynamic</Text>*/}
-          <View style={{ backgroundColor: 'black'}}>
-            <CircleProgressView progress={100}/>
-          </View>
-          <ArtDemo/>
-          {/*<View style={{ height: 20}}></View>*/}
-          {/*<ArtLine></ArtLine>*/}
-        </View>
-      </ScrollView>
+      <SafeAreaView style={{ flex: 1 }}>
+        <ScrollView
+          automaticallyAdjustContentInsets={false}
+          showsHorizontalScrollIndicator={false}
+          showsVerticalScrollIndicator={false}
+          style={{ flex: 1 }}>
+          <Bubble y={40}/>
+        </ScrollView>
       </SafeAreaView>
     );
   }

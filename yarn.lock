@@ -2054,7 +2054,7 @@ cosmiconfig@^5.0.5:
     js-yaml "^3.9.0"
     parse-json "^4.0.0"
 
-create-react-class@^15.6.0, create-react-class@^15.6.3:
+create-react-class@^15.6.0, create-react-class@^15.6.2, create-react-class@^15.6.3:
   version "15.6.3"
   resolved "http://registry.npm.taobao.org/create-react-class/download/create-react-class-15.6.3.tgz#2d73237fb3f970ae6ebe011a9e66f46dbca80036"
   integrity sha1-LXMjf7P5cK5uvgEanmb0bbyoADY=
@@ -2104,6 +2104,11 @@ csstype@^2.2.0:
   version "2.5.7"
   resolved "http://registry.npm.taobao.org/csstype/download/csstype-2.5.7.tgz#bf9235d5872141eccfb2d16d82993c6b149179ff"
   integrity sha1-v5I11YchQezPstFtgpk8axSRef8=
+
+ctx-polyfill@^1.1.4:
+  version "1.1.4"
+  resolved "http://registry.npm.taobao.org/ctx-polyfill/download/ctx-polyfill-1.1.4.tgz#08420bc5c540d08ac36d05720ca503c65e302d65"
+  integrity sha1-CEILxcVA0IrDbQVyDKUDxl4wLWU=
 
 dashdash@^1.12.0:
   version "1.14.1"
@@ -5276,6 +5281,13 @@ react-native-camera-roll-picker@^1.2.1:
   resolved "http://registry.npm.taobao.org/react-native-camera-roll-picker/download/react-native-camera-roll-picker-1.2.3.tgz#b117fd3a2b9012dcccee1261a9bc427226b8d6d2"
   integrity sha1-sRf9OiuQEtzM7hJhqbxCcia41tI=
 
+react-native-canvas@^0.1.24:
+  version "0.1.24"
+  resolved "http://registry.npm.taobao.org/react-native-canvas/download/react-native-canvas-0.1.24.tgz#aa01570349bcd7367cb5bcbd23f81cd4fe2998cb"
+  integrity sha1-qgFXA0m81zZ8tby9I/gc1P4pmMs=
+  dependencies:
+    ctx-polyfill "^1.1.4"
+
 react-native-collapsible@^0.9.0:
   version "0.9.0"
   resolved "http://registry.npm.taobao.org/react-native-collapsible/download/react-native-collapsible-0.9.0.tgz#207849faa15493820d19fa6a5e58f7c7b6c1b910"
@@ -5311,6 +5323,11 @@ react-native-menu@^0.23.0:
     prop-types "^15.5.10"
     react-timer-mixin "^0.13.3"
 
+react-native-rk-pull-to-refresh@^1.2.1:
+  version "1.2.1"
+  resolved "http://registry.npm.taobao.org/react-native-rk-pull-to-refresh/download/react-native-rk-pull-to-refresh-1.2.1.tgz#8f88c98aca72dca1a58cbfe21b0cb6aceffe31de"
+  integrity sha1-j4jJispy3KGljL/iGwy2rO/+Md4=
+
 react-native-safe-area-view@0.11.0:
   version "0.11.0"
   resolved "http://registry.npm.taobao.org/react-native-safe-area-view/download/react-native-safe-area-view-0.11.0.tgz#4f3dda43c2bace37965e7c6aef5fc83d4f19d174"
@@ -5322,6 +5339,15 @@ react-native-screens@^1.0.0-alpha.11:
   version "1.0.0-alpha.14"
   resolved "http://registry.npm.taobao.org/react-native-screens/download/react-native-screens-1.0.0-alpha.14.tgz#fe3ccdcec7be8e1ada090c34a7f8951337adf653"
   integrity sha1-/jzNzse+jhraCQw0p/iVEzet9lM=
+
+react-native-scrollable-tab-view@^0.9.0:
+  version "0.9.0"
+  resolved "http://registry.npm.taobao.org/react-native-scrollable-tab-view/download/react-native-scrollable-tab-view-0.9.0.tgz#cf8c09018f1e1c88bb26db6a003c90de275a1c6f"
+  integrity sha1-z4wJAY8eHIi7JttqADyQ3idaHG8=
+  dependencies:
+    create-react-class "^15.6.2"
+    prop-types "^15.6.0"
+    react-timer-mixin "^0.13.3"
 
 react-native-snap-carousel@^3.7.4:
   version "3.7.4"
