@@ -93,8 +93,9 @@ export const StackNavigatorConfig = options => {
     initialRouteName: InitialRouteName = '',
   } = options;
   return {
-    initialRouteName: InitialRouteName, mode: 'card',
-
+    initialRouteName: InitialRouteName,
+    mode: 'card',
+    headerMode:'screen',
     transitionConfig: () => ({
       // 从右往左 forHorizontal // 从下往上 forVertical // 安卓从下往上forFadeFromBottomAndroid// 无动画forInitial
       screenInterpolator: StackViewStyleInterpolator.forHorizontal,

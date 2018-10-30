@@ -1,4 +1,4 @@
-// import {} from 'react-native';
+import {Storage} from '../utils';
 import HOST from './host';
 
 const host = HOST.dev_url;
@@ -26,7 +26,7 @@ const checkStatus = response => {
   }
   const errortext = codeMessage[response.status] || response.statusText;
   // notification.error({
-  //   message: `请求错误 ${response.status}: ${response.url}`,
+  //   session: `请求错误 ${response.status}: ${response.url}`,
   //   description: errortext,
   // });
   const error = new Error(errortext);
@@ -42,7 +42,7 @@ const checkStatus = response => {
  * @param  {object} [options] The options we want to pass to "fetch"
  * @return {object}           An object containing either "data" or "err"
  */
-export default function request(
+export default async function request(
   url,
   options,
 ) {
@@ -50,6 +50,12 @@ export default function request(
     credentials: 'include',
   };
   const newOptions = { ...defaultOptions, ...options };
+  const user = await Storage.get('murray/user');
+  if (user && !url.includes('authorize')) {
+    newOptions.headers = {
+      Authorization: `Bearer ${user.accessToken}`,
+    };
+  }
   if (
     newOptions.method === 'POST' ||
     newOptions.method === 'PUT' ||

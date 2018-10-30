@@ -3,7 +3,7 @@ import {
   createBottomTabNavigator,
   createSwitchNavigator,
 } from 'react-navigation';
-import message from '../containers/message/screen/index';
+import session from '../containers/session/screen/index';
 import dynamic from '../containers/dynamic/screen/index';
 import application from '../containers/application/screen/index';
 import contact from '../containers/contact/screen/index';
@@ -12,6 +12,8 @@ import login from '../containers/authorization/screen/login';
 import register from '../containers/authorization/screen/register';
 import authLoading from '../containers/authorization/screen/authLoading';
 import guide from '../containers/guide/screen';
+import chat from '../containers/session/screen/chat';
+import contactInfo from '../containers/contact/screen/contactInfo';
 
 import {
   headerOptions,
@@ -21,9 +23,9 @@ import {
 } from './config';
 
 const tabs = createBottomTabNavigator({
-    message: {
-      screen: message,
-      path: 'message',
+    session: {
+      screen: session,
+      path: 'session',
       navigationOptions: props => ({
         ...tabOptions({
           props,
@@ -99,6 +101,27 @@ const app = createStackNavigator({
         }),
       }),
     },
+    chat: {
+      screen: chat,
+      navigationOptions: props => ({
+        ... headerOptions({
+          ...props,
+          back: true,
+          title: `${props.navigation.state.params.profile.username}`,
+        }),
+      }),
+    },
+    contactInfo: {
+      screen: contactInfo,
+      navigationOptions: props => ({
+        ... headerOptions({
+          ...props,
+          back: true,
+          headerTransparent: true,
+          // title: `${props.navigation.state.params.profile.username}`,
+        }),
+      }),
+    },
   }, StackNavigatorConfig({
     initialRouteName: 'tabs',
   }),
@@ -120,7 +143,7 @@ const authorization = createStackNavigator({
         return headerOptions({
           ...props,
           back: true,
-          headerTransparent:true,
+          headerTransparent: true,
         });
       },
     },

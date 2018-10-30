@@ -1,4 +1,5 @@
 import createSocket from 'dva-socket.io';
+import { createAction } from '../utils';
 
 export function dvaSocket(url, option) {
   return createSocket(
@@ -8,6 +9,7 @@ export function dvaSocket(url, option) {
       on: {
         connect: (data, dispatch, getState, socket) => {
           console.log('connect success', socket.id);
+          dispatch(createAction('socket/save')(socket));
         },
         disconnection: (data, dispatch, getState) => {
           console.log('disconection', data);
@@ -28,15 +30,24 @@ export function dvaSocket(url, option) {
           callback: (data, action, dispatch, getState) => {
             console.log('enter_chat_room callback', data);
             const { callback } = action || {};
-            callback && callback(data); // 调用回调
+            callback && callback(data);
+          },
+        },
+        message: {
+          evaluate: (action, dispatch, getState) => action.type === 'socket/emit',
+          data: ({ payload }) => {
+            return JSON.stringify(payload);
+          },
+          callback: (data, action, dispatch, getState) => {
+            const { callback } = action || {};
+            callback && callback(data);
           },
         },
       },
       asyncs: [
         {
-          evaluate: (action, dispatch, getState) => action.type === 'SOCKET/OPEN',
+          evaluate: (action, dispatch, getState) => action.type === 'socket/open',
           request: (action, dispatch, getState, socket) => {
-            console.log('SOCKET/OPEN', socket);
             const { id, language, token } = action.payload;
             /* eslint no-param-reassign:0 */
             socket.io.opts.transportOptions = {
@@ -50,9 +61,8 @@ export function dvaSocket(url, option) {
           },
         },
         {
-          evaluate: (action, dispatch, getState) => action.type === 'SOCKET/CLOSE',
+          evaluate: (action, dispatch, getState) => action.type === 'socket/close',
           request: (action, dispatch, getState, socket) => {
-            console.log('SOCKET/CLOSE', socket);
             socket.close();
           },
         },

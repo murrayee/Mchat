@@ -9,6 +9,7 @@ export default {
   effects: {
     * login({ payload }, { call, put, select }) {
       const user = yield call(authService.fetchUserLogin, payload);
+      yield Storage.set('murray/user', user);
       yield put(createAction('save')({ user }));
     },
   },
