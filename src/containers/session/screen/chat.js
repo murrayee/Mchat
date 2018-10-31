@@ -125,7 +125,7 @@ export default class Chat extends Component {
                 onContentSizeChange={(event) => {
                 }}
                 onChangeText={(v) => this.setState({ inputValue: v })}
-                onEndEditing={(e) => console.log('编辑完成')}
+                // onEndEditing={(e) => console.log('编辑完成')}
                 onSubmitEditing={this.submit}
               />
             </View>
