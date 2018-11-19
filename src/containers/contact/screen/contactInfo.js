@@ -4,6 +4,7 @@ import { Header } from 'react-navigation';
 import HeaderImageScrollView from 'react-native-image-header-scroll-view';
 import { WhiteSpace, List, Button } from 'antd-mobile-rn';
 import { contactInfoStyles } from '../styleSheet/index';
+import { Storage } from '../../../utils';
 
 const MIN_HEIGHT = Header.HEIGHT + 24;
 const MAX_HEIGHT = 200;
@@ -13,7 +14,6 @@ export default class contactInfo extends Component {
     headerTintColor: 'white',
     headerStyle: { position: 'absolute', top: 0 },
   };
-
   render() {
     const { navigation } = this.props;
     const profile = navigation.state.params.profile;

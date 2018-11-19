@@ -21,11 +21,10 @@ import { createAction } from '../../../utils';
 @connect(
   state => ({
     ...state.auth,
-    loading: state.loading.effects['auth/login'] || false,
+    loading:state.loading,
   }),
   dispatch => bindActionCreators({
     fetchLogin: createAction('auth/login'),
-    socketOpen: createAction('socket/open'),
   }, dispatch),
 )
 export default class Authorize extends Component {
@@ -54,12 +53,10 @@ export default class Authorize extends Component {
     );
   };
   submit = () => {
-    const { fetchLogin, navigation, socketOpen } = this.props;
+    const { fetchLogin } = this.props;
     const { username, password } = this.state;
     if (username && password) {
       fetchLogin({ username, password });
-      socketOpen({token:'123213443'});
-      navigation.navigate('app');
     } else {
       Alert.alert('用户名或者密码不能为空');
     }
@@ -70,6 +67,7 @@ export default class Authorize extends Component {
   };
 
   render() {
+    const {loading}=this.props;
     const { username, password } = this.state;
     return (
       <SafeAreaView style={authStyles.contentContainer}>

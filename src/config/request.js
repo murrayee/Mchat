@@ -1,4 +1,5 @@
-import {Storage} from '../utils';
+import {stringify} from 'qs';
+import { Storage } from '../utils';
 import HOST from './host';
 
 const host = HOST.dev_url;
@@ -51,8 +52,10 @@ export default async function request(
   };
   const newOptions = { ...defaultOptions, ...options };
   const user = await Storage.get('murray/user');
+  // 用户权限
   if (user && !url.includes('authorize')) {
     newOptions.headers = {
+      ...newOptions.headers,
       Authorization: `Bearer ${user.accessToken}`,
     };
   }
@@ -64,18 +67,20 @@ export default async function request(
     if (!(newOptions.body instanceof FormData)) {
       newOptions.headers = {
         Accept: 'application/json',
-        'Content-Type': 'application/json; charset=utf-8',
         ...newOptions.headers,
+        'Content-Type':'application/x-www-form-urlencoded;charset=utf-8',
       };
-      newOptions.body = JSON.stringify(newOptions.body);
+      newOptions.body = stringify(newOptions.body);
     } else {
-      // newOptions.body is FormData
+      // formData
       newOptions.headers = {
         Accept: 'application/json',
         ...newOptions.headers,
       };
+
     }
   }
+  // console.log(`${host}${url}`, newOptions);
   return fetch(`${host}${url}`, newOptions)
     .then(checkStatus)
     .then(response => {

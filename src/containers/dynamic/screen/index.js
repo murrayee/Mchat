@@ -5,7 +5,7 @@ import {
   ScrollView,
 } from 'react-native';
 import { SafeAreaView } from 'react-navigation';
-import Bubble from '../../../components/Bubble';
+// import Bubble from '../../../components/Bubble';
 
 
 class User extends Component {
@@ -23,7 +23,7 @@ class User extends Component {
           showsHorizontalScrollIndicator={false}
           showsVerticalScrollIndicator={false}
           style={{ flex: 1 }}>
-          <Bubble y={40}/>
+          {/*<Bubble y={40}/>*/}
         </ScrollView>
       </SafeAreaView>
     );

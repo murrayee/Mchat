@@ -22,6 +22,7 @@ const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
   dispatch => {
     return bindActionCreators({
       emit: createAction('socket/emit'),
+      fetchHistory: createAction('socket/fetch_current_history'),
     }, dispatch);
   },
 )
@@ -30,21 +31,22 @@ export default class Chat extends Component {
     super(props);
     this.state = {
       inputValue: '',
+      key: '',
+      from: {},
     };
   }
 
-  componentDidMount() {
-    // const { fetchCurrentHistory, currentChatPage } = this.props;
-    // let key = this.getCurrentChatKey();
-    // if (currentChatPage[key]) {
-    //   fetchCurrentHistory(key, currentChatPage[key].number, currentChatPage[key].size);
-    // } else {
-    //   fetchCurrentHistory(key, currentChatPage.defaultNumber, currentChatPage.defaultSize);
-    // }
+  async componentDidMount() {
+    const { navigation, fetchHistory, size, number } = this.props;
+    const from = await Storage.get('murray/user');
+    const to = navigation.state.params.profile;
+    const key = `${from.data._id}-${to._id}`;
+    this.setState({ key, from });
+    fetchHistory({ key, number, size });
   }
 
   renderItemComponent = (row) => {
-    return <SessionCell row={row} userProfile={this.props.userProfile}/>;
+    return <SessionCell row={row} from={this.state.from.data}/>;
   };
 
   scrollToBottom() {
@@ -52,20 +54,20 @@ export default class Chat extends Component {
   }
 
   loadMoreHistoryMessage = () => {
-    const { fetchCurrentHistory, currentChatPage } = this.props;
-    let key = this.getCurrentChatKey();
-    let next = currentChatPage[key].number;
-    let noMore = currentChatPage[key].noMore;
-    if (!noMore) {
-      fetchCurrentHistory(key, ++next, currentChatPage.defaultSize);
-    } else {
-      return false;
-    }
+    // const { fetchCurrentHistory, currentChatPage } = this.props;
+    // let key = this.getCurrentChatKey();
+    // let next = currentChatPage[key].number;
+    // let noMore = currentChatPage[key].noMore;
+    // if (!noMore) {
+    //   fetchCurrentHistory(key, ++next, currentChatPage.defaultSize);
+    // } else {
+    //   return false;
+    // }
   };
   submit = async () => {
     const { navigation, emit } = this.props;
     const { state } = navigation;
-    const from = await Storage.get('murray/user');
+    const from = this.state.from;
     const to = state.params.profile;
     const payload = {
       message: {
@@ -75,24 +77,24 @@ export default class Chat extends Component {
       from: from.data,
       to: to,
       uuid: uuid.v4(),
+      ext: {
+        timestamp: +new Date(),
+      },
     };
     emit({ ...payload });
-  };
-  getCurrentChatKey = () => {
-    const { navigation, userProfile } = this.props;
-    const { state } = navigation;
-    const toUserInfo = state.params.profile;
-    let userInfo = userProfile;
-    return `${userInfo._id}-${toUserInfo._id}`;
+    this.setState({ inputValue: '' });
   };
 
   render() {
+    const { chatRoomHistory } = this.props;
+    const { key } = this.state;
+    const chatHistory = chatRoomHistory[key] && chatRoomHistory[key].data ? chatRoomHistory[key].data : [];
     return (
       <KeyboardAware style={roomStyles.KeyboardAvoidingView}>
         <SafeAreaView style={roomStyles.container}>
           <AnimatedFlatList
             ref={(el) => this._listView = el}
-            data={[]}
+            data={chatHistory}
             keyExtractor={(item) => item.uuid}
             showsVerticalScrollIndicator={false}//隐藏竖直滚动条
             onRefresh={() => this.loadMoreHistoryMessage()}

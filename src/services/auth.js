@@ -1,4 +1,3 @@
-import { stringify } from 'qs';
 import request from '../config/request';
 import { Base64 } from '../utils/base64.min';
 import appKey from '../config/key';
@@ -13,13 +12,17 @@ class authService {
     const { client_id, client_secret } = appKey;
     const sign = Base64.encode(`${client_id}:${client_secret}`);
     return request(this.api.authorize, {
-      method: 'post',
-      body: stringify({ ...payload, grant_type: appKey.grant_type }),
+      method: 'POST',
+      body: { ...payload, grant_type: appKey.grant_type },
       headers: {
         'Authorization': `Basic ${sign}`,
-        'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8',
       },
     });
+  };
+  fetchUserModify = async (payload) => {
+    const { userId, field } = payload;
+    const url = this.api.modify.replace('<userId>', userId).replace('<field>', field);
+    return request(url, { method: 'PUT', body: { ...payload } });
   };
 }
 
