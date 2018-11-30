@@ -2,6 +2,7 @@ import {
   createStackNavigator,
   createBottomTabNavigator,
   createSwitchNavigator,
+  createAppContainer,
 } from 'react-navigation';
 import session from '../containers/session/screen/index';
 import dynamic from '../containers/dynamic/screen/index';
@@ -160,4 +161,4 @@ const Routers = createSwitchNavigator({
 
   },
   { initialRouteName: 'authorization' });
-export default Routers;
+export default createAppContainer(Routers);

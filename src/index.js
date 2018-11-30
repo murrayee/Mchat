@@ -4,7 +4,7 @@ import { create } from 'dva-core';
 import createLoading from 'dva-loading';
 import createLogger from 'redux-logger';
 import io from 'socket.io-client';
-import AppNavigator, { navigationReducer, navigationMiddleware } from './navigation/index';
+import AppNavigator from './navigation/index';
 import { createSocketMiddleware } from './middlewares/socket';
 import models from './models';
 import HOST from './config/host';
@@ -26,8 +26,7 @@ const dva = (options) => {
 };
 const app = dva({
   models: models,
-  extraReducers: { router: navigationReducer },
-  onAction: [navigationMiddleware, createLogger, socketMiddleware],
+  onAction: [ createLogger, socketMiddleware],
   onError(e) {
     console.log('onError', e);
   },
