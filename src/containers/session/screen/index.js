@@ -5,10 +5,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { FlatList, View } from 'react-native';
-import {SafeAreaView} from 'react-navigation';
+import { SafeAreaView } from 'react-navigation';
 import SessionItem from '../../../components/SessionItem';
 import SearchBox from '../../../components/SearchBox';
 import SearchModal from '../../../components/SearchModal';
+import Header from '../../../components/Header';
 import { createAction } from '../../../utils';
 
 
@@ -55,10 +56,11 @@ export default class Session extends Component {
   };
 
   render() {
-    const { sessionListMap, navigation,sessions } = this.props;
+    const { sessionListMap, navigation, sessions } = this.props;
     console.log(sessions);
     return (
       <SafeAreaView style={{ flex: 1 }}>
+        <Header title='消息'/>
         <FlatList
           data={sessions}
           keyExtractor={item => item.key}

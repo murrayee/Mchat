@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import Header from '../../../components/Header';
 import { sectionListArr } from '../../../utils/filter';
 import {
   Animated,
@@ -59,6 +60,7 @@ export default class Contact extends Component {
     const { users, section, navigation } = this.props;
     return (
       <SafeAreaView style={styles.contentContainer}>
+        <Header title='联系人'/>
         <AnimatedSectionList
           ref={el => this.sectionView = el}
           onRefresh={() => console.log('onRefresh: nothing to refresh :P')}
