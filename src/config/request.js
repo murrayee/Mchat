@@ -1,4 +1,4 @@
-import {stringify} from 'qs';
+import { stringify } from 'qs';
 import { Storage } from '../utils';
 import HOST from './host';
 
@@ -68,7 +68,7 @@ export default async function request(
       newOptions.headers = {
         Accept: 'application/json',
         ...newOptions.headers,
-        'Content-Type':'application/x-www-form-urlencoded;charset=utf-8',
+        'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8',
       };
       newOptions.body = stringify(newOptions.body);
     } else {
@@ -80,8 +80,7 @@ export default async function request(
 
     }
   }
-  // console.log(`${host}${url}`, newOptions);
-  return fetch(`${host}${url}`, newOptions)
+  return fetch(host + url, newOptions)
     .then(checkStatus)
     .then(response => {
       // DELETE and 204 do not return data by default

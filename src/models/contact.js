@@ -1,6 +1,7 @@
 import { createAction, Storage } from '../utils';
 import { usersGroup } from '../utils/filter';
 import contactService from '../services/contact';
+import douyinService from '../services/douyin';
 
 export default {
   namespace: 'contact',
@@ -12,6 +13,8 @@ export default {
       const result = yield call(contactService.fetchUsers);
       const users = usersGroup(result.data || []);
       yield put(createAction('save')({ users }));
+      const douyin = yield call(douyinService.fetchFeeds);
+      console.log(douyin);
     },
   },
   reducers: {
@@ -20,7 +23,7 @@ export default {
     },
   },
   subscriptions: {
-    setup({ dispatch,history }) {
+    setup({ dispatch, history }) {
       // dispatch({ type: 'loadStorage' })
     },
   },
