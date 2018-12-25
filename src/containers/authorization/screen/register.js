@@ -13,7 +13,7 @@ import {
 } from 'react-native';
 // import * as  auth from '../../../actions/auth';
 import { connect } from 'react-redux';
-import { Button, InputItem } from 'antd-mobile-rn';
+import { Button, InputItem } from '@ant-design/react-native';
 import { authStyles } from '../styleSheet/index';
 import { Icon } from '../../../components/Icon';
 

@@ -13,7 +13,7 @@ import {
 import {
   Button,
   ActionSheet,
-} from 'antd-mobile-rn';
+} from '@ant-design/react-native';
 import { authStyles } from '../styleSheet/index';
 import { Icon } from '../../../components/Icon';
 import { createAction } from '../../../utils';

@@ -7,7 +7,7 @@ import {
   Text,
   Image,
 } from 'react-native';
-import { List, SwipeAction, Badge } from 'antd-mobile-rn';
+import { List, SwipeAction, Badge } from '@ant-design/react-native';
 
 import Icon from 'react-native-vector-icons/Ionicons';
 

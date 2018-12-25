@@ -1,6 +1,6 @@
 import React, {PureComponent} from 'react';
 import {Modal, Alert, View, SafeAreaView} from 'react-native';
-import { SearchBar} from 'antd-mobile-rn';
+import { SearchBar} from '@ant-design/react-native';
 export default class SearchModal extends PureComponent {
     constructor(props) {
         super(props);

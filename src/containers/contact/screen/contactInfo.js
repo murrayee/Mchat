@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Text, View, Image } from 'react-native';
 import { Header } from 'react-navigation';
 import HeaderImageScrollView from 'react-native-image-header-scroll-view';
-import { WhiteSpace, List, Button } from 'antd-mobile-rn';
+import { WhiteSpace, List, Button } from '@ant-design/react-native';
 import { contactInfoStyles } from '../styleSheet/index';
 import { Storage } from '../../../utils';
 

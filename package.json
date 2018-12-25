@@ -9,7 +9,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "antd-mobile-rn": "^2.2.1",
+    "@ant-design/react-native": "^3.0.3",
     "dva": "^2.4.0",
     "dva-core": "^1.4.0",
     "dva-loading": "^2.0.5",
@@ -38,6 +38,7 @@
     "@babel/runtime": "^7.0.0",
     "babel-jest": "23.6.0",
     "babel-plugin-import": "^1.9.1",
+    "eslint-plugin-react": "^7.11.1",
     "jest": "23.6.0",
     "metro-react-native-babel-preset": "0.45.2",
     "react-test-renderer": "^16.6.0-alpha.8af6728",

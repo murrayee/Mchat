@@ -6,10 +6,11 @@ import {
   View,
   Text,
   ScrollView,
+  Dimensions
 } from 'react-native';
 import { SafeAreaView } from 'react-navigation';
 import Video from 'react-native-video';
-
+const {width, height} = Dimensions.get("window")
 // import Bubble from '../../../components/Bubble';
 
 
@@ -31,7 +32,7 @@ class User extends Component {
       resizeMode: 'contain',
       duration: 0.0,
       currentTime: 0.0,
-      paused: true,
+      paused: false,
     };
 
   }
@@ -57,7 +58,7 @@ class User extends Component {
                 this.video = ref
               }}
               // source={{ uri: 'https://gslb.miaopai.com/stream/HNkFfNMuhjRzDd-q6j9qycf54OaKqInVMu0YhQ__.mp4?ssig=bbabfd7684cae53660dc2d4c2103984e&time_stamp=1533631567740&cookie_id=&vend=1&os=3&partner=1&platform=2&cookie_id=&refer=miaopai&scid=HNkFfNMuhjRzDd-q6j9qycf54OaKqInVMu0YhQ__', type: 'mpd' }}
-              style={{ width: 300, height: 300}}//组件样式
+              style={{ width: width, height: height}}//组件样式
               rate={this.state.rate}//播放速率
               paused={this.state.paused}//暂停
               volume={this.state.volume}//调节音量

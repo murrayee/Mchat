@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { Image, Text, View, TouchableOpacity, AsyncStorage } from 'react-native';
-import { Carousel } from 'antd-mobile-rn';
+import { Carousel } from '@ant-design/react-native';
 import { styles } from '../style';
 
 export default class BasicCarouselExample extends PureComponent {
