@@ -1,5 +1,4 @@
-# murray
-react-native 聊天论坛 
+#### stat
 - npm install 
 - react-native link
 - react-native run-ios (run-android)
