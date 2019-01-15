@@ -1,143 +1,282 @@
 import React, { Component } from 'react';
 import {
-  TextInput,
+  Platform,
+  StyleSheet,
+  Text,
   View,
-  FlatList,
-  SafeAreaView,
-  Animated,
+  StatusBar,
+  ScrollView, PermissionsAndroid
 } from 'react-native';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import Icon from 'react-native-vector-icons/MaterialIcons';
-import uuid from 'uuid';
-import { roomStyles } from '../styleSheet/index';
-import SessionCell from '../../../components/SessionCell/index';
-import KeyboardAware from '../../../components/KeyboardAware/index';
-import { createAction, Storage } from '../../../utils';
+import { Header, NavigationActions } from 'react-navigation'
+import {AudioRecorder, AudioUtils} from 'react-native-audio'
+import RNFS from 'react-native-fs'
+import Sound from 'react-native-sound'
+import { ChatScreen } from '../../../components/ChatScreen'
+export default class Example extends Component {
 
-const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
-
-@connect(
-  state => ({ ...state.socket }),
-  dispatch => {
-    return bindActionCreators({
-      emit: createAction('socket/emit'),
-      fetchHistory: createAction('socket/fetch_current_history'),
-    }, dispatch);
-  },
-)
-export default class Chat extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      inputValue: '',
-      key: '',
-      from: {},
-    };
+  state = {
+    msg: {
+      friend_12345678: {
+        messages: [
+          {
+            id: `${new Date().getTime()}`,
+            per: {
+              type: 'text',
+              content: 'hello world'
+            } ,
+            targetId: '12345678',
+            chatInfo: {
+              avatar: require('../../../components/ChatScreen/source/image/avatar.png'),
+              id: '12345678'
+            },
+            renderTime: true,
+            sendStatus: 0,
+            time: '1542006036549'
+          },
+          {
+            id: `${new Date().getTime()}`,
+            per: {
+              type: 'text',
+              content: 'hi/{se}'
+            } ,
+            targetId: '12345678',
+            chatInfo: {
+              avatar: require('../../../components/ChatScreen/source/image/avatar.png'),
+              id: '12345678'
+            },
+            renderTime: true,
+            sendStatus: 0,
+            time: '1542106036549'
+          },
+          {
+            id: `${new Date().getTime()}`,
+            per: {
+              type: 'image',
+              content: {
+                uri: 'https://upload-images.jianshu.io/upload_images/11942126-044bd33212dcbfb8.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/300/h/240',
+                width: 100,
+                height: 80,
+              }
+            } ,
+            targetId: '12345678',
+            chatInfo: {
+              avatar: require('../../../components/ChatScreen/source/image/avatar.png'),
+              id: '12345678'
+            },
+            renderTime: false,
+            sendStatus: 0,
+            time: '1542106037000'
+          },
+          {
+            id: `${new Date().getTime()}`,
+            per: {
+              type: 'text',
+              content: '你好/{weixiao}'
+            } ,
+            targetId: '88886666',
+            chatInfo: {
+              avatar: require('../../../components/ChatScreen/source/image/avatar.png'),
+              id: '12345678'
+            },
+            renderTime: true,
+            sendStatus: -2,
+            time: '1542177036549'
+          },
+          {
+            id: `${new Date().getTime()}`,
+            per: {
+              type: 'voice',
+              content: {
+                uri: '',
+                length: 10
+              }
+            } ,
+            targetId: '12345678',
+            chatInfo: {
+              avatar: require('../../../components/ChatScreen/source/image/avatar.png'),
+              id: '12345678'
+            },
+            renderTime: true,
+            sendStatus: 1,
+            time: '1542260667161'
+          },
+          {
+            id: `${new Date().getTime()}`,
+            per: {
+              type: 'voice',
+              content: {
+                uri: '',
+                length: 30
+              }
+            } ,
+            targetId: '88886666',
+            chatInfo: {
+              avatar: require('../../../components/ChatScreen/source/image/avatar.png'),
+              id: '12345678'
+            },
+            renderTime: true,
+            sendStatus: 0,
+            time: '1542264667161'
+          },
+        ],
+        inverted: false  // require
+      }
+    },
+    voiceHandle: true,
+    currentTime: 0,
+    recording: false,
+    paused: false,
+    stoppedRecording: false,
+    finished: false,
+    audioPath: ''
   }
 
-  async componentDidMount() {
-    const { navigation, fetchHistory, size, number } = this.props;
-    const from = await Storage.get('murray/user');
-    const to = navigation.state.params.profile;
-    const key = `${from.data._id}-${to._id}`;
-    this.setState({ key, from });
-    fetchHistory({ key, number, size });
+  componentDidMount() {
   }
 
-  renderItemComponent = (row) => {
-    return <SessionCell row={row} from={this.state.from.data}/>;
-  };
-
-  scrollToBottom() {
-    this._listView.getNode().scrollToEnd();
+  audioProgress = () => {
+    AudioRecorder.onProgress = (data) => {
+      if (data.currentTime === 0) {
+        this.setState((prevState) => ({ currentTime: Math.floor(prevState.currentTime + 0.25) }))
+      } else {
+        this.setState({ currentTime: Math.floor(data.currentTime) })
+      }
+      this._setVoiceHandel(false)
+      this.setState({volume: Math.floor(data.currentMetering) })
+    }
   }
 
-  loadMoreHistoryMessage = () => {
-    // const { fetchCurrentHistory, currentChatPage } = this.props;
-    // let key = this.getCurrentChatKey();
-    // let next = currentChatPage[key].number;
-    // let noMore = currentChatPage[key].noMore;
-    // if (!noMore) {
-    //   fetchCurrentHistory(key, ++next, currentChatPage.defaultSize);
-    // } else {
-    //   return false;
-    // }
-  };
-  submit = async () => {
-    const { navigation, emit } = this.props;
-    const { state } = navigation;
-    const from = this.state.from;
-    const to = state.params.profile;
-    const payload = {
-      message: {
-        type: 'txt',
-        content: this.state.inputValue,
-      },
-      from: from.data,
-      to: to,
-      uuid: uuid.v4(),
-      ext: {
-        timestamp: +new Date(),
-      },
-    };
-    emit({ ...payload });
-    this.setState({ inputValue: '' });
-  };
+  audioFinish = () => {
+    AudioRecorder.onFinished = (data) => this._finishRecording(data.status === 'OK', data.audioFileURL)
+  }
+
+
+
+  checkDir = async() => {
+    if (!await RNFS.exists(`${AudioUtils.DocumentDirectoryPath}/voice/`)) {
+      RNFS.mkdir(`${AudioUtils.DocumentDirectoryPath}/voice/`)
+    }
+  }
+
+  initPath = async() => {
+    await this.checkDir()
+    const nowPath = `${AudioUtils.DocumentDirectoryPath}/voice/voice${Date.now()}.aac`
+    this.setState({ audioPath: nowPath, currentTime: 0 })
+    this.prepareRecordingPath(nowPath)
+  }
+
+  prepareRecordingPath (audioPath) {
+    AudioRecorder.prepareRecordingAtPath(audioPath, {
+      SampleRate: 22050,
+      Channels: 1,
+      AudioQuality: 'High',
+      AudioEncoding: 'aac',
+      OutputFormat: 'aac_adts',
+      AudioEncodingBitRate: 32000,
+      MeteringEnabled: true,
+    })
+  }
+
+  _record = async() => {
+    try {
+      await AudioRecorder.startRecording()
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  _stop = async() => {
+    try {
+      await AudioRecorder.stopRecording()
+      if (Platform.OS === 'android') {
+        this._finishRecording(true, filePath)
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+
+  _setVoiceHandel = (status) => {
+    this.setState({voiceHandle: status})
+  }
+
+  _pause = async() => {
+    try{
+      await AudioRecorder.pauseRecording() // Android 由于API问题无法使用此方法
+    }catch (e) {
+      console.log(e)
+    }
+  }
+
+  _resume = async() => {
+    try{
+      await AudioRecorder.resumeRecording() // Android 由于API问题无法使用此方法
+    }catch (e) {
+      console.log(e)
+    }
+  }
+
+  _finishRecording (didSucceed, filePath) {
+    console.log(filePath)
+    this.setState({ finished: didSucceed })
+  }
+
+  _checkAndroidPermission = async() => {
+    try {
+      const rationale = {
+        'title': '麦克风权限',
+        'message': '需要权限录制语音.'
+      }
+      const granted = await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.RECORD_AUDIO, rationale)
+      this.setState({ hasPermission: granted === PermissionsAndroid.RESULTS.GRANTED })
+    } catch (e) {
+      console.log(e)
+    }
+  }
+
+  onPress = (type, index, content) => {
+    if (type === 'voice') {
+      this.chat.messageItem.changeLoading(true)
+    }
+  }
 
   render() {
-    const { chatRoomHistory } = this.props;
-    const { key } = this.state;
-    const chatHistory = chatRoomHistory[key] && chatRoomHistory[key].data ? chatRoomHistory[key].data : [];
+    let statusHeight = StatusBar.currentHeight || 0
+    let androidHeaderHeight = statusHeight + Header.HEIGHT
+
     return (
-      <KeyboardAware style={roomStyles.KeyboardAvoidingView}>
-        <SafeAreaView style={roomStyles.container}>
-          <AnimatedFlatList
-            ref={(el) => this._listView = el}
-            data={chatHistory}
-            keyExtractor={(item) => item.uuid}
-            showsVerticalScrollIndicator={false}//隐藏竖直滚动条
-            onRefresh={() => this.loadMoreHistoryMessage()}
-            refreshing={false}
-            style={{ backgroundColor: 'rgb(243,243,243)' }}
-            // scrollEnabled={} ////操作时会用到~~（滑动禁止）
-            renderItem={this.renderItemComponent}
-            onLayout={(e) => this.scrollToBottom(e)}
-            onContentSizeChange={(e) => this.scrollToBottom(e)}
-          >
-          </AnimatedFlatList>
-          <View style={[roomStyles.bottomToolBar]}>
-            <View style={roomStyles.voice}>
-              <Icon name="keyboard-voice" size={25}/>
-            </View>
-            <View style={roomStyles.inputInfo}>
-              <TextInput
-                ref={el => this._input = el}
-                style={[roomStyles.input]}
-                returnKeyType="send"
-                multiline={true}
-                clearTextOnFocus={false}
-                // clearButtonMode='always'
-                numberOfLines={5}
-                controlled={true}
-                blurOnSubmit={true}
-                underlineColorAndroid="transparent"
-                value={this.state.inputValue}
-                enablesReturnKeyAutomatically={true}
-                onContentSizeChange={(event) => {
-                }}
-                onChangeText={(v) => this.setState({ inputValue: v })}
-                // onEndEditing={(e) => console.log('编辑完成')}
-                onSubmitEditing={this.submit}
-              />
-            </View>
-            <View style={roomStyles.face}>
-              <Icon name="tag-faces" size={25}/>
-            </View>
-          </View>
-        </SafeAreaView>
-      </KeyboardAware>
+      <View style={styles.container}>
+        {/*<View style={{height: 44, marginTop: 44, justifyContent: 'center', alignItems: 'center'}}>*/}
+          {/*<Text>Test</Text>*/}
+        {/*</View>*/}
+        <ChatScreen
+          ref={(e) => this.chat = e}
+          messageList={this.state.msg}
+          isIphoneX={true}
+          androidHeaderHeight={androidHeaderHeight}
+          onMessagePress={this.onPress}
+          audioPath={this.state.audioPath}
+          audioHasPermission={this.state.hasPermission}
+          checkAndroidPermission={this._checkAndroidPermission}
+          audioOnProgress={this.audioProgress}
+          audioOnFinish={this.audioFinish}
+          audioInitPath={this.initPath}
+          audioRecord={this._record}
+          audioStopRecord={this._stop}
+          audioPauseRecord={this._pause}
+          audioResumeRecord={this._resume}
+          audioCurrentTime={this.state.currentTime}
+          audioHandle={this.state.voiceHandle}
+          setAudioHandle={this._setVoiceHandel}
+        />
+      </View>
     );
   }
-
 }
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: '#fff',
+  }
+});
