@@ -3,16 +3,17 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "start": "react-native start --transformer node_modules/react-native-typescript-transformer/index.js --sourceExts ts,tsx",
     "android": "react-native run-android",
     "ios": "react-native run-ios --simulator 'iPhone X'",
     "test": "jest"
   },
   "dependencies": {
     "@ant-design/react-native": "^3.0.3",
-    "dva": "^2.4.0",
+    "axios": "^0.18.0",
     "dva-core": "^1.4.0",
-    "dva-loading": "^2.0.5",
+    "dva-loading": "^2.0.6",
+    "immutable": "^4.0.0-rc.12",
     "moment": "^2.23.0",
     "prop-types": "^15.6.2",
     "qs": "^6.5.2",
@@ -40,13 +41,21 @@
     "@babel/plugin-proposal-decorators": "^7.1.0",
     "@babel/plugin-transform-runtime": "^7.1.0",
     "@babel/runtime": "^7.0.0",
+    "@types/axios": "^0.14.0",
+    "@types/react": "^16.7.20",
+    "@types/react-native": "^0.57.31",
+    "@types/react-navigation": "^3.0.1",
+    "@types/react-redux": "^7.0.0",
+    "@types/redux-logger": "^3.0.6",
     "babel-jest": "23.6.0",
     "babel-plugin-import": "^1.9.1",
     "eslint-plugin-react": "^7.11.1",
     "jest": "23.6.0",
     "metro-react-native-babel-preset": "0.45.2",
+    "react-native-typescript-transformer": "^1.2.11",
     "react-test-renderer": "^16.6.0-alpha.8af6728",
-    "schedule": "^0.4.0"
+    "schedule": "^0.4.0",
+    "typescript": "^3.2.4"
   },
   "jest": {
     "preset": "react-native"
