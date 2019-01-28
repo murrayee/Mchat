@@ -8,9 +8,9 @@
   integrity sha1-KGSOrLgIofrgrVnWkbu0cqb/wm4=
 
 "@ant-design/react-native@^3.0.3":
-  version "3.0.6"
-  resolved "http://registry.npm.taobao.org/@ant-design/react-native/download/@ant-design/react-native-3.0.6.tgz#21d35613cdf840c006cd688f74281f8b6ba6fbf8"
-  integrity sha1-IdNWE834QMAGzWiPdCgfi2um+/g=
+  version "3.1.0"
+  resolved "http://registry.npm.taobao.org/@ant-design/react-native/download/@ant-design/react-native-3.1.0.tgz#92d7c22fb89421abf58ef0a0922ab83781f798ab"
+  integrity sha1-ktfCL7iUIav1jvCgkiq4N4H3mKs=
   dependencies:
     "@ant-design/icons-react-native" "^1.0.2"
     "@bang88/react-native-ultimate-listview" "^3.3.0"
@@ -19,7 +19,7 @@
     normalize-css-color "^1.0.2"
     react-native-collapsible "^1.4.0"
     react-native-drawer-layout "~2.0.0"
-    react-native-menu "^0.23.0"
+    react-native-modal-popover "^0.0.12"
     react-native-safe-area-view "^0.11.0"
     react-native-swipeout "^2.3.6"
     utility-types "^2.1.0"
@@ -720,6 +720,11 @@
     react-native-safe-area-view "^0.11.0"
     react-native-screens "^1.0.0 || ^1.0.0-alpha"
 
+"@types/prop-types@^15.5.5":
+  version "15.5.8"
+  resolved "http://registry.npm.taobao.org/@types/prop-types/download/@types/prop-types-15.5.8.tgz#8ae4e0ea205fe95c3901a5a1df7f66495e3a56ce"
+  integrity sha1-iuTg6iBf6Vw5AaWh339mSV46Vs4=
+
 abab@^2.0.0:
   version "2.0.0"
   resolved "http://registry.npm.taobao.org/abab/download/abab-2.0.0.tgz#aba0ab4c5eee2d4c79d3487d85450fb2376ebb0f"
@@ -796,9 +801,9 @@ ansi-cyan@^0.1.1:
     ansi-wrap "0.1.0"
 
 ansi-escapes@^3.0.0:
-  version "3.1.0"
-  resolved "http://registry.npm.taobao.org/ansi-escapes/download/ansi-escapes-3.1.0.tgz#f73207bb81207d75fd6c83f125af26eea378ca30"
-  integrity sha1-9zIHu4EgfXX9bIPxJa8m7qN4yjA=
+  version "3.2.0"
+  resolved "http://registry.npm.taobao.org/ansi-escapes/download/ansi-escapes-3.2.0.tgz#8780b98ff9dbf5638152d1f1fe5c1d7b4442976b"
+  integrity sha1-h4C5j/nb9WOBUtHx/lwde0RCl2s=
 
 ansi-gray@^0.1.1:
   version "0.1.1"
@@ -1143,9 +1148,9 @@ babel-plugin-syntax-trailing-function-commas@^7.0.0-beta.0:
   integrity sha1-qiE8FDXiv/62/KhCKH71NK0F1c8=
 
 babel-preset-fbjs@^3.0.0, babel-preset-fbjs@^3.0.1:
-  version "3.1.2"
-  resolved "http://registry.npm.taobao.org/babel-preset-fbjs/download/babel-preset-fbjs-3.1.2.tgz#3a067309fed19dd435aeaea56cbf59fdd672bc15"
-  integrity sha1-OgZzCf7RndQ1rq6lbL9Z/dZyvBU=
+  version "3.2.0"
+  resolved "http://registry.npm.taobao.org/babel-preset-fbjs/download/babel-preset-fbjs-3.2.0.tgz#c0e6347d3e0379ed84b3c2434d3467567aa05297"
+  integrity sha1-wOY0fT4Dee2Es8JDTTRnVnqgUpc=
   dependencies:
     "@babel/plugin-proposal-class-properties" "^7.0.0"
     "@babel/plugin-proposal-object-rest-spread" "^7.0.0"
@@ -2679,11 +2684,11 @@ hoist-non-react-statics@^2.3.1, hoist-non-react-statics@^2.5.0:
   integrity sha1-xZA89AnA39kI84jmGdhrnBF0y0c=
 
 hoist-non-react-statics@^3.0.1, hoist-non-react-statics@^3.1.0:
-  version "3.2.1"
-  resolved "http://registry.npm.taobao.org/hoist-non-react-statics/download/hoist-non-react-statics-3.2.1.tgz#c09c0555c84b38a7ede6912b61efddafd6e75e1e"
-  integrity sha1-wJwFVchLOKft5pErYe/dr9bnXh4=
+  version "3.3.0"
+  resolved "http://registry.npm.taobao.org/hoist-non-react-statics/download/hoist-non-react-statics-3.3.0.tgz#b09178f0122184fb95acf525daaecb4d8f45958b"
+  integrity sha1-sJF48BIhhPuVrPUl2q7LTY9FlYs=
   dependencies:
-    react-is "^16.3.2"
+    react-is "^16.7.0"
 
 home-or-tmp@^2.0.0:
   version "2.0.0"
@@ -3742,6 +3747,11 @@ lodash-es@^4.2.1:
   version "4.17.11"
   resolved "http://registry.npm.taobao.org/lodash-es/download/lodash-es-4.17.11.tgz#145ab4a7ac5c5e52a3531fb4f310255a152b4be0"
   integrity sha1-FFq0p6xcXlKjUx+08xAlWhUrS+A=
+
+lodash.debounce@^4.0.8:
+  version "4.0.8"
+  resolved "http://registry.npm.taobao.org/lodash.debounce/download/lodash.debounce-4.0.8.tgz#82d79bff30a67c4005ffd5e2515300ad9ca4d7af"
+  integrity sha1-gteb/zCmfEAF/9XiUVMArZyk168=
 
 lodash.pad@^4.1.0:
   version "4.5.1"
@@ -4933,7 +4943,7 @@ react-dom@^16.5.2:
     prop-types "^15.6.2"
     scheduler "^0.12.0"
 
-react-is@^16.3.2, react-is@^16.5.2, react-is@^16.6.0, react-is@^16.7.0:
+react-is@^16.5.2, react-is@^16.6.0, react-is@^16.7.0:
   version "16.7.0"
   resolved "http://registry.npm.taobao.org/react-is/download/react-is-16.7.0.tgz#c1bd21c64f1f1364c6f70695ec02d69392f41bfa"
   integrity sha1-wb0hxk8fE2TG9waV7ALWk5L0G/o=
@@ -4976,9 +4986,9 @@ react-native-fs@^2.13.3:
     utf8 "^2.1.1"
 
 react-native-gesture-handler@^1.0.0, react-native-gesture-handler@^1.0.10:
-  version "1.0.12"
-  resolved "http://registry.npm.taobao.org/react-native-gesture-handler/download/react-native-gesture-handler-1.0.12.tgz#99a22f90212df299245357dbd3a9a01c788f310b"
-  integrity sha1-maIvkCEt8pkkU1fb06mgHHiPMQs=
+  version "1.0.15"
+  resolved "http://registry.npm.taobao.org/react-native-gesture-handler/download/react-native-gesture-handler-1.0.15.tgz#7e0d0a457820a3c9325a3d492daaed14400508a6"
+  integrity sha1-fg0KRXggo8kyWj1JLartFEAFCKY=
   dependencies:
     hoist-non-react-statics "^2.3.1"
     invariant "^2.2.2"
@@ -4991,14 +5001,14 @@ react-native-image-header-scroll-view@^0.8.2:
   dependencies:
     prop-types "^15.6.0"
 
-react-native-menu@^0.23.0:
-  version "0.23.0"
-  resolved "http://registry.npm.taobao.org/react-native-menu/download/react-native-menu-0.23.0.tgz#3c023239aed95d419275df50c199982ad7eb062b"
-  integrity sha1-PAIyOa7ZXUGSdd9QwZmYKtfrBis=
+react-native-modal-popover@^0.0.12:
+  version "0.0.12"
+  resolved "http://registry.npm.taobao.org/react-native-modal-popover/download/react-native-modal-popover-0.0.12.tgz#5c0b5e9e0323490c3c5867821fc94b6582bfa3dc"
+  integrity sha1-XAtengMjSQw8WGeCH8lLZYK/o9w=
   dependencies:
-    create-react-class "^15.6.0"
-    prop-types "^15.5.10"
-    react-timer-mixin "^0.13.3"
+    "@types/prop-types" "^15.5.5"
+    lodash.debounce "^4.0.8"
+    prop-types "^15.6.2"
 
 react-native-safe-area-view@^0.11.0:
   version "0.11.0"
@@ -5059,7 +5069,7 @@ react-native-video@^4.2.0:
     prop-types "^15.5.10"
     shaka-player "^2.4.4"
 
-react-native@^0.57.7:
+react-native@0.57.8:
   version "0.57.8"
   resolved "http://registry.npm.taobao.org/react-native/download/react-native-0.57.8.tgz#1a840fbe144cd3902cc14313a783ce28efc48cb9"
   integrity sha1-GoQPvhRM05AswUMTp4POKO/EjLk=
@@ -5188,7 +5198,7 @@ react-test-renderer@^16.7.0:
     react-is "^16.7.0"
     scheduler "^0.12.0"
 
-react-timer-mixin@^0.13.2, react-timer-mixin@^0.13.3:
+react-timer-mixin@^0.13.2:
   version "0.13.4"
   resolved "http://registry.npm.taobao.org/react-timer-mixin/download/react-timer-mixin-0.13.4.tgz#75a00c3c94c13abe29b43d63b4c65a88fc8264d3"
   integrity sha1-daAMPJTBOr4ptD1jtMZaiPyCZNM=
@@ -5847,9 +5857,9 @@ sprintf-js@~1.0.2:
   integrity sha1-BOaSb2YolTVPPdAVIDYzuFcpfiw=
 
 sshpk@^1.7.0:
-  version "1.16.0"
-  resolved "http://registry.npm.taobao.org/sshpk/download/sshpk-1.16.0.tgz#1d4963a2fbffe58050aa9084ca20be81741c07de"
-  integrity sha1-HUljovv/5YBQqpCEyiC+gXQcB94=
+  version "1.16.1"
+  resolved "http://registry.npm.taobao.org/sshpk/download/sshpk-1.16.1.tgz#fb661c0bef29b39db40769ee39fa70093d6f6877"
+  integrity sha1-+2YcC+8ps520B2nuOfpwCT1vaHc=
   dependencies:
     asn1 "~0.2.3"
     assert-plus "^1.0.0"
@@ -6482,9 +6492,9 @@ ws@^5.2.0:
     async-limiter "~1.0.0"
 
 ws@~6.1.0:
-  version "6.1.2"
-  resolved "http://registry.npm.taobao.org/ws/download/ws-6.1.2.tgz#3cc7462e98792f0ac679424148903ded3b9c3ad8"
-  integrity sha1-PMdGLph5LwrGeUJBSJA97TucOtg=
+  version "6.1.3"
+  resolved "http://registry.npm.taobao.org/ws/download/ws-6.1.3.tgz#d2d2e5f0e3c700ef2de89080ebc0ac6e1bf3a72d"
+  integrity sha1-0tLl8OPHAO8t6JCA68Csbhvzpy0=
   dependencies:
     async-limiter "~1.0.0"
 
