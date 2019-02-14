@@ -16,6 +16,8 @@ export default {
       yield put(createAction('save')({ user }));
       yield put(createAction('socket/open')({ token: user.accessToken }));
       navigatorService.navigate('app');
+
+
     },
     * modify({ payload }, { call, put, select }) {
       yield call(authService.fetchUserModify, payload);

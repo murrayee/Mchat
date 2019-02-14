@@ -80,6 +80,7 @@ export default async function request(
 
     }
   }
+
   return fetch(host + url, newOptions)
     .then(checkStatus)
     .then(response => {

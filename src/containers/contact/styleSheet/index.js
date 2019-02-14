@@ -8,12 +8,15 @@ const { width, height } = Dimensions.get('window');
 
 export const styles = StyleSheet.create({
   contentContainer: {
-    backgroundColor: 'rgb(240,241,241)',
+    backgroundColor: 'white',
   },
 });
 
 
 export const contactInfoStyles = StyleSheet.create({
+  contentContainer:{
+
+  },
   container: {
     flex: 1,
   },

@@ -4,11 +4,12 @@ import {
 } from 'react-navigation';
 
 class navigatorService {
+
   setContainer = (container) => {
-    this.navigator = container;
+    this.navigator =container;
   };
   reset = (routeName, params) => {
-    this.navigator.dispatch(
+    this.navigator.props.dispatch(
       StackActions.reset({
         index: 0,
         actions: [
@@ -19,7 +20,7 @@ class navigatorService {
   };
 
   navigate = (routeName, params) => {
-    this.navigator.dispatch(
+    this.navigator.props.dispatch(
       NavigationActions.navigate({
         type: 'Navigation/NAVIGATE',
         routeName,
@@ -29,7 +30,7 @@ class navigatorService {
   };
 
   navigateDeep = (actions) => {
-    this.navigator.dispatch(
+    this.navigator.props.dispatch(
       actions.reduceRight(
         (prevAction, action) =>
           StackActions.navigate({
@@ -44,11 +45,11 @@ class navigatorService {
   };
 
   getCurrentRoute = () => {
-    if (!this.navigator || !this.navigator.state.nav) {
+    if (!this.navigator.props || !this.navigator.props.state) {
       return null;
     }
 
-    return this.navigator.state.nav.routes[this.navigator.state.nav.index] || null;
+    return this.navigator.props.state.routes[this.navigator.props.state.index] || null;
   };
 }
 

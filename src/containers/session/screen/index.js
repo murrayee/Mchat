@@ -33,6 +33,9 @@ export default class Session extends Component {
     this.props.fetchList();
   }
 
+  static navigationOptions = {
+    title: '消息',
+  };
   setModalVisible = (visible) => {
     this.setState({ modalVisible: visible });
   };
@@ -60,7 +63,6 @@ export default class Session extends Component {
     console.log(sessions);
     return (
       <SafeAreaView style={{ flex: 1 }}>
-        <Header title='消息'/>
         <FlatList
           data={sessions}
           keyExtractor={item => item.key}

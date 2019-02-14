@@ -3,6 +3,7 @@
  */
 
 export const usersGroup = (arr) => {
+  console.log(arr);
   return arr.reduce((prev, current) => {
     let index = -1;
     prev.some((user, i) => {

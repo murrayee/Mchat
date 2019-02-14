@@ -15,8 +15,9 @@ import ContactItem from '../../../components/ContactItem';
 import ContactIndexList from '../../../components/ContactIndexList';
 import SearchBox from '../../../components/SearchBox';
 import SearchModal from '../../../components/SearchModal';
+import AlphabetListView from '../../../components/AlphabetListView';
 import { styles } from '../styleSheet/index';
-import { createAction } from '../../../utils';
+import { createAction, formatUserGroup } from '../../../utils';
 
 @connect(
   state => {
@@ -41,6 +42,10 @@ export default class Contact extends Component {
       { useNativeDriver: true });
   }
 
+  static navigationOptions = {
+    title: '联系人',
+  };
+
   componentDidMount() {
     this.props.fetchContact();
   }
@@ -48,9 +53,12 @@ export default class Contact extends Component {
   setModalVisible = (visible) => {
     this.setState({ modalVisible: visible });
   };
-  onPress = (item) => {
+  onPressItem = (item) => {
     this.props.navigation.navigate('contactInfo', { profile: item });
 
+  };
+  onPressListHeader = () => {
+    console.log('123');
   };
   scroll = (sectionIndex, itemIndex) => {
     this.sectionView.getNode().scrollToLocation({ sectionIndex, itemIndex });
@@ -59,30 +67,35 @@ export default class Contact extends Component {
   render() {
     const { users, section, navigation } = this.props;
     return (
-      <SafeAreaView style={styles.contentContainer}>
-        <Header title='联系人'/>
-        <AnimatedSectionList
-          ref={el => this.sectionView = el}
-          onRefresh={() => console.log('onRefresh: nothing to refresh :P')}
-          onScroll={this.scrollSinkY}
-          refreshing={false}
-          showsVerticalScrollIndicator={false}//隐藏竖直滚动条
-          renderItem={({ item }) => <ContactItem item={item} onPress={() => this.onPress(item)}/>}
-          renderSectionHeader={({ section }) => <SectionHeader section={section}/>}
-          ListHeaderComponent={<SearchBox navigation={navigation} onPress={this.setModalVisible}/>}
-          stickySectionHeadersEnabled
-          sections={users || []}
-          enableEmptySections={true}
-          removeClippedSubviews={false}
-          keyExtractor={item => item._id}
-          viewabilityConfig={{
-            minimumViewTime: 3000,
-            viewAreaCoveragePercentThreshold: 100,
-            waitForInteraction: true,
-          }}
+      <SafeAreaView style={styles.container}>
+        <AlphabetListView
+          total={users.length}
+          data={formatUserGroup(users)}
+          onPressItem={this.onPressItem}
+          onPressListHeader={this.onPressListHeader}
         />
-        <ContactIndexList letters={sectionListArr(users)} scrollToSection={this.scroll} section={section}/>
-        <SearchModal modalVisible={this.state.modalVisible} onPress={this.setModalVisible}/>
+        {/*<AnimatedSectionList*/}
+        {/*ref={el => this.sectionView = el}*/}
+        {/*onRefresh={() => console.log('onRefresh: nothing to refresh :P')}*/}
+        {/*onScroll={this.scrollSinkY}*/}
+        {/*refreshing={false}*/}
+        {/*showsVerticalScrollIndicator={false}//隐藏竖直滚动条*/}
+        {/*renderItem={({ item }) => <ContactItem item={item} onPress={() => this.onPress(item)}/>}*/}
+        {/*renderSectionHeader={({ section }) => <SectionHeader section={section}/>}*/}
+        {/*ListHeaderComponent={<SearchBox navigation={navigation} onPress={this.setModalVisible}/>}*/}
+        {/*stickySectionHeadersEnabled*/}
+        {/*sections={users || []}*/}
+        {/*enableEmptySections={true}*/}
+        {/*removeClippedSubviews={false}*/}
+        {/*keyExtractor={item => item._id}*/}
+        {/*viewabilityConfig={{*/}
+        {/*minimumViewTime: 3000,*/}
+        {/*viewAreaCoveragePercentThreshold: 100,*/}
+        {/*waitForInteraction: true,*/}
+        {/*}}*/}
+        {/*/>*/}
+        {/*<ContactIndexList letters={sectionListArr(users)} scrollToSection={this.scroll} section={section}/>*/}
+        {/*<SearchModal modalVisible={this.state.modalVisible} onPress={this.setModalVisible}/>*/}
       </SafeAreaView>
     );
   }

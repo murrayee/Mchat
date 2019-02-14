@@ -23,105 +23,113 @@ import {
   StackNavigatorConfig,
 } from './config';
 
+
+const createTabStack = (key, value) => createStackNavigator({
+  [key]: {
+    screen: value,
+    navigationOptions: props => headerOptions(props),
+  },
+});
+
 const tabs = createBottomTabNavigator({
     session: {
-      screen: session,
+      screen: createTabStack('session', session),
       path: 'session',
-      navigationOptions: props => ({
-        ...tabOptions({
+      navigationOptions: props => (
+        tabOptions({
           props,
           icon: 'ios-paw',
           activeIcon: 'ios-paw',
           label: '消息',
-        }),
-      }),
+        })
+      ),
     },
     contact: {
-      screen: contact,
+      screen: createTabStack('contact', contact),
       path: 'contact',
-      navigationOptions: props => ({
-        ...tabOptions({
+      navigationOptions: props => (
+        tabOptions({
           props,
           icon: 'ios-people',
           activeIcon: 'ios-people',
           label: '联系人',
-        }),
-      }),
+        })
+      ),
     },
     dynamic: {
-      screen: dynamic,
+      screen: createTabStack('dynamic', dynamic),
       path: 'dynamic',
-      navigationOptions: props => ({
-        ...tabOptions({
+      navigationOptions: props => (
+        tabOptions({
           props,
           icon: 'dongtaixuanzhong',
           activeIcon: 'dongtaiweixuanzhong',
           label: '动态',
           extend: true,
-        }),
-      }),
+        })
+      ),
     },
     application: {
-      screen: application,
+      screen: createTabStack('application', application),
       path: 'application',
-      navigationOptions: props => ({
-        ...tabOptions({
+      navigationOptions: props => (
+        tabOptions({
           props,
           icon: 'ios-keypad',
           activeIcon: 'ios-keypad',
           label: '应用',
-        }),
-      }),
+        })
+      ),
     },
     user: {
-      screen: user,
+      screen: createTabStack('user', user),
       path: 'user',
-      navigationOptions: props => ({
-        ...tabOptions({
+      navigationOptions: props => (
+        tabOptions({
           props,
           icon: 'ios-contact',
           activeIcon: 'ios-contact',
           label: '我的',
-        }),
-      }),
+        })
+      ),
     },
   },
   TabNavigatorConfig({
     lazy: true,
-    initialRouteName: 'session',
+    initialRouteName: 'contact',
   }),
 );
 
 const app = createStackNavigator({
     tabs: {
       screen: tabs,
-      navigationOptions: props => ({
-        ...headerOptions({
+      navigationOptions: props => (
+        headerOptions({
           ...props,
           visible: false,
-        }),
-      }),
+        })
+      ),
     },
     chat: {
       screen: chat,
-      navigationOptions: props => ({
-        ... headerOptions({
+      navigationOptions: props => (
+        headerOptions({
           ...props,
           back: true,
           title: `${props.navigation.state.params.profile.username}`,
-        }),
-      }),
+        })
+      ),
     },
     contactInfo: {
       screen: contactInfo,
-      navigationOptions: props => ({
-        ... headerOptions({
+      navigationOptions: props => (
+        headerOptions({
           ...props,
           back: true,
           headerTransparent: true,
           // title: `${props.navigation.state.params.profile.username}`,
-        }),
-      }),
+        })
+      ),
     },
   }, StackNavigatorConfig({
     initialRouteName: 'tabs',
@@ -131,22 +139,22 @@ const app = createStackNavigator({
 const authorization = createStackNavigator({
     login: {
       screen: login,
-      navigationOptions: props => ({
-        ...headerOptions({
+      navigationOptions: props => (
+        headerOptions({
           ...props,
           visible: false,
-        }),
-      }),
+        })
+      ),
     },
     register: {
       screen: register,
-      navigationOptions: props => {
-        return headerOptions({
+      navigationOptions: props => (
+        headerOptions({
           ...props,
           back: true,
           headerTransparent: true,
-        });
-      },
+        })
+      ),
     },
   },
   StackNavigatorConfig({
@@ -160,5 +168,6 @@ const Routers = createSwitchNavigator({
     authorization: authorization,
 
   },
-  { initialRouteName: 'authorization' });
-export default createAppContainer(app);
+  { initialRouteName: 'app' });
+
+export default createAppContainer(Routers);

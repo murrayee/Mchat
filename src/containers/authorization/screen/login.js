@@ -115,7 +115,7 @@ export default class Authorize extends Component {
               style={{ height: 40 }}
               loading={this.state.loading}
               type="primary"
-              onClick={() => this.submit()}>
+              onPress={() => this.submit()}>
               登录
             </Button>
           </View>

@@ -1,7 +1,6 @@
-import { createAction, Storage } from '../utils';
-import { usersGroup } from '../utils/filter';
+import { createAction } from '../utils';
+
 import contactService from '../services/contact';
-import douyinService from '../services/douyin';
 
 export default {
   namespace: 'contact',
@@ -11,10 +10,8 @@ export default {
   effects: {
     * users({ payload }, { call, put, select }) {
       const result = yield call(contactService.fetchUsers);
-      const users = usersGroup(result.data || []);
+      const users = result.data;
       yield put(createAction('save')({ users }));
-      const douyin = yield call(douyinService.fetchFeeds);
-      console.log(douyin);
     },
   },
   reducers: {
