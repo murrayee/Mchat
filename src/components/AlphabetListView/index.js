@@ -7,10 +7,12 @@ import {
   SectionList,
   TouchableHighlight,
   TouchableOpacity,
+  Dimensions,
 } from 'react-native';
 import styles from './style';
 import { Icon } from '../Icon';
 
+const { width, height } = Dimensions.get('window');
 const LIST_HEADER_HEIGHT = 46;
 const ITEM_HEADER_HEIGHT = 30;
 const ITEM_HEIGHT = 45;
@@ -22,10 +24,12 @@ export default class Contact extends PureComponent {
   constructor(props, context) {
     super(props, context);
     this.state = {
+      popoverShow: false,
       onScrollBeginDrag: false,
-      activeLetter: null,
-      activeIndex: null,
-      activeMap: {},
+      moveActiveLetter: null,
+      scrollActiveLetter: null,
+      sectionScrollMap: {},
+      letterMoveMap: {},
     };
   }
 
@@ -48,6 +52,7 @@ export default class Contact extends PureComponent {
 
   componentWillUnmount() {
     this.measureTimer && clearTimeout(this.measureTimer);
+    this.popTimer && clearTimeout(this.popTimer);
   }
 
   responderGrant = (e) => {
@@ -55,43 +60,44 @@ export default class Contact extends PureComponent {
   };
   /*用户手指在屏幕上移动手指，没有停下也没有离开*/
   responderMove = (e) => {
-    // const now = new Date().getTime();
-    const { onScrollBeginDrag } = this.state;
+    this.popTimer && clearTimeout(this.popTimer);
+    const { onScrollBeginDrag, letterMoveMap } = this.state;
     if (onScrollBeginDrag) {
       this.setState({ onScrollBeginDrag: false });
     }
     const ty = e.nativeEvent.pageY;
     const { py } = this.measure;
     const index = Math.floor((ty - py) / LETTER_ITEM_HEIGHT);
+    const lastH = this.goupMap[Object.keys(this.goupMap)[Object.keys(this.goupMap).length - 1]];
+    this.lastLetter = this.findAreaLetter(lastH + LIST_FOOTER_HEIGHT - height + 171);
+    const asc = this.getFormatLetters()[index].charCodeAt();
+    const lastAsc = this.lastLetter.charCodeAt();
+    console.log(this.sectionView);
+    if (asc > lastAsc) {
+      this.sectionView.scrollToLocation({ animated: true,viewPosition:1 });
 
-    this.setActiveStyle(index);
-    this.scroll(index, 0, ITEM_HEADER_HEIGHT);
-
+      this.setState({
+        // letterMoveMap: { ...letterMoveMap, [index]: 1 },
+        moveActiveLetter: this.lastLetter,
+        // popoverShow: true,
+      });
+    }
+    // if()
+    if (!letterMoveMap[index]) {
+      this.setState({
+        letterMoveMap: { ...letterMoveMap, [index]: 1 },
+        moveActiveLetter: this.getFormatLetters()[index],
+        popoverShow: true,
+      });
+      this.scroll(index, 0, ITEM_HEADER_HEIGHT);
+    }
   };
 
   /*用户手指离开屏幕*/
   responderRelease = (event) => {
-    // console.log(event);
-  };
-  setActiveStyle = (index) => {
-    const letters = this.getFormatLetters();
-    letters.forEach((v, num) => {
-      if (index === num) {
-        this[`letterItem${num}`].setNativeProps({
-          style: { backgroundColor: '#f2645d', color: 'white', fontWeight: 'bold' },
-        });
-        // this[`sectionHeader${v.charCodeAt()}`].setNativeProps({
-        //   style: { color: '#f2645d', fontWeight: 'bold' },
-        // });
-      } else {
-        this[`letterItem${num}`].setNativeProps({
-          style: { backgroundColor: 'transparent', color: '#333333', fontWeight: 'normal' },
-        });
-        // this[`sectionHeader${v.charCodeAt()}`].setNativeProps({
-        //   style: { color: '#333333', fontWeight: 'normal' },
-        // });
-      }
-    });
+    this.popTimer = setTimeout(() => {
+      this.setState({ letterMoveMap: {}, popoverShow: false });
+    }, 200);
   };
   calculateGroup = () => {
     const arr = this.props.data.map(v => {
@@ -106,38 +112,43 @@ export default class Contact extends PureComponent {
     }
     return map;
   };
+  findAreaLetter = (h) => {
+    const letters = Object.keys(this.goupMap);
+    let num = 0, curLetter;
+    while (num < letters.length) {
+      if (h > this.goupMap[letters[num]]) {
+        num++;
+      } else {
+        curLetter = letters[num];
+        break;
+      }
+    }
+    return curLetter;
+  };
   getFormatLetters = () => {
     return this.props.data.map(v => v.key);
   };
   scroll = (sectionIndex, itemIndex, viewOffset) => {
     this.sectionView.scrollToLocation({ animated: true, sectionIndex, itemIndex, viewOffset });
   };
-  onEndReached = () => {
-    console.log('触发onEndReached');
+  onEndReached = (e) => {
+    console.log('触发onEndReached', e);
   };
   onScroll = (e) => {
-    const { onScrollBeginDrag, activeMap } = this.state;
+    const { onScrollBeginDrag, sectionScrollMap, moveActiveLetter } = this.state;
+    const { contentOffset: { y } } = e.nativeEvent;
+    if (y <= 0 && moveActiveLetter) {
+      this.setState({ moveActiveLetter: null });
+    }
     if (onScrollBeginDrag) {
-      const { contentOffset: { y } } = e.nativeEvent;
-      const letters = Object.keys(this.goupMap);
-      let num = 0, curLetter;
-      while (num < letters.length) {
-        if (y > this.goupMap[letters[num]]) {
-          num++;
-        } else {
-          curLetter = letters[num];
-          if (!activeMap[curLetter]) {
-            this.setState({ activeMap: { ...activeMap, [curLetter]: 1 } });
-            this.setActiveStyle(num);
-          }
-          break;
-        }
+      const curLetter = this.findAreaLetter(y);
+      if (!sectionScrollMap[curLetter]) {
+        this.setState({ sectionScrollMap: { ...sectionScrollMap, [curLetter]: 1 }, moveActiveLetter: curLetter });
       }
     }
   };
   getItemLayout = (data, index) => {
     const [length, separator, itemHeader, listHeader] = [ITEM_HEIGHT, SEPARATOR_HEIGHT, ITEM_HEADER_HEIGHT, LIST_HEADER_HEIGHT];
-    console.log(index, (length + separator) * index + itemHeader + listHeader);
     return { length, offset: (length + separator) * index + itemHeader + listHeader, index };
   };
   renderItem = ({ item }) => {
@@ -159,10 +170,11 @@ export default class Contact extends PureComponent {
     );
   };
   renderSectionHeader = ({ section }) => {
+    const { moveActiveLetter } = this.state;
     return (
       <View style={styles.sectionWrap}>
-        <Text style={styles.sectionTitle}
-              ref={el => this[`sectionHeader${section.key.charCodeAt()}`] = el}>{section.key}</Text>
+        <Text
+          style={moveActiveLetter === section.key ? styles.activeSectionTitle : styles.sectionTitle}>{section.key}</Text>
       </View>
 
     );
@@ -188,12 +200,13 @@ export default class Contact extends PureComponent {
 
   render() {
     const { data } = this.props;
+    const { moveActiveLetter } = this.state;
     return (
-      <View style={styles.container}>
+      <View style={styles.container} ref={el => this.contentView = el}>
         <SectionList
           ref={el => this.sectionView = el}
           onScrollBeginDrag={() => this.setState({ onScrollBeginDrag: true })}
-          onScrollEndDrag={() => this.setState({ activeMap: {} })}
+          onScrollEndDrag={() => this.setState({ sectionScrollMap: {} })}
           onScroll={this.onScroll}
           showsVerticalScrollIndicator={false}
           renderItem={this.renderItem}
@@ -213,7 +226,9 @@ export default class Contact extends PureComponent {
             waitForInteraction: true,
           }}
         />
-        <View pointerEvents='box-none' style={styles.letterContainer}>
+
+        <View pointerEvents='box-none'
+              style={[styles.letterContainer]}>
           <View style={styles.content}
           >
             <TouchableOpacity style={styles.letterIconWrap}
@@ -234,7 +249,16 @@ export default class Contact extends PureComponent {
               {
                 this.getFormatLetters().map((item, index) =>
                   <View key={index} style={styles.letterWrap}>
-                    <Text style={styles.letter} ref={(el) => this[`letterItem${index}`] = el}>{item}</Text>
+                    <View style={{ borderRadius: 15, overflow: 'hidden' }}>
+                      <Text
+                        style={item === moveActiveLetter ? styles.activeLetter : styles.letter}>{item}</Text>
+                    </View>
+                    {
+                      item === moveActiveLetter && this.state.popoverShow && <View style={styles.popover}>
+                        <Text style={styles.popText}>{item}</Text>
+                        <View style={styles.popRadian}/>
+                      </View>
+                    }
                   </View>,
                 )
               }

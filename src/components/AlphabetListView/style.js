@@ -9,6 +9,8 @@ const { width, height } = Dimensions.get('window');
 export default StyleSheet.create({
   container: {
     position: 'relative',
+    borderWidth:1,
+    borderColor:'red',
   },
   itemContent: {
     backgroundColor: 'white',
@@ -35,6 +37,15 @@ export default StyleSheet.create({
     fontSize: 14,
     lineHeight: 30,
     paddingLeft: 8,
+    color: '#333333',
+    fontWeight: 'normal'
+  },
+  activeSectionTitle:{
+    fontSize: 14,
+    lineHeight: 30,
+    paddingLeft: 8,
+    color: '#f2645d',
+    fontWeight: 'bold'
   },
   footerWrap: {
     height: 80,
@@ -54,9 +65,9 @@ export default StyleSheet.create({
     right: 0,
     top: 0,
     width: 20,
-    height: height - 170,
+    height: height - 171, //  这个高度是不准确的
     backgroundColor: 'transparent',
-    overflow: 'hidden',
+    // overflow: 'hidden',
   },
   letterIconWrap: {
     alignItems: 'center',
@@ -69,22 +80,67 @@ export default StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 15,
-    overflow: 'hidden',
+    position: 'relative',
   },
   letter: {
     width: 15,
     height: 15,
+    borderRadius: 15,
     textAlign: 'center',
     lineHeight: 15,
     fontSize: 10,
-    color:'#333333',
+    color: '#333333',
+    backgroundColor:'transparent',
+    fontWeight: 'normal'
   },
+  activeLetter:{
+    width: 15,
+    height: 15,
+    borderRadius: 15,
+    textAlign: 'center',
+    lineHeight: 15,
+    fontSize: 10,
+    backgroundColor: '#f2645d', color: 'white', fontWeight: 'bold'
+  },
+  popover: {
+    position: 'absolute',
+    width:36,
+    height:36,
+    borderRadius:18,
+    backgroundColor:"#ababab",
+    right: 36,
 
+  },
+  popText: {
+    lineHeight:36,
+    width:36,
+    textAlign:'center',
+    color:'white',
+    fontSize:16,
+    fontWeight:'bold',
+  },
+  popRadian:{
+    width: 0,
+    height: 0,
+    borderTopWidth: 18,
+    borderTopColor: 'transparent',
+    borderRightWidth: 9,
+    borderRightColor: 'transparent',
+    borderLeftWidth: 18,
+    borderLeftColor: '#ababab',
+    borderBottomWidth: 18,
+    borderBottomColor: 'transparent',
+    position:'absolute',
+    borderRadius:18,
+    right:-16,
+    top:0
+  },
   searchInfo: {
     height: 46,
     flex: 1,
     backgroundColor: 'rgb(240,241,241)',
   },
+
   box: {
     flex: 1,
     flexDirection: 'row',
