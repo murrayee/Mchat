@@ -6,11 +6,11 @@
 - react-native run-ios (run-android)
 
 ```
-**TODO**
+**Next**
 
 ```$xslt
 
-- server && mock
+- server & mock
 - fix android UI
 - AlphabetListView component performance optimization
 
