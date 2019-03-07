@@ -25,4 +25,5 @@ export default {
   purple: '#7e83e3',
   slateBlue: '#6a5acd',
   black: '#000',
+
 };

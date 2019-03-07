@@ -9,12 +9,6 @@ import com.zmxv.RNSound.RNSoundPackage;
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
 import com.rnfs.RNFSPackage;
 import com.rnim.rn.audio.ReactNativeAudioPackage;
-import com.zmxv.RNSound.RNSoundPackage;
-import com.rnfs.RNFSPackage;
-import com.rnim.rn.audio.ReactNativeAudioPackage;
-import com.brentvatne.react.ReactVideoPackage;
-import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
-import com.oblador.vectoricons.VectorIconsPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
@@ -40,13 +34,7 @@ public class MainApplication extends Application implements ReactApplication {
             new RNSoundPackage(),
             new RNGestureHandlerPackage(),
             new RNFSPackage(),
-            new ReactNativeAudioPackage(),
-            new RNSoundPackage(),
-            new RNFSPackage(),
-            new ReactNativeAudioPackage(),
-            new ReactVideoPackage(),
-            new RNGestureHandlerPackage(),
-            new VectorIconsPackage()
+            new ReactNativeAudioPackage()
       );
     }
 

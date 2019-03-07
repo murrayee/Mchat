@@ -3,23 +3,23 @@ import {
   NavigationActions,
 } from 'react-navigation';
 
-class navigatorService {
+export default {
 
-  setContainer = (container) => {
-    this.navigator =container;
-  };
-  reset = (routeName, params) => {
+  setContainer(container) {
+    this.navigator = container;
+  },
+  reset(routeName, params) {
     this.navigator.props.dispatch(
       StackActions.reset({
         index: 0,
         actions: [
-          NavigationActions.navigate({ routeName, params }),
+          NavigationActions.navigate({routeName, params}),
         ],
       }),
     );
-  };
+  },
 
-  navigate = (routeName, params) => {
+  navigate(routeName, params) {
     this.navigator.props.dispatch(
       NavigationActions.navigate({
         type: 'Navigation/NAVIGATE',
@@ -27,9 +27,9 @@ class navigatorService {
         params,
       }),
     );
-  };
+  },
 
-  navigateDeep = (actions) => {
+  navigateDeep(actions) {
     this.navigator.props.dispatch(
       actions.reduceRight(
         (prevAction, action) =>
@@ -42,15 +42,15 @@ class navigatorService {
         undefined,
       ),
     );
-  };
+  },
 
-  getCurrentRoute = () => {
+  getCurrentRoute() {
     if (!this.navigator.props || !this.navigator.props.state) {
       return null;
     }
 
     return this.navigator.props.state.routes[this.navigator.props.state.index] || null;
-  };
+  }
 }
 
-export default new navigatorService();
+

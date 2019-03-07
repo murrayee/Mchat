@@ -1,14 +1,12 @@
 import request from '../config/request';
 import API from '../config/api';
 
-class contactService {
-  constructor() {
-    this.api = API;
-  }
+export default {
 
-  fetchUsers = async () => {
-    return request(this.api.users);
-  };
+  async fetchUsers() {
+
+    return request(API.users);
+  }
 }
 
-export default new contactService();
+
