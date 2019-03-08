@@ -1,16 +1,16 @@
-import { createAction } from '../utils';
+import { createAction } from "../utils";
 
-import getUsers from '../utils/users';
+import getUsers from "../utils/users";
 
-import contactService from '../services/contact';
+import contactService from "../services/contact";
 
 export default {
-  namespace: 'contact',
+  namespace: "contact",
   state: {
-    users: [],
+    users: []
   },
   effects: {
-    * users({ payload }, { call, put, select }) {
+    *users({ payload }, { call, put, select }) {
       const result = yield call(contactService.fetchUsers);
       const users = result.data;
       // const users=Array.from(new Array(200)).map((_,i)=>{
@@ -27,17 +27,17 @@ export default {
       //    "firstLetter" : username.substring(0,1).toUpperCase(),
       //   })
       // })
-      yield put(createAction('save')({ users }));
-    },
+      yield put(createAction("save")({ users }));
+    }
   },
   reducers: {
     save(state, { payload }) {
       return { ...state, users: payload.users };
-    },
+    }
   },
   subscriptions: {
     setup({ dispatch, history }) {
       // dispatch({ type: 'loadStorage' })
-    },
-  },
+    }
+  }
 };

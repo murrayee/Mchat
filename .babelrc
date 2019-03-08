@@ -21,6 +21,34 @@
         "helpers": true,
         "regenerator": false
       }
+    ],
+    [
+      "module-resolver",
+      {
+        "root": [
+          "./src"
+        ],
+        "extensions": [
+          ".ios.js",
+          ".android.js",
+          ".js",
+          ".json"
+        ],
+        "alias": {
+          "@": "./src",
+          "@assets": "./src/assets",
+          "@components": "./src/components",
+          "@config": "./src/config",
+          "@containers": "./src/containers",
+          "@middleware": "./src/middleware",
+          "@models": "./src/models",
+          "@navigation": "./src/navigation",
+          "@services": "./src/services",
+          "@styles": "./src/styles",
+          "@utils": "./src/utils"
+        },
+        "cwd": "babelrc"
+      }
     ]
   ]
 }

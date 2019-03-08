@@ -8,7 +8,7 @@ import session from "../containers/session/screen/index";
 import dynamic from "../containers/dynamic/screen/index";
 import application from "../containers/application/screen/index";
 import contact from "../containers/contact/screen/index";
-import user from "../containers/user/screen/index";
+import user from "../containers/user";
 import login from "../containers/authorization/screen/login";
 import register from "../containers/authorization/screen/register";
 import authLoading from "../containers/authorization/screen/authLoading";
@@ -163,7 +163,7 @@ const Routers = createSwitchNavigator(
     authLoading: authLoading,
     authorization: authorization
   },
-  { initialRouteName: "app" }
+  { initialRouteName: "authorization" }
 );
 
 export default createAppContainer(Routers);
