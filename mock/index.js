@@ -1,37 +1,12 @@
-import { Mock } from "react-native-fetch-mock";
+const express = require("express");
+const matchMock = require("./matchMock");
 
-export default {
-  "/api/users/mockjs": ({ params }) => {
-    const all = Mock.mock({
-      "list|1-10": [
-        {
-          "id|+1": 1,
-          name: "@first @last",
-          "age|18-54": 1
-        }
-      ]
-    }).list;
-    let filtered;
-    if ("undefined" !== typeof params) {
-      filtered = all.filter(item => {
-        let result = true;
-        const keys = Object.keys(params);
-        keys.forEach(key => {
-          const param = params[key];
+const app = express();
 
-          if (item[key] && item[key] !== param) {
-            result = false;
-          }
-        });
+app.use(matchMock);
 
-        return result;
-      });
-    } else {
-      filtered = all;
-    }
-    return {
-      status: 200,
-      data: filtered
-    };
-  }
-};
+const server = app.listen(9090, () => {
+  const host = server.address().address;
+  const port = server.address().port;
+  console.log("murray app listening at http://%s:%s", host, port);
+});

@@ -1,10 +1,6 @@
-import {
-  StackActions,
-  NavigationActions,
-} from 'react-navigation';
+import { StackActions, NavigationActions } from "react-navigation";
 
 export default {
-
   setContainer(container) {
     this.navigator = container;
   },
@@ -12,20 +8,20 @@ export default {
     this.navigator.props.dispatch(
       StackActions.reset({
         index: 0,
-        actions: [
-          NavigationActions.navigate({routeName, params}),
-        ],
-      }),
+        actions: [NavigationActions.navigate({ routeName, params })]
+      })
     );
   },
-
+  back(key) {
+    this.navigator.props.dispatch(NavigationActions.back({ key }));
+  },
   navigate(routeName, params) {
     this.navigator.props.dispatch(
       NavigationActions.navigate({
-        type: 'Navigation/NAVIGATE',
+        type: "Navigation/NAVIGATE",
         routeName,
-        params,
-      }),
+        params
+      })
     );
   },
 
@@ -34,13 +30,13 @@ export default {
       actions.reduceRight(
         (prevAction, action) =>
           StackActions.navigate({
-            type: 'Navigation/NAVIGATE',
+            type: "Navigation/NAVIGATE",
             routeName: action.routeName,
             params: action.params,
-            action: prevAction,
+            action: prevAction
           }),
-        undefined,
-      ),
+        undefined
+      )
     );
   },
 
@@ -49,8 +45,9 @@ export default {
       return null;
     }
 
-    return this.navigator.props.state.routes[this.navigator.props.state.index] || null;
+    return (
+      this.navigator.props.state.routes[this.navigator.props.state.index] ||
+      null
+    );
   }
-}
-
-
+};

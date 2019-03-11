@@ -1,8 +1,6 @@
 import { stringify } from "qs";
 import { Storage } from "../utils";
 import HOST from "./host";
-import FetchMock from "react-native-fetch-mock";
-const fetch = new FetchMock(require("../../mock")).fetch;
 
 const host = HOST.dev_url;
 const codeMessage = {
@@ -51,7 +49,6 @@ export default async function request(url, options) {
   };
   const newOptions = { ...defaultOptions, ...options };
   const user = await Storage.get("murray/user");
-  // 用户权限
   if (user && !url.includes("authorize")) {
     newOptions.headers = {
       ...newOptions.headers,
@@ -71,14 +68,12 @@ export default async function request(url, options) {
       };
       newOptions.body = stringify(newOptions.body);
     } else {
-      // formData
       newOptions.headers = {
         Accept: "application/json",
         ...newOptions.headers
       };
     }
   }
-
   return fetch(host + url, newOptions)
     .then(checkStatus)
     .then(response => {

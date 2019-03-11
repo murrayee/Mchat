@@ -1,38 +1,25 @@
+"use strict";
+
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import {
-  Text,
-  Alert,
-  Image,
-  View,
-  TouchableOpacity,
-  SafeAreaView,
-  TextInput
-} from "react-native";
-import { Button, ActionSheet } from "@ant-design/react-native";
-import { authStyles } from "../styleSheet/index";
+import { Text, Image, View, TouchableOpacity, TextInput } from "react-native";
+import { Button, ActionSheet, Toast } from "@ant-design/react-native";
+import { commonStyles, loginStyles } from "@styles";
 import { Icon } from "@components/Icon";
-import { createAction } from "@utils";
+import { createAction, Storage } from "@utils";
+import BaseLayout from "@components/BaseLayout";
 
 @connect(
-  state => ({
-    ...state.auth,
-    loading: state.loading
-  }),
+  state => ({ ...state.user, loading: state.loading }),
   dispatch =>
-    bindActionCreators(
-      {
-        fetchLogin: createAction("auth/login")
-      },
-      dispatch
-    )
+    bindActionCreators({ fetchLogin: createAction("user/login") }, dispatch)
 )
-export default class Authorize extends Component {
+export default class Login extends Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
-      username: "Admin",
+      username: "admin",
       password: "123456",
       showLocalUser: false,
       showPassword: false
@@ -59,7 +46,7 @@ export default class Authorize extends Component {
     if (username && password) {
       fetchLogin({ username, password });
     } else {
-      Alert.alert("用户名或者密码不能为空");
+      Toast.info("用户名或者密码不能为空");
     }
   };
   localHandle = () => {
@@ -67,31 +54,30 @@ export default class Authorize extends Component {
   };
 
   render() {
-    const { loading } = this.props;
     const { username, password } = this.state;
     return (
-      <SafeAreaView style={authStyles.contentContainer}>
-        <View style={authStyles.itemInfo}>
+      <BaseLayout>
+        <View style={[commonStyles.flexContainer, commonStyles.flexCenter]}>
           <Image
             source={{
               uri: "https://os.alipayobjects.com/rmsportal/mOoPurdIfmcuqtr.png"
             }}
-            style={authStyles.heads}
+            style={loginStyles.avatar}
           />
         </View>
         <View>
-          <View style={[authStyles.input]}>
-            <Text style={authStyles.inputTitle}> 账户 </Text>
+          <View style={[loginStyles.input]}>
+            <Text style={loginStyles.inputTitle}> 账户 </Text>
             <TextInput
-              style={authStyles.inputItem}
+              style={loginStyles.inputItem}
               value={username}
               onChangeText={v => {
                 this.setState({ username: v });
               }}
               placeholder="请输入用户名"
             />
-            <View style={authStyles.icon}>
-              <TouchableOpacity onPress={() => this.localHandle()}>
+            <View style={loginStyles.icon}>
+              <TouchableOpacity onPress={this.localHandle}>
                 <Icon
                   name={`iconfont|${
                     this.state.showLocalUser ? "shang" : "xia"
@@ -102,10 +88,10 @@ export default class Authorize extends Component {
               </TouchableOpacity>
             </View>
           </View>
-          <View style={authStyles.input}>
-            <Text style={authStyles.inputTitle}> 密码 </Text>
+          <View style={loginStyles.input}>
+            <Text style={loginStyles.inputTitle}> 密码 </Text>
             <TextInput
-              style={authStyles.inputItem}
+              style={loginStyles.inputItem}
               secureTextEntry={!this.state.showPassword}
               value={password}
               onChangeText={v => {
@@ -113,7 +99,7 @@ export default class Authorize extends Component {
               }}
               placeholder="请输入登录密码"
             />
-            <View style={authStyles.icon}>
+            <View style={loginStyles.icon}>
               <TouchableOpacity
                 onPress={() =>
                   this.setState({ showPassword: !this.state.showPassword })
@@ -131,33 +117,37 @@ export default class Authorize extends Component {
               </TouchableOpacity>
             </View>
           </View>
-          <View style={authStyles.button}>
+          <View style={loginStyles.button}>
             <Button
               style={{ height: 40 }}
               loading={this.state.loading}
               type="primary"
-              onPress={() => this.submit()}
+              onPress={this.submit}
             >
-              默克登录
+              登录
             </Button>
           </View>
+          <View style={loginStyles.forget}>
+            <TouchableOpacity onPress={this.showActionSheet}>
+              <Text style={loginStyles.color}> 忘记密码？ </Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+        <View
+          style={[
+            commonStyles.flexCenter,
+            commonStyles.flexJusEnd,
+            commonStyles.flexContainer
+          ]}
+        >
           <TouchableOpacity
-            onPress={() => this.showActionSheet()}
-            style={authStyles.forget}
+            onPress={this.showActionSheet}
+            style={loginStyles.more}
           >
-            <Text style={authStyles.color}> 忘记密码？ </Text>
-            <Text style={authStyles.color}> 服务登录 </Text>
+            <Text style={loginStyles.color}> 更多 </Text>
           </TouchableOpacity>
         </View>
-        <View style={[authStyles.itemInfo, { justifyContent: "flex-end" }]}>
-          <TouchableOpacity
-            onPress={() => this.showActionSheet()}
-            style={authStyles.more}
-          >
-            <Text style={authStyles.color}> 更多 </Text>
-          </TouchableOpacity>
-        </View>
-      </SafeAreaView>
+      </BaseLayout>
     );
   }
 }

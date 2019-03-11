@@ -6,13 +6,15 @@
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "android": "react-native run-android",
     "ios": "react-native run-ios --simulator 'iPhone X'",
-    "test": "jest"
+    "test": "jest",
+    "mock": "node ./mock/index.js"
   },
   "dependencies": {
     "@ant-design/react-native": "^3.0.3",
     "dva-core": "^1.4.0",
     "dva-loading": "^2.0.5",
     "immutable": "^4.0.0-rc.12",
+    "js-base64": "^2.5.1",
     "moment": "^2.23.0",
     "prop-types": "^15.6.2",
     "qs": "^6.5.2",
@@ -44,10 +46,13 @@
     "babel-jest": "23.6.0",
     "babel-plugin-import": "^1.9.1",
     "babel-plugin-module-resolver": "^3.2.0",
+    "body-parser": "^1.18.3",
     "eslint-plugin-react": "^7.11.1",
+    "express": "^4.16.4",
     "jest": "23.6.0",
     "metro-react-native-babel-preset": "0.45.2",
-    "react-native-fetch-mock": "^0.8.0",
+    "mockjs": "^1.0.1-beta3",
+    "path-to-regexp": "^3.0.0",
     "react-test-renderer": "^16.7.0",
     "schedule": "^0.4.0"
   },

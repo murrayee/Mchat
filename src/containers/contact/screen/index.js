@@ -1,64 +1,68 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import Header from '../../../components/Header';
-import { sectionListArr } from '../../../utils/filter';
-import {
-  Animated,
-  SectionList,
-} from 'react-native';
-import { SafeAreaView } from 'react-navigation';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import Header from "../../../components/Header";
+
+import { Animated, SectionList } from "react-native";
+import { SafeAreaView } from "react-navigation";
 
 const AnimatedSectionList = Animated.createAnimatedComponent(SectionList);
-import SectionHeader from '../../../components/SectionHeader';
-import ContactItem from '../../../components/ContactItem';
-import ContactIndexList from '../../../components/ContactIndexList';
-import SearchBox from '../../../components/SearchBox';
-import SearchModal from '../../../components/SearchModal';
-import AlphabetListView from '../../../components/AlphabetListView';
-import { styles } from '../styleSheet/index';
-import { createAction, formatUserGroup } from '../../../utils';
+import SectionHeader from "../../../components/SectionHeader";
+import ContactItem from "../../../components/ContactItem";
+import ContactIndexList from "../../../components/ContactIndexList";
+import SearchBox from "../../../components/SearchBox";
+import SearchModal from "../../../components/SearchModal";
+import AlphabetListView from "../../../components/AlphabetListView";
+import { styles } from "../styleSheet/index";
+import { createAction, formatUserGroup } from "../../../utils";
 
 @connect(
   state => {
     return { ...state.contact };
   },
-  dispatch => bindActionCreators({
-    fetchContact: createAction('contact/users'),
-  }, dispatch),
+  dispatch =>
+    bindActionCreators(
+      {
+        fetchContact: createAction("contact/users")
+      },
+      dispatch
+    )
 )
 export default class Contact extends Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
-      modalVisible: false,
+      modalVisible: false
     };
     this.scrollPos = new Animated.Value(0);
-    this.scrollSinkY = Animated.event([{
-        nativeEvent: {
-          contentOffset: { y: this.scrollPos },
-        },
-      }],
-      { useNativeDriver: true });
+    this.scrollSinkY = Animated.event(
+      [
+        {
+          nativeEvent: {
+            contentOffset: { y: this.scrollPos }
+          }
+        }
+      ],
+      { useNativeDriver: true }
+    );
   }
 
   static navigationOptions = {
-    title: '联系人',
+    title: "联系人"
   };
 
   componentDidMount() {
     this.props.fetchContact();
   }
 
-  setModalVisible = (visible) => {
+  setModalVisible = visible => {
     this.setState({ modalVisible: visible });
   };
-  onPressItem = (item) => {
-    this.props.navigation.navigate('contactInfo', { profile: item });
-
+  onPressItem = item => {
+    this.props.navigation.navigate("contactInfo", { profile: item });
   };
   onPressListHeader = () => {
-    console.log('123');
+    console.log("123");
   };
   scroll = (sectionIndex, itemIndex) => {
     this.sectionView.getNode().scrollToLocation({ sectionIndex, itemIndex });
@@ -99,7 +103,4 @@ export default class Contact extends Component {
       </SafeAreaView>
     );
   }
-
 }
-
-

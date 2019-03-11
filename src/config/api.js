@@ -3,14 +3,14 @@
  * @type {{dev: string, pro: string}}
  */
 const API = {
-  users: '/api/users',
-  topics: '/api/topics',
-  article: '/topics/<id>',
-  authorize: '/api/users/authorize',
-  register: '/api/users/register',
+  users: "/api/users",
+  topics: "/api/topics",
+  article: "/topics/<id>",
+  login: "/api/users/login",
+  register: "/api/users/register",
   modify: `/api/users/<userId>/<field>`,
   profile: `/api/users/profile/<userId>`,
-  douyin: `/api/spider/dy/feed`,
+  douyin: `/api/spider/dy/feed`
 };
 
 export default API;
