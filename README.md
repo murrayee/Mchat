@@ -13,4 +13,4 @@
 
 **screenshot**
 
-<img src="./src/assets/screenshot.gif" width="50%"> 
+<img src="https://github.com/murrayee/m-server-py/blob/flask/screenshot.gif" width="30%"> 
