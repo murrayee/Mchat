@@ -26,6 +26,7 @@
     "react-native-fs": "^2.13.3",
     "react-native-gesture-handler": "^1.0.10",
     "react-native-image-header-scroll-view": "^0.8.2",
+    "react-native-scrollable-tab-view": "^0.10.0",
     "react-native-snap-carousel": "^3.7.4",
     "react-native-sound": "^0.10.9",
     "react-native-vector-icons": "^5.0.0",

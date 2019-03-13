@@ -1,7 +1,7 @@
 "use strict";
 
 import request from "../config/request";
-import { Base64 } from "../utils/base64.min";
+import { Base64 } from "js-base64";
 import appKey from "../config/key";
 import API from "../config/api";
 

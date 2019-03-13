@@ -1,3 +1,5 @@
+"use strict";
+
 import React, { PureComponent } from "react";
 
 import {
@@ -9,8 +11,10 @@ import {
   TouchableOpacity,
   Dimensions
 } from "react-native";
+import { Header, BottomTabBar } from "react-navigation";
 import styles from "./style";
 import { Icon } from "../Icon";
+import SearchBox from "../SearchBox";
 
 const { width, height } = Dimensions.get("window");
 const LIST_HEADER_HEIGHT = 46;
@@ -213,25 +217,7 @@ export default class Contact extends PureComponent {
       </View>
     );
   };
-  renderListHeader = () => {
-    return (
-      <TouchableOpacity
-        activeOpacity={1}
-        style={styles.searchInfo}
-        onPress={this.props.onPressListHeader}
-      >
-        <View style={styles.box}>
-          <Icon
-            name="ionicons|ios-search"
-            size={16}
-            style={styles.searchIcon}
-          />
-          <Text style={styles.text}>搜索</Text>
-          <Icon name="ionicons|ios-mic" size={18} style={styles.voiceIcon} />
-        </View>
-      </TouchableOpacity>
-    );
-  };
+
   renderListFooter = () => {
     return (
       <View style={styles.footerWrap}>
@@ -241,7 +227,7 @@ export default class Contact extends PureComponent {
   };
 
   render() {
-    const { data } = this.props;
+    const { data, onPressListHeader } = this.props;
     const { moveActiveLetter } = this.state;
     return (
       <View>
@@ -253,7 +239,7 @@ export default class Contact extends PureComponent {
           showsVerticalScrollIndicator={false}
           renderItem={this.renderItem}
           renderSectionHeader={this.renderSectionHeader}
-          ListHeaderComponent={this.renderListHeader}
+          ListHeaderComponent={() => <SearchBox onPress={onPressListHeader} />}
           ListFooterComponent={this.renderListFooter}
           scrollsToTop={true}
           stickySectionHeadersEnabled

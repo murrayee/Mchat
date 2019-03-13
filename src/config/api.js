@@ -4,7 +4,8 @@
  */
 const API = {
   users: "/api/users",
-  topics: "/api/topics",
+  messages: "/api/messages",
+  topics: "/api/v1/topics",
   article: "/topics/<id>",
   login: "/api/users/login",
   register: "/api/users/register",

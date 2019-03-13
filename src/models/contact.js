@@ -1,43 +1,32 @@
-import { createAction } from "../utils";
+"use strict";
 
-import getUsers from "../utils/users";
-
-import contactService from "../services/contact";
+import { createAction } from "@utils";
+import contactService from "@services/contact";
 
 export default {
   namespace: "contact",
   state: {
-    users: []
+    users: [],
+    messages: []
   },
   effects: {
     *users({ payload }, { call, put, select }) {
       const result = yield call(contactService.fetchUsers);
       const users = result.data;
-      // const users=Array.from(new Array(200)).map((_,i)=>{
-      //   const username=getUsers();
-      //   return ({
-      //     '_id':i,
-      //    "username" :username,
-      //    "password" : '123456',
-      //    "avatar" : "http://127.0.0.1:9090/public/avatar/201902261731101803.png",
-      //    "vibration" : true,
-      //    "onlineStatus" : "offline",
-      //    "socketId" : "",
-      //    "phone" : "",
-      //    "firstLetter" : username.substring(0,1).toUpperCase(),
-      //   })
-      // })
-      yield put(createAction("save")({ users }));
+      yield put(createAction("save_users")({ users }));
+    },
+    *messages({ payload }, { call, put, select }) {
+      const result = yield call(contactService.fetchMessages);
+      const messages = result.data;
+      yield put(createAction("save_messages")({ messages }));
     }
   },
   reducers: {
-    save(state, { payload }) {
+    ["save_users"](state, { payload }) {
       return { ...state, users: payload.users };
-    }
-  },
-  subscriptions: {
-    setup({ dispatch, history }) {
-      // dispatch({ type: 'loadStorage' })
+    },
+    ["save_messages"](state, { payload }) {
+      return { ...state, messages: payload.messages };
     }
   }
 };

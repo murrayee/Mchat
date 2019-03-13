@@ -1,9 +1,10 @@
 const pathToRegexp = require("path-to-regexp");
 const bodyParser = require("body-parser");
 
-const userMock = require("../mock/data/user");
+const userMock = require("./data/user");
+const dynamicMock = require("./data/dynamic");
 
-const mockFile = Object.assign({}, userMock);
+const mockFile = Object.assign({}, userMock, dynamicMock);
 const BODY_PARSED_METHODS = ["post", "put", "patch"];
 
 const debug = console.log;

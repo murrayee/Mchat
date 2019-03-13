@@ -43,25 +43,25 @@ export default class Guide extends PureComponent {
           <View style={guideStyles.containerHorizontal}>
             <Image
               style={guideStyles.imageGuide}
-              source={require("../../assets/guide/1.png")}
+              source={require("../../assets/guide/1.jpeg")}
             />
           </View>
           <View style={guideStyles.containerHorizontal}>
             <Image
               style={guideStyles.imageGuide}
-              source={require("@assets/guide/2.png")}
+              source={require("@assets/guide/2.jpeg")}
             />
           </View>
           <View style={guideStyles.containerHorizontal}>
             <Image
               style={guideStyles.imageGuide}
-              source={require("@assets/guide/3.png")}
+              source={require("@assets/guide/3.jpeg")}
             />
           </View>
           <View style={guideStyles.containerHorizontal}>
             <Image
               style={guideStyles.imageGuide}
-              source={require("@assets/guide/4.png")}
+              source={require("@assets/guide/4.jpeg")}
             />
             <View style={guideStyles.desWrapper}>
               <TouchableOpacity

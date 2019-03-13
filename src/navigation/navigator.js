@@ -6,17 +6,20 @@ import {
   createSwitchNavigator,
   createAppContainer
 } from "react-navigation";
-import session from "@containers/session/screen/index";
-import dynamic from "@containers/dynamic/screen/index";
-import application from "@containers/application/screen/index";
-import contact from "@containers/contact/screen/index";
-import user from "@containers/user";
+import message from "@containers/contact/message";
+import dynamic from "@containers/dynamic/dynamic";
+import application from "@containers/application";
+import contacts from "@containers/contact/contacts";
+import user from "@containers/user/user";
 import login from "@containers/user/login";
 import register from "@containers/user/register";
 import loading from "@containers/authorized/loading";
 import guide from "@containers/authorized/guide";
-import chat from "@containers/session/screen/chat";
-import contactInfo from "@containers/contact/screen/contactInfo";
+import chat from "@containers/contact/chat";
+import contactProfile from "@containers/contact/profile";
+import userProfile from "@containers/user/profile";
+import setting from "@containers/user/setting";
+import search from "@containers/contact/search";
 
 import {
   headerOptions,
@@ -24,6 +27,8 @@ import {
   TabNavigatorConfig,
   StackNavigatorConfig
 } from "./config";
+
+/* The screens you add to IOS_MODAL_ROUTES will have the modal transition.  */
 
 const createTabStack = (key, value) =>
   createStackNavigator({
@@ -35,9 +40,9 @@ const createTabStack = (key, value) =>
 
 const tabs = createBottomTabNavigator(
   {
-    session: {
-      screen: createTabStack("session", session),
-      path: "session",
+    message: {
+      screen: createTabStack("message", message),
+      path: "message",
       navigationOptions: props =>
         tabOptions({
           props,
@@ -46,9 +51,9 @@ const tabs = createBottomTabNavigator(
           label: "消息"
         })
     },
-    contact: {
-      screen: createTabStack("contact", contact),
-      path: "contact",
+    contacts: {
+      screen: createTabStack("contacts", contacts),
+      path: "contacts",
       navigationOptions: props =>
         tabOptions({
           props,
@@ -108,6 +113,14 @@ const app = createStackNavigator(
           visible: false
         })
     },
+    search: {
+      screen: search,
+      navigationOptions: props =>
+        headerOptions({
+          ...props,
+          visible: false
+        })
+    },
     chat: {
       screen: chat,
       navigationOptions: props =>
@@ -117,14 +130,30 @@ const app = createStackNavigator(
           title: `${props.navigation.state.params.profile.username}`
         })
     },
-    contactInfo: {
-      screen: contactInfo,
+    contactProfile: {
+      screen: contactProfile,
       navigationOptions: props =>
         headerOptions({
           ...props,
           back: true,
           headerTransparent: true
-          // title: `${props.navigation.state.params.profile.username}`,
+        })
+    },
+    userProfile: {
+      screen: userProfile,
+      navigationOptions: props =>
+        headerOptions({
+          ...props,
+          back: true,
+          headerTransparent: true
+        })
+    },
+    setting: {
+      screen: setting,
+      navigationOptions: props =>
+        headerOptions({
+          ...props,
+          back: true
         })
     }
   },

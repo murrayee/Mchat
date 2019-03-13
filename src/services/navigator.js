@@ -1,3 +1,5 @@
+"use strict";
+
 import { StackActions, NavigationActions } from "react-navigation";
 
 export default {

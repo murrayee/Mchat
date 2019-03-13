@@ -1,3 +1,5 @@
+"use strict";
+
 import React, { PureComponent } from "react";
 import NavigatorService from "../services/navigator";
 import Routers from "./navigator";
