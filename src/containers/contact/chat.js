@@ -7,9 +7,9 @@ import {
   PermissionsAndroid
 } from "react-native";
 import { Header } from "react-navigation";
-import { AudioRecorder, AudioUtils } from "react-native-audio";
-import RNFS from "react-native-fs";
-import Sound from "react-native-sound";
+// import { AudioRecorder, AudioUtils } from "react-native-audio";
+// import RNFS from "react-native-fs";
+// import Sound from "react-native-sound";
 import { ChatScreen } from "@components/ChatScreen";
 
 export default class Example extends Component {
@@ -134,28 +134,28 @@ export default class Example extends Component {
   componentDidMount() {}
 
   audioProgress = () => {
-    AudioRecorder.onProgress = data => {
-      if (data.currentTime === 0) {
-        this.setState(prevState => ({
-          currentTime: Math.floor(prevState.currentTime + 0.25)
-        }));
-      } else {
-        this.setState({ currentTime: Math.floor(data.currentTime) });
-      }
-      this._setVoiceHandel(false);
-      this.setState({ volume: Math.floor(data.currentMetering) });
-    };
+    // AudioRecorder.onProgress = data => {
+    //   if (data.currentTime === 0) {
+    //     this.setState(prevState => ({
+    //       currentTime: Math.floor(prevState.currentTime + 0.25)
+    //     }));
+    //   } else {
+    //     this.setState({ currentTime: Math.floor(data.currentTime) });
+    //   }
+    //   this._setVoiceHandel(false);
+    //   this.setState({ volume: Math.floor(data.currentMetering) });
+    // };
   };
 
   audioFinish = () => {
-    AudioRecorder.onFinished = data =>
-      this._finishRecording(data.status === "OK", data.audioFileURL);
+    // AudioRecorder.onFinished = data =>
+    //   this._finishRecording(data.status === "OK", data.audioFileURL);
   };
 
   checkDir = async () => {
-    if (!(await RNFS.exists(`${AudioUtils.DocumentDirectoryPath}/voice/`))) {
-      RNFS.mkdir(`${AudioUtils.DocumentDirectoryPath}/voice/`);
-    }
+    // if (!(await RNFS.exists(`${AudioUtils.DocumentDirectoryPath}/voice/`))) {
+    //   RNFS.mkdir(`${AudioUtils.DocumentDirectoryPath}/voice/`);
+    // }
   };
 
   initPath = async () => {
@@ -168,34 +168,34 @@ export default class Example extends Component {
   };
 
   prepareRecordingPath(audioPath) {
-    AudioRecorder.prepareRecordingAtPath(audioPath, {
-      SampleRate: 22050,
-      Channels: 1,
-      AudioQuality: "High",
-      AudioEncoding: "aac",
-      OutputFormat: "aac_adts",
-      AudioEncodingBitRate: 32000,
-      MeteringEnabled: true
-    });
+    // AudioRecorder.prepareRecordingAtPath(audioPath, {
+    //   SampleRate: 22050,
+    //   Channels: 1,
+    //   AudioQuality: "High",
+    //   AudioEncoding: "aac",
+    //   OutputFormat: "aac_adts",
+    //   AudioEncodingBitRate: 32000,
+    //   MeteringEnabled: true
+    // });
   }
 
   _record = async () => {
-    try {
-      await AudioRecorder.startRecording();
-    } catch (error) {
-      console.log(error);
-    }
+    // try {
+    //   await AudioRecorder.startRecording();
+    // } catch (error) {
+    //   console.log(error);
+    // }
   };
 
   _stop = async () => {
-    try {
-      await AudioRecorder.stopRecording();
-      if (Platform.OS === "android") {
-        this._finishRecording(true, filePath);
-      }
-    } catch (error) {
-      console.log(error);
-    }
+    // try {
+    //   await AudioRecorder.stopRecording();
+    //   if (Platform.OS === "android") {
+    //     this._finishRecording(true, filePath);
+    //   }
+    // } catch (error) {
+    //   console.log(error);
+    // }
   };
 
   _setVoiceHandel = status => {
@@ -203,19 +203,19 @@ export default class Example extends Component {
   };
 
   _pause = async () => {
-    try {
-      await AudioRecorder.pauseRecording(); // Android 由于API问题无法使用此方法
-    } catch (e) {
-      console.log(e);
-    }
+    // try {
+    //   await AudioRecorder.pauseRecording(); // Android 由于API问题无法使用此方法
+    // } catch (e) {
+    //   console.log(e);
+    // }
   };
 
   _resume = async () => {
-    try {
-      await AudioRecorder.resumeRecording(); // Android 由于API问题无法使用此方法
-    } catch (e) {
-      console.log(e);
-    }
+    // try {
+    //   await AudioRecorder.resumeRecording(); // Android 由于API问题无法使用此方法
+    // } catch (e) {
+    //   console.log(e);
+    // }
   };
 
   _finishRecording(didSucceed, filePath) {

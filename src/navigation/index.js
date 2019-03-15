@@ -3,7 +3,7 @@
 import React, { PureComponent } from "react";
 import { connect } from "react-redux";
 import {
-  reduxifyNavigator,
+  createReduxContainer,
   createNavigationReducer,
   createReactNavigationReduxMiddleware
 } from "react-navigation-redux-helpers";
@@ -12,11 +12,13 @@ import NavigatorService from "../services/navigator";
 import Routers from "./navigator";
 
 export const navigationReducer = createNavigationReducer(Routers);
+
 export const navigationMiddleware = createReactNavigationReduxMiddleware(
+  state => state.nav,
   "root",
-  state => state.nav
 );
-const AppWithNavigationState = reduxifyNavigator(Routers, "root");
+
+const AppWithNavigationState = createReduxContainer(Routers, "root");
 
 @connect(({ app, router }) => ({ app, router }))
 class AppNavigator extends PureComponent {

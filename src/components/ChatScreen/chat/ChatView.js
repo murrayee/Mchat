@@ -9,7 +9,7 @@ import {
   Platform,
   Animated,
   ActivityIndicator,
-  ListView,
+  FlatList,
   Easing,
   Clipboard,
   Dimensions,
@@ -24,7 +24,6 @@ import {EMOJIS_ZH} from '../source/emojis'
 import EmojiPanel from './emoji'
 import InputBar from './InputBar'
 const { height, width } = Dimensions.get('window')
-const Ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
 const ViewPropTypes = RNViewPropTypes || View.propTypes
 let that = null
 class ChatWindow extends Component {
@@ -909,7 +908,7 @@ class ChatWindow extends Component {
           activeOpacity={1}
           onPress={() => this.closeAll()}
           style={[{flex: 1, backgroundColor: '#f7f7f7'}, this.props.chatWindowStyle]}>
-          <ListView
+          <FlatList
             ref={e => this.chatList = e}
             onScroll={(e) => {this.props.onScroll(e)}}
             style={{transform: [{scale: inverted ? -1 : 1}]}}
@@ -918,7 +917,7 @@ class ChatWindow extends Component {
             onEndReached={() => {
               this._loadHistory()
             }}
-            dataSource={Ds.cloneWithRows(currentList)}
+            data={currentList}
             enableEmptySections
             renderFooter={() =>
               <View onLayout={

@@ -1,8 +1,0 @@
-coverage
-flow
-node_modules
-lib*
-build
-
-## Temporary
-examples

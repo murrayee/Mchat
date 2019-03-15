@@ -4,10 +4,11 @@ import {
   Text,
   View,
   TouchableOpacity,
-  AsyncStorage
 } from "react-native";
 import { Carousel } from "@ant-design/react-native";
 import { guideStyles } from "@styles";
+
+import { Storage } from '@utils';
 
 export default class Guide extends PureComponent {
   constructor() {
@@ -22,9 +23,9 @@ export default class Guide extends PureComponent {
       navigation: { state },
       navigation
     } = this.props;
-    AsyncStorage.setItem(
+    Storage.set(
       "murray/version",
-      JSON.stringify(state.params.version)
+      state.params.version
     );
     navigation.navigate("loading");
   };
