@@ -917,9 +917,10 @@ class ChatWindow extends Component {
             onEndReached={() => {
               this._loadHistory()
             }}
-            data={currentList}
+            keyExtractor={(item)=>item.id}
+            data={messageList}
             enableEmptySections
-            renderFooter={() =>
+            ListFooterComponent={() =>
               <View onLayout={
                 (e) => {
                   const listHeight = height - this.HeaderHeight - 53
@@ -936,7 +937,7 @@ class ChatWindow extends Component {
             }
             onLayout={() => {this._scrollToBottom()}}
             onContentSizeChange={() => {!inverted && this._scrollToBottom()}}
-            renderRow={(rowData, sectionID, rowId) => {
+            renderItem={({item}) => {
               return (
                 <View style={{transform: [{scale: inverted ? -1 : 1}]}}>
                   <ChatItem
@@ -944,11 +945,11 @@ class ChatWindow extends Component {
                     user={this.props.userProfile}
                     reSendMessage={this.props.reSendMessage}
                     renderMessageCheck={this.props.renderMessageCheck}
-                    message={rowData}
+                    message={item}
                     currentIndex={this.state.currentIndex}
                     isOpen={this.state.selectMultiple}
                     selectMultiple={this.selectMultiple}
-                    rowId={rowId}
+                    rowId={item.id}
                     popShow={this.show}
                     messageSelectIcon={this.props.messageSelectIcon}
                     renderMessageTime={this.props.renderMessageTime}
