@@ -99,7 +99,7 @@ const tabs = createBottomTabNavigator(
   },
   TabNavigatorConfig({
     lazy: true,
-    initialRouteName: "dynamic"
+    initialRouteName: "message"
   })
 );
 

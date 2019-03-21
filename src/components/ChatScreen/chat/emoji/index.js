@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, ScrollView, StyleSheet, ViewPagerAndroid, Platform, Dimensions, Animated, TouchableOpacity, Image } from 'react-native'
+import { View, ScrollView, StyleSheet, Platform, Dimensions, Animated, TouchableOpacity, Image } from 'react-native'
 import ViewPagerAndroidContainer from '../components/android-container'
 import Control from './control'
 import {EMOJIS_DATA, DEFAULT_EMOJI} from '../../source/emojis'
@@ -33,7 +33,7 @@ export default class EmojiPanel extends Component {
 
   render () {
     const {allPanelHeight, isIphoneX, HeaderHeight} = this.props
-    const ContainerComponent = Platform.select({ ios: ScrollView, android: ViewPagerAndroid })
+    const ContainerComponent = Platform.select({ ios: ScrollView, android: ScrollView })
     this.total = 0
     return (
       <Animated.View style={[styles.container, {

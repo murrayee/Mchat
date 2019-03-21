@@ -34,7 +34,7 @@ const dva = options => {
 const app = dva({
   models: models,
   extraReducers: { router: navigationReducer },
-  onAction: [createLogger, socketMiddleware, navigationMiddleware],
+  onAction: [ socketMiddleware, navigationMiddleware],
   onError(e) {
     console.log("onError", e);
   }
