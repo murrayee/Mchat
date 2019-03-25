@@ -5,12 +5,14 @@ import {ScrollView, StyleSheet, Text, View} from "react-native";
 import {PullToRefreshView} from "@components/PullToRefreshView";
 import {RefreshView} from "./refreshView";
 
+
 export default class App extends Component {
 
   state = {
     title: "Pull down to refresh",
     isRefreshing: false,
   };
+
 
   render() {
     return (
@@ -35,7 +37,6 @@ export default class App extends Component {
       </View>
     );
   }
-
 
   onInnerRefresh = () => {
     this.setState({title: "Loading..."});

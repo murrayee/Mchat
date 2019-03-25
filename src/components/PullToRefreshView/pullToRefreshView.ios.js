@@ -25,25 +25,22 @@ export const PullToRefreshViewIos = (
     children,
   }) => {
 
-  let scrollContentRef = null;
+
+  const scrollContentRef = useRef(null);
   const [shouldTriggerRefresh, setShouldTriggerRefresh] = useState(false);
   const [scrollY, setScrollY] = useState(new Animated.Value(0));
   const [isScrollFree, setIsScrollFree] = useState(true);
 
-  const refScrollComponent = (innerRef) => {
-    scrollContentRef = innerRef;
-  };
-
   const onResponderRelease = () => {
     if (!isRefreshing && shouldTriggerRefresh) {
-      scrollContentRef.scrollTo({y: -minPullDistance});
+      scrollContentRef.current.scrollTo({y: -minPullDistance});
       setIsScrollFree(false);
       onRefresh();
     }
   };
 
   const onScrollEvent = (event) => {
-    // onScroll && onScroll(event);
+
     scrollY.setValue(event.nativeEvent.contentOffset.y);
     if (!isScrollFree) {
       return;
@@ -58,7 +55,7 @@ export const PullToRefreshViewIos = (
   };
 
   const innerScrollTo = (y) => {
-    scrollContentRef.scrollTo({y});
+    scrollContentRef.current.scrollTo({y});
   };
 
   useEffect(() => {
@@ -106,7 +103,7 @@ export const PullToRefreshViewIos = (
           scrollEventThrottle: 16,
           onScroll: onScrollEvent,
           onResponderRelease,
-          ref: refScrollComponent,
+          ref: scrollContentRef,
         })}
       </View>
     </View>

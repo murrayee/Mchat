@@ -17,6 +17,6 @@
 
 **注意**
 
-- 如果编译出现 iconfont.ttf 的问题 ，复制'src/components/Icon/custom/iconfont.ttf 到'node_modules/react-native-vector-icons/Fonts'；自定义图标更新到新版导致的，按照官网来不行，也没找到好的方案。暂时这样解决吧。
+- link完成前提下，如果编译出现 iconfont.ttf 的问题 ，自定义图标导致.(android:将iconfont.ttf移到'android/app/src/main/assets/fonts',ios:'移至工程目录Resources'目录下)
 - 生产的时候请把 createLogger这个中间件注释掉，不然卡的你怀疑人生。（开发阶段没事，调式方便）
 - mock服务 或者 线上服务，真机调式请把config/host.js 里面的url更换为局域网ip或着。。。。,
