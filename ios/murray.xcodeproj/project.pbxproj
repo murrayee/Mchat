@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -63,6 +62,7 @@
 		ED2971652150620600B7C4FE /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED2971642150620600B7C4FE /* JavaScriptCore.framework */; };
 		F655B217840F4FA1A267E0BF /* FontAwesome5_Brands.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0984FB4F826645D68537878F /* FontAwesome5_Brands.ttf */; };
 		F732EC1342824809B7D823E8 /* libRNVectorIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A042504904B645F2B77C26BF /* libRNVectorIcons.a */; };
+		05F64979E6294F7998D73151 /* iconfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 867F3E51C59546B988DA3FDF /* iconfont.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -455,6 +455,7 @@
 		E955A453ABF64BFCB2259CF0 /* antfill.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = antfill.ttf; path = "../node_modules/@ant-design/icons-react-native/fonts/antfill.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
+		867F3E51C59546B988DA3FDF /* iconfont.ttf */ = {isa = PBXFileReference; name = "iconfont.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/iconfont.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -809,6 +810,7 @@
 				962AC3891BB24A43AB32C8F3 /* Octicons.ttf */,
 				5FF43AF8A1BC40528ABFC6F6 /* SimpleLineIcons.ttf */,
 				2DA106F9CEE44E86BDC24615 /* Zocial.ttf */,
+				867F3E51C59546B988DA3FDF /* iconfont.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1355,6 +1357,7 @@
 				245FF3E61E6D47EBBEDF42D8 /* Octicons.ttf in Resources */,
 				D590BAC4D01D4CD0869E47C1 /* SimpleLineIcons.ttf in Resources */,
 				91B2724D748F48119094F580 /* Zocial.ttf in Resources */,
+				05F64979E6294F7998D73151 /* iconfont.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

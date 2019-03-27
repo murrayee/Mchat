@@ -20,5 +20,5 @@
 - link完成前提下，如果编译出现 iconfont.ttf 的问题 ，自定义图标导致.(android:将iconfont.ttf移到'android/app/src/main/assets/fonts',ios:'移至工程目录Resources'目录下)
 - 生产的时候请把 createLogger这个中间件注释掉，不然卡的你怀疑人生。（开发阶段没事，调式方便）
 - mock服务 或者 线上服务，真机调式请把config/host.js 里面的url更换为局域网ip或着。。。。,
-- alias 的使用问题，这里用的是 'babel-plugin-module-resolver'，如果出现编译路径怪异的问题，运行 yarn start --reset-cache 就可以了。
+- alias 的使用问题，这里用的是 'babel-plugin-module-resolver'，如果出现编译路径怪异的问题，运行 ' yarn start --reset-cache '就可以了。
 
