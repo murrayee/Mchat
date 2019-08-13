@@ -25,6 +25,7 @@
     "no-underscore-dangle": "off",
     "no-use-before-define": "off",
     "no-unused-expressions": "off",
+    "experimentalDecorators": "off",
     "new-cap": "off",
     "no-plusplus": "off",
     "no-class-assign": "off",
