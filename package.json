@@ -16,7 +16,7 @@
     "dva-loading": "^2.0.6",
     "immutable": "^4.0.0-rc.12",
     "js-base64": "^2.5.1",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "prop-types": "^15.7.2",
     "qs": "^6.6.0",
     "react": "^16.8.4",
