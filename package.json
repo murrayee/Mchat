@@ -48,7 +48,7 @@
     "babel-plugin-module-resolver": "^3.2.0",
     "body-parser": "^1.18.3",
     "eslint-plugin-react": "^7.12.4",
-    "express": "^4.16.4",
+    "express": "^4.17.3",
     "jest": "^24.5.0",
     "metro-react-native-babel-preset": "^0.53.0",
     "mockjs": "^1.0.1-beta3",
